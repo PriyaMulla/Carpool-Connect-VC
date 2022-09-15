@@ -3,3 +3,5 @@
 .idea/modules.xml
 .idea/vcs.xml
 out/**
+.idea/**/workspace.xml
+.idea/**/usage.statistics.xml
