@@ -10,7 +10,7 @@
 
 ### Passanger v. Passanger match
 1. Student 1 finds Student 2 going to the similar locations and times
-2. They agree to
+2. They agree to travel together through an alternate solution
 
 
 
