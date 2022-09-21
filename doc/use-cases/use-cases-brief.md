@@ -18,3 +18,8 @@
 
 
 ##Carpooling- Driver POV
+1. A student is heading to a specific location
+2. They select the role of "Driver"
+3. They input the location, the desired time and how many people they are willing to take
+4. The Driver gets notified about a potential passanger
+5. 
