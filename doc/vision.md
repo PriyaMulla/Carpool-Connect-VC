@@ -12,7 +12,7 @@
 * Accounts for messaging and connecting (vassar login)
 
 ###Constraints
-* Vassar Account Login
+* Vassar Account Login*
 * Google or Apple Maps
 
 ###Business Case
