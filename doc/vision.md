@@ -8,6 +8,13 @@
 * Accounts for messaging and connecting (vassar login)*
 * Notifications of potential trips, planned trips, and messages*
 
+###Actors
+* Driver- Create an account, Make and take down a Listing, Search Listings, Schedule a Trip
+
+* System Actor- PLACEHOLDER
+
+* Passenger- Create an account, Make and take down a Listing, Search Listings, Schedule a Trip
+
 ###Constraints
 * Vassar Account Login*
 * Map Data
