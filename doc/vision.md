@@ -1,4 +1,4 @@
-#Carpool
+#Vision
 
 ###High Level Goals
 * Connecting college students who can drive with ones that need rides.
