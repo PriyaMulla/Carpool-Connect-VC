@@ -27,4 +27,4 @@
 3. They make a posting with the desired location, the desired time and how many people they are willing to take
 4. The Driver gets notified about a potential passenger through contact info
 5. The Driver messages the Passenger and agree to each other's conditions
-6. Their posting updates with the necessary steps *
+6. Their posting updates with the necessary steps 
