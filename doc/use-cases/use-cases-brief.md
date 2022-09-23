@@ -86,7 +86,7 @@ LAST - uploads to page of Listings
 Make dialogue between system and user
 use cases are run knowing you did prior things
 Easier if Driver manually counts down seats
-Lets Driver hide/unhide listings for reoccurent trips
+Lets Driver hide/unhide listings for recurrent trips
 
 ##Searching Listings
 1. Go to menu
