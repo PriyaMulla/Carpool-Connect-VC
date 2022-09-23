@@ -1,6 +1,6 @@
 #Use cases brief
 
-##Carpooling- Passenger POV
+##Overall Passenger POV
 
 1. A student needs a ride going to a specific location
 2. They select the role of "Passenger"
@@ -19,20 +19,12 @@
 booking a ride
 
                             special req - Android studio
-
-
-set up future trip?
-removing a listing 
-        Driver POV- would it send a notification to passengers
 editing a listing 
 accepting the trip
-        making a group
-Searching listings
-save accounts to database (assigned userid)
-
+                             making a group
 Preconditions - Car, Vassar student/faculty?
 
-##Carpooling- Driver POV
+##Overall Driver POV
 1. A student wants to drive to a specific location
 2. They select the role of "Driver"
 3. They make a listing with the desired location, the desired time and how many people they are willing to take
@@ -45,7 +37,7 @@ Preconditions - Car, Vassar student/faculty?
 2. Ask for Name and Last Name
 3. Ask for email address (isolate vassar users)
 4. Ask for phone number
-5. Ask to choose a role (Driver or Passenger) <--- Extension
+5. Ask to choose a role (Driver or Passenger) <--- Extension if driver another question asking if has car
 6. Add a picture
 7. Set a username
 8. Set & confirm a password
@@ -86,13 +78,37 @@ Preconditions - Car, Vassar student/faculty?
 5. Click "Yes"
 
 ##Creating Listings
-(differ for Driver and Passenger)
+1.Click on "Create a Listing" button (differ for Driver and Passenger) gives option
 
 <-- Extension what happens if it's a future trip that was scheduled or trips other than current day
 LAST - uploads to page of Listings
+###Notes
+Make dialogue between system and user
+use cases are run knowing you did prior things
+Easier if Driver manually counts down seats
+Lets Driver hide/unhide listings for reoccurent trips
+
 ##Searching Listings
+1. Go to menu
+2. click on "Listings page"
+3. Click Search and input desired place 
+4. Filter time,range, driver, passenger
+5. Look through available listings
+
 ## Removing Listings
-<-- Extension If Listing had passengers assigned to it
+1. Click on Listings
+2. Click on edit
+3. Go to bottom
+4. Click "Delete Listing"
+5. Outputs "Are you sure you want to delete this Listing"
+6. Click "Yes" button <-- Extension If Listing had passengers assigned to it, notify them
+
+##Editing Listings
+1. Click on listing
+2. Click on edit
+3. Edit time and place <-- Extensions if time is 10 min away can't do or if time has passed
+4. Accept changes
+
 ##Saving user accounts to Database
 1. System detects new account
 2. Pushes new account to database
