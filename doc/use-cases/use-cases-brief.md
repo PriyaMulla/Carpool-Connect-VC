@@ -1,6 +1,6 @@
 #Use cases brief
 
-##Overall Passenger POV
+~~##Overall Passenger POV~~
 
 1. A student needs a ride going to a specific location
 2. They select the role of "Passenger"
@@ -10,106 +10,146 @@
 6. The student clicks confirm and reserves a spot
 7. The student changes the listing to "resolved"
 
-### Passenger v. Passenger match
+~~### Passenger v. Passenger match~~
 1. Student 1 finds that Student 2 going to the similar locations and time
 2. Student 1 receives Student 2's contact info and messages him
 3. They agree to travel together through an alternate solution
 4. They both change the states of their listings to "resolved"
 
-booking a ride
-
-                            special req - Android studio
-editing a listing 
-accepting the trip
-                             making a group
-Preconditions - Car, Vassar student/faculty?
-
-##Overall Driver POV
+~~##Overall Driver POV~~
 1. A student wants to drive to a specific location
 2. They select the role of "Driver"
 3. They make a listing with the desired location, the desired time and how many people they are willing to take
 4. The Driver gets notified about a potential passenger through contact info
 5. The Driver messages the Passenger and agree to each other's conditions
-6. Their listing updates with the necessary steps
+6. Their listing updates with the necessary steps~~
 
-##Creating an account
+##Create an account  MAYBE FULLY DRESSED
 1. Click sign up button
-2. Ask for Name and Last Name
-3. Ask for email address (isolate vassar users)
-4. Ask for phone number
-5. Ask to choose a role (Driver or Passenger) <--- Extension if driver another question asking if has car
-6. Add a picture
-7. Set a username
-8. Set & confirm a password
-9. Click sign up
-10. Send a confirmation email?
+2. System sends user to Sign up page
+3. System asks for Name and Last Name
+4. User enters their Name and Last Name
+5. System asks for an email address with an ending of "@vassar.edu"
+6. User enters email address with correct format
+7. System asks for a phone number
+8. User enters their phone number
+9. System asks to choose a role (Driver or Passenger) <--- Extension if driver another question asking if they have car
+10. User chooses their role
+11. System gives an option to add a picture
+12. User adds their desired picture
+13. System asks to input a username
+14. User inputs their username 
+15. System asks to input a password
+16. User inputs a password with the correct format
+17. System asks to confirm their password
+18. User retypes their password
+19. User clicks the sign-up button
+20. System checks that all fields are correct and not empty
+21. System sends a confirmation email to user's email
 
+###Switch Roles
+1. System brings up a box with the options : Driver and Passenger
+2. User chooses their desired role and click accepts <-- Extension depending on what you click and checks if new driver
+3. System updates profile to reflect chosen role
 
-###Switching Roles
-1. Click on profile
-2. Click on Switch role
-3. Click on desired role <-- Extension depending on what you click and checks if new driver
-4. Click accept
-
-###Editing account
-1. Go to profile
-2. Click edit profile
-3. Edit possible options
-4. click accept
+###Edit account
+1. System brings up the edit page with possible edits that can be made
+2. User edits profile as they wish and clicks accept
+3. System checks that fields are correct and not empty
+4. System submits changes to user's account
 
 ###Delete account
-1. Go to edit profile
-2. Scroll to "Delete" section
-3. Click "Delete account" button
-4. Outputs "Are you sure you want to delete the account? All information will be deleted"
-5. click accept
-6. Returns user to login/signup screen
+1. User scrolls down to "Delete" section on the edit page
+2. User clicks "Delete account" button
+3. System outputs "Are you sure you want to delete the account? All information will be deleted"
+4. User clicks accept
+5. System returns user to login/signup screen
+6. System deletes account from database
 
-##Logging in
-1. Ask for your username
-2. Ask for your password <-- Extension (if forgot password then what)
-3. Click log in
+##Log in
+1. System asks for a username
+2. User inputs their username
+3. System asks for a password <-- Extension (if forgot password then what)
+4. User inputs their password
+5. User clicks the "log in" button
+6. System checks if the pair (Username,password) is in the database
+7. System loads up their account and sends user to the home screen
 
-##Logging out
-1. Go to menu 
-2. Scroll to bottom
-3. Click Log out
-4. Outputs "Are you sure you want to log out?"
-5. Click "Yes"
+##Log out
+1. User clicks the "Log-out" button
+2. System outputs "Are you sure you want to log out?"
+3. User clicks "Yes"
+4. System returns user to login/signup screen
 
-##Creating Listings
-1.Click on "Create a Listing" button (differ for Driver and Passenger) gives option
+##Create a Listing MAYBE FULLY DRESSED
+1. System asks if the user is a Driver or a Passenger
+2. User chooses their role
+3. System asks to input desired place
+4. System matches input with places from Map data
+5. System shows the user options to help choose the accurate address
+6. User clicks on the correct place
+7. System asks to input the date and time
+8. User inputs their desired date and time and clicks "Create"
+9. System creates the listing and posts it to the Listings page
 
 <-- Extension what happens if it's a future trip that was scheduled or trips other than current day
-LAST - uploads to page of Listings
-###Notes
-Make dialogue between system and user
-use cases are run knowing you did prior things
-Easier if Driver manually counts down seats
-Lets Driver hide/unhide listings for recurrent trips
 
-##Searching Listings
-1. Go to menu
-2. click on "Listings page"
-3. Click Search and input desired place 
-4. Filter time,range, driver, passenger
-5. Look through available listings
+##Write a Review
+1. System asks if the individual was a driver or passenger
+2. User selects the role
+3. System asks user to input how many stars they give
+4. User selects the stars
+5. System asks to input a comment about the individual
+6. User writes their comment and clicks accept
+7. System uploads review to the target's profile at the corresponding section
+8. System finds the average of the ratings and updates it? BIG IF
 
-## Removing Listings
-1. Click on Listings
-2. Click on edit
-3. Go to bottom
-4. Click "Delete Listing"
-5. Outputs "Are you sure you want to delete this Listing"
-6. Click "Yes" button <-- Extension If Listing had passengers assigned to it, notify them
+##Search for a Listing MAYBE FULLY DRESSED
+1. System prompts a Search bar 
+2. User inputs desired place 
+3. System matches input with places from Map data 
+4. System shows the user options to help choose the accurate address
+5. User clicks on the correct place
+6. System shows results of listings matching the place inputted
+7. User clicks the "filter" button
+8. System opens up the "filter" subpage that shows time, range, and driver/passenger option
+9. User inputs desired options and clicks accept
+10. System updates the results to reflect the user's filter options
 
-##Editing Listings
-1. Click on listing
-2. Click on edit
-3. Edit time and place <-- Extensions if time is 10 min away can't do or if time has passed
-4. Accept changes
+##Remove a Listing
+1. System brings up an overview of the listing 
+2. User clicks on the "edit" button
+3. System brings up the editable page
+4. User clicks the "Delete listing" button
+5. System outputs "Are you sure you want to delete this listing?"
+6. User clicks "Yes" button <-- Extension If listing had passengers assigned to it, notify them
+7. System removes the listing from the Listings page
 
-##Saving user accounts to Database
-1. System detects new account
-2. Pushes new account to database
-3. Assigns account a userId
+##Hide a Listing
+1. System brings up an overview of the listing
+2. User clicks the "hide" button
+3. System makes the listing unavailable in the Listings page
+4. System stores the listing
+
+##Show a Listing
+1. User clicks on a hidden listing
+2. System brings up an overview of the listing
+3. User clicks the "show" button
+4. System makes the listing available in the Listings page
+
+##Edit a Listing
+1. System brings up an overview of the listing 
+2. User clicks the "Edit" button
+3. System brings up the edit page
+4. User edits time and place and clicks Accept<-- Extensions if time is 10 min away can't do or if time has passed
+5. System updates the listing
+
+##Accept a Listing
+1. System brings up an overview of the listing
+2. User clicks the "Interested" button
+3. System shows individual's contact information
+
+##Save user account to Database
+1. System detects a new account was made
+2. System sends new account information to database
+3. Assigns account a userId?
