@@ -1,9 +1,8 @@
 #Supplementary Specification
 
 ##Usability
-1. Easily visible from meter away
+1. Easily visible
 2. Colors associated with color blindness should be avoided
-3. Menu with user's options - search, listings page, create new listings, account, logout
 4. Places to click or edit are clear
 
 ##Performance
