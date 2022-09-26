@@ -2,20 +2,26 @@
 
 ###Scope
 * Listing Management system
+
 ###Level
 * User goal
+
 ###Primary Actor
 * Driver or Passenger
+
 ###Stakeholders and Interest
 * Driver: Wants an easily readable system with easy, accurate Listing creation. Wants to easily post their trips on the page of Listings
 * Passenger: Wants an easily readable system with easy, accurate Listing creation. Wants to easily post the times they want to take a specified trip
+
 ###Preconditions 
 * The user should have an account created
 * The user should be logged in
+
 ###Postconditions
 * A new listing has been created
 * The new listing is saved in "My Listings" page
 * The page of Listings is updated
+
 ###Main success scenario
 1. System asks if the user is a Driver or a Passenger
 2. User chooses their role
@@ -32,6 +38,7 @@
 13. User clicks "Create"
 14. System checks that all fields were correctly filled
 15. System creates the listing and posts it to the Listings page
+
 ###Extensions
 2a. Role of Driver was chosen:
 1. System asks to input the number of seats in their car
@@ -64,12 +71,15 @@
 14c. User did not input an accurate location:
 1. System highlights Location section and outputs an error message
 2. User repeats steps 3-5
+
 ###Special requirements
 * System displays Creation page in a form-like format
 * Date and time formatting
 * Text is easily readable
+
 ###Technology and data variations list
 
 ###Frequency of occurrence 
+This use case will occur everytime a user wants to create new listing
 
 ###Miscellaneous 
