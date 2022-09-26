@@ -1,15 +1,15 @@
 #Use cases brief
 
-##Create an account  MAYBE FULLY DRESSED
+##Create an account
 1. Click sign up button
 2. System sends user to Sign up page
 3. System asks for Name and Last Name
 4. User enters their Name and Last Name
 5. System asks for an email address with an ending of "@vassar.edu"
-6. User enters email address with correct format
+6. User enters email address 
 7. System asks for a phone number
 8. User enters their phone number
-9. System asks to choose a role (Driver or Passenger) <--- Extension if driver another question asking if they have car
+9. System asks to choose a role (Driver or Passenger) 
 10. User chooses their role
 11. System gives an option to add a picture
 12. User adds their desired picture
@@ -22,6 +22,7 @@
 19. User clicks the sign-up button
 20. System checks that all fields are correct and not empty
 21. System sends a confirmation email to user's email
+22. System creates the account and sends to database
 
 ###Switch Roles
 1. System brings up a box with the options : Driver and Passenger
@@ -57,7 +58,7 @@
 3. User clicks "Yes"
 4. System returns user to login/signup screen
 
-##Create a Listing MAYBE FULLY DRESSED
+##Create a Listing
 1. System asks if the user is a Driver or a Passenger
 2. User chooses their role
 3. System asks to input desired place
@@ -84,7 +85,7 @@
 7. System uploads review to the target's profile at the corresponding section
 8. System finds the average of the ratings and updates it? BIG IF
 
-##Search for a Listing MAYBE FULLY DRESSED
+##Search for a Listing 
 1. System prompts a Search bar 
 2. User inputs desired place 
 3. System matches input with places from Map data 
