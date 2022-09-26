@@ -1,29 +1,5 @@
 #Use cases brief
 
-~~##Overall Passenger POV~~
-
-1. A student needs a ride going to a specific location
-2. They select the role of "Passenger"
-3. They input their location and time
-4. Select the desired driver and receives driver's contact info
-5. The driver and passenger agree to each other's conditions
-6. The student clicks confirm and reserves a spot
-7. The student changes the listing to "resolved"
-
-~~### Passenger v. Passenger match~~
-1. Student 1 finds that Student 2 going to the similar locations and time
-2. Student 1 receives Student 2's contact info and messages him
-3. They agree to travel together through an alternate solution
-4. They both change the states of their listings to "resolved"
-
-~~##Overall Driver POV~~
-1. A student wants to drive to a specific location
-2. They select the role of "Driver"
-3. They make a listing with the desired location, the desired time and how many people they are willing to take
-4. The Driver gets notified about a potential passenger through contact info
-5. The Driver messages the Passenger and agree to each other's conditions
-6. Their listing updates with the necessary steps~~
-
 ##Create an account  MAYBE FULLY DRESSED
 1. Click sign up button
 2. System sends user to Sign up page
@@ -89,10 +65,14 @@
 5. System shows the user options to help choose the accurate address
 6. User clicks on the correct place
 7. System asks to input the date and time
-8. User inputs their desired date and time and clicks "Create"
-9. System creates the listing and posts it to the Listings page
-
-<-- Extension what happens if it's a future trip that was scheduled or trips other than current day
+8. User inputs their desired date and time 
+9. System records date and time
+10. System asks if the listing will be a recurrent event
+11. User chooses an option
+12. System records the option chosen
+13. User clicks "Create"
+14. System checks that all fields were correctly filled
+15. System creates the listing and posts it to the Listings page
 
 ##Write a Review
 1. System asks if the individual was a driver or passenger
