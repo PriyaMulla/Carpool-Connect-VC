@@ -4,7 +4,6 @@
 * Listing Management system
 ###Level
 * User goal
-
 ###Primary Actor
 * Driver or Passenger
 ###Stakeholders and Interest
