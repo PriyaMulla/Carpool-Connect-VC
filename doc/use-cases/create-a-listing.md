@@ -1,18 +1,19 @@
 #Create a Listing
 
 ###Scope
-* Listing creation system
+* Listing Management system
 ###Level
 * User goal
 
 ###Primary Actor
 * Driver or Passenger
 ###Stakeholders and Interest
-
+* Driver: Wants an easily readable system with easy, accurate Listing creation. Wants to easily post their trips on the page of Listings
+* Passenger: Wants an easily readable system with easy, accurate Listing creation. Wants to easily post the times they want to take a specified trip
 ###Preconditions 
 * The user should have an account created
 * The user should be logged in
-###Post-conditions
+###Postconditions
 * A new listing has been created
 * The new listing is saved in "My Listings" page
 * The page of Listings is updated
@@ -39,12 +40,35 @@
 
 4a. System is unable to find a match:
 1. System outputs "No results"
-2. User reenters location
+2. User repeats steps 3-4
 
 8a. User inputs a date that has passed:
-1. System outputs
-###Special requirements
+1. System outputs the error message "Date has passed"
+2. User inputs a new date
 
+8b. User inputs a time that has passed for current day:
+1. System outputs the error message "Time has passed"
+2. User inputs a new time
+
+10a. User chose Yes:
+1. System prompts a subpage to choose the days desired
+2. User inputs their desired days
+
+14a. User's role was not chosen:
+1. System highlights Role section and outputs an error message
+2. User repeats step 2
+
+14b. User left a section(s) blank:
+1. System highlights the empty sections
+2. User enters the required information
+
+14c. User did not input an accurate location:
+1. System highlights Location section and outputs an error message
+2. User repeats steps 3-5
+###Special requirements
+* System displays Creation page in a form-like format
+* Date and time formatting
+* Text is easily readable
 ###Technology and data variations list
 
 ###Frequency of occurrence 
