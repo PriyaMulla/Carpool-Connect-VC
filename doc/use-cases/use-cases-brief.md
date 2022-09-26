@@ -26,7 +26,7 @@
 
 ###Switch Roles
 1. System brings up a box with the options : Driver and Passenger
-2. User chooses their desired role and click accepts <-- Extension depending on what you click and checks if new driver
+2. User chooses their desired role and click accepts 
 3. System updates profile to reflect chosen role
 
 ###Edit account
@@ -46,7 +46,7 @@
 ##Log in
 1. System asks for a username
 2. User inputs their username
-3. System asks for a password <-- Extension (if forgot password then what)
+3. System asks for a password 
 4. User inputs their password
 5. User clicks the "log in" button
 6. System checks if the pair (Username,password) is in the database
@@ -83,7 +83,6 @@
 5. System asks to input a comment about the individual
 6. User writes their comment and clicks accept
 7. System uploads review to the target's profile at the corresponding section
-8. System finds the average of the ratings and updates it? BIG IF
 
 ##Search for a Listing 
 1. System prompts a Search bar 
@@ -103,7 +102,7 @@
 3. System brings up the editable page
 4. User clicks the "Delete listing" button
 5. System outputs "Are you sure you want to delete this listing?"
-6. User clicks "Yes" button <-- Extension If listing had passengers assigned to it, notify them
+6. User clicks "Yes" button 
 7. System removes the listing from the Listings page
 
 ##Hide a Listing
@@ -122,7 +121,7 @@
 1. System brings up an overview of the listing 
 2. User clicks the "Edit" button
 3. System brings up the edit page
-4. User edits time and place and clicks Accept<-- Extensions if time is 10 min away can't do or if time has passed
+4. User edits time and place and clicks Accept
 5. System updates the listing
 
 ##Accept a Listing
