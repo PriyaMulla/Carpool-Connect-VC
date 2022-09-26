@@ -2,20 +2,26 @@
 
 ###Scope
 * Account management system
+
 ###Level
 * User goal
+
 ###Primary actor
 * User
+
 ###Stakeholders and interest
 * User: Wants an easily readable system to create an account and easily gain access to the application
+
 ###Preconditions
 * User needs to have a Vassar email address
+
 ###Postconditions
 * User has created an account
 * A new account is stored in the database
 * User gained the ability to interact with the app either by:
   1. Creating a trip 
   2. Accepting driver offers
+
 ###Main success scenario
 1. Click sign up button
 2. System sends user to Sign up page
@@ -39,11 +45,12 @@
 20. System checks that all fields are correct and not empty
 21. System sends a confirmation email to user's email
 22. System creates the account and sends to database
+
 ###Extensions
 6a. System can’t find the substring “@vassar.edu”:
 1. System outputs the error message “Enter a valid email address” 
 2. User repeats step 6
-3. 
+
 10a. If user chose the role “Driver”:
 1. System asks user if they have a car 
 2. User responds yes or no
@@ -74,6 +81,9 @@
 * Text is easily readable
 
 ###Technology and data variations list
+
 ###Frequency of occurrence
+This use case is required for all users wanting to get access to the application
+
 ###Miscellaneous
-* Confirming email helps increase security and reliability of
+* Confirming email helps increase security and reliability
