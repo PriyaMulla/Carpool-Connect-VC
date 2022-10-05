@@ -69,8 +69,16 @@ User "1  " -up- "*" Message : Manages\t\t
 hide footbox
 
 actor User as user
-participant " : Account" as account
+participant " : CPA" as system
+participant "acc : Account" as account
+participant "pr: Profile" as profile
 
+user -> system : create Account
+system -->> account ** : acc = create()
+activate system
+system ->> account : username = inputUsername()
+system ->> account : password = inputPassword()
 
+account -->> profile **: pr = create(username,password)
 @enduml
 ```
