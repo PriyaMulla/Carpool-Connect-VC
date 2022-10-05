@@ -61,3 +61,16 @@ User "1  " -up- "*" Message : Manages\t\t
 
 @enduml
 ```
+
+##Sequence Diagram
+
+```plantuml
+@startuml
+hide footbox
+
+actor User as user
+participant " : Account" as account
+
+
+@enduml
+```
