@@ -46,15 +46,18 @@ message
 }
 
 class MessageCenter{
+delete
+search
 }
 
 ' associations
-PageOfListings "1" -left- "*" Listing : \Contained-in\t\t
-MessageCenter "1" -left- "*" Message: \tContaineed in\t\t
+PageOfListings "1  " -left- "*" Listing : Contained-in\t\t
+MessageCenter "1" -up- "*" Message: Contained in\t
 User "1" -left- "1" MessageCenter : \tHad-by\t\t
 User "1" - "1" PageOfListings : \tSearches-through\t\t
-User "1" -up- "*" Listing : \tManges\t\t
-User "1" -- "1" Account : \tManages\t\t
+User "1" -up- "*" Listing : Manages\t\t
+User "1" -- "1" Account : Manages\t\t
+User "1  " -up- "*" Message : Manages\t\t
 
 @enduml
 ```
