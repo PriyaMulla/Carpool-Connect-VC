@@ -1,4 +1,4 @@
-#Glossary
+# Glossary
 
 | Term  | Definition                                                | Format | Validation rules | Aliases |
 |-------|-----------------------------------------------------------|--------|-----------------|---------|
