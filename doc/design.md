@@ -6,13 +6,8 @@ hide circle
 hide empty methods 
 
 'classes
-class User{
-Review
-}
 
 class PageOfListings{
---Filter--
---Sort--
 }
 class Listing{
 Date created
@@ -21,8 +16,6 @@ Date of trip
 Start Location
 End Location
 Comment
---Edit--
---Delete--
 }
 
 class Account{
@@ -32,10 +25,6 @@ Email
 Username
 Password
 Picture
---Review--
---Create--
---Delete--
---Update--
 Dashboard
 }
 
@@ -47,8 +36,6 @@ message
 }
 
 class MessageCenter{
---delete--
---search--
 }
 
 class Review{
@@ -60,14 +47,13 @@ class CollectionOfAccounts{
 }
 ' associations
 PageOfListings "1  " -left- " *" Listing : Contained-in\t\t
-MessageCenter "1  " --up- "\t\t\t*" Message: Contained in\t
-User "1" -left- "1" MessageCenter : \tHad-by\t\t
-User "1" -right- "1" PageOfListings : \tSearches-through\t\t
-User "1" -up- "*" Listing : Manages\t\t
-User "1" -up-- "\t\t\t\t\t*" Listing : Participates-in\t\t
-User "1" -- "1" Account : Manages\t\t
-User "1    " -up- "*" Message : Manages\t\t
-Account "1" -right- "*" Review : \tContains\t\t
+MessageCenter "1  " -left- "*" Message: \tContained in\t\t
+Account "1" -up- "1" MessageCenter : \tHad-by\t\t
+Account "1" -up- "1" PageOfListings : \tSearches-through\t\t
+Account "1" -right- "*" Listing : Manages\t\t
+Account "1" -up-- "\t\t\t\t\t*" Listing : Participates-in\t\t
+Account "1    " -up- "*" Message : Managed-by\t\t
+Account "1" -- "*" Review : \tContains\t\t
 CollectionOfAccounts "1" -right- "1..*\t" Account : \tContains\t\t
 @enduml
 ```
@@ -135,7 +121,6 @@ controller -> system : show listing created
 @enduml
 /'
 account -->> profile **: pr = create(name,email_address)
-//all constraints done in CPA so it will call on itselfs
 
 participant "list : Listing" as listing
 database "Account database" as adatabase
@@ -144,17 +129,11 @@ SINCE ITS MED RISK TRY TO PUT MOST ATTR AS WE CAN BUT FOR HIGH RISK, ALL ATTR AR
 
 For first iteration, think of it as building a project like pet trainer so instead of looking if any of the fields are empty after clicking sign up, it does it at every point cuz its more impossible to do at this stage of the process
 
-Profile might be its own class as like a page other users can see (Sam said this would be a good idea and to add all these other attr [picture and below] to profile)
-
 from user -> CPA, user inputs raw data so Input account information is ok
 
-we can maybe delete getUsername and getPassword cuz it would be implied that CPA has the constraints so it has filtered to see if the inputs were good or bad
+a method called getProfile() could get the necessary parameters
 
-Maybe move acc = create.... at the bottom so that it makes the account after CPA has done its filtering
-
-Profile could be like UI type thing so it only shows the User's name and email address without exposing any account info
-
-If pr is successfully created, pr pings to CPA that account created
+If pr/or acc is successfully created, pr pings to CPA that account created
 
 //CPA sends email ping to email server  // fist iteration just make sure the substring vassar.edu is there
 
@@ -169,7 +148,6 @@ in class diagram have controller class
 method getProfile() etc
 review() method
 upcoming trip class?
-merge user and account
 -- Review cannot be an attribute cuz it has comment and rating(int)
 
 '/
