@@ -164,8 +164,47 @@ deactivate ldatabase
 
 controller -> system : show refined page of listings
 @enduml
+```
 
+# Class Diagram
 
+```plantuml
+@startuml
+
+class Account{
++name : string
++username : string
++email : string
+-password : string
+--
+getProfile()
+-isValidUsername()
+-isValidPassword()
+-isValidEmail()
+-createAccount(string username,string password,string email,string name)
+}
+
+class Listing{
++int dateCreated
++int dateOfTrip
++int timeOfTrip
++string startLocation
++string endLocation
+--
+isDateValid()
+isTimeValid()
+isStarLocValid()
+isEndLocValid()
+createListing(int date,int time,string startLocation,string endLocation)
+}
+class Controller{
+}
+class PageOfListings{
++ E Listing
+--
+}
+@enduml
+```
 /'
 account -->> profile **: pr = create(name,email_address)
 
