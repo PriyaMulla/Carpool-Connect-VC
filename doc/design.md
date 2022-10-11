@@ -46,15 +46,15 @@ Comment
 class CollectionOfAccounts{
 }
 ' associations
-PageOfListings "1  " -left- " *" Listing : Contained-in\t\t
+PageOfListings "1  " -left- "\t\t\t\t*" Listing : Contained-in\t\t
 MessageCenter "1  " -left- "*" Message: \tContained in\t\t
-Account "1" -up- "1" MessageCenter : \tHad-by\t\t
-Account "1" -up- "1" PageOfListings : \tSearches-through\t\t
+Account "1" -up- "\t\t\t1" MessageCenter : \tHad-by\t\t
+Account "1" -up- "1        " PageOfListings : \tSearches-through\t\t
 Account "1" -right- "*" Listing : Manages\t\t
-Account "1" -up-- "\t\t\t\t\t*" Listing : Participates-in\t\t
+Account "1" -up-- "*" Listing : Participates-in\t\t
 Account "1    " -up- "*" Message : Managed-by\t\t
-Account "1" -- "*" Review : \tContains\t\t
-CollectionOfAccounts "1" -right- "1..*\t" Account : \tContains\t\t
+Account "1 " -- "*" Review : \tContains\t\t
+CollectionOfAccounts "1" -right- "1..*" Account : \tContains\t\t
 @enduml
 ```
 
