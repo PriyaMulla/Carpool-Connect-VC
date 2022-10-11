@@ -119,6 +119,53 @@ deactivate listing
 
 controller -> system : show listing created
 @enduml
+```
+
+## Search listings
+```plantuml
+@startuml
+hide footbox
+
+'ACTORS
+actor "User" as user
+participant "CPA view" as system
+control "MainController" as controller
+database "Listing database" as ldatabase
+
+'ACTIONS
+user -> system : input date,start-location,OR end-location 
+system -> controller : search page of listings
+controller -> ldatabase : search page of listings
+
+
+activate ldatabase
+
+ldatabase -> ldatabase : validate inputs
+activate ldatabase #CC5500
+
+deactivate ldatabase
+ldatabase -> controller
+deactivate ldatabase
+
+controller -> system : show page of listings
+
+user -> system : filter-by date, start-location, and/or end-location
+system -> controller : update page of listings
+controller -> ldatabase :  update page of listings
+
+activate ldatabase
+
+ldatabase -> ldatabase : validate inputs
+activate ldatabase #CC5500
+
+deactivate ldatabase
+ldatabase -> controller
+deactivate ldatabase
+
+controller -> system : show refined page of listings
+@enduml
+
+
 /'
 account -->> profile **: pr = create(name,email_address)
 
