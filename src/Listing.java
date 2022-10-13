@@ -1,5 +1,5 @@
 public class Listing {
-    
+
     //fields
     int dateCreated = 0;
     int dateOfTrip = 0;
@@ -9,10 +9,10 @@ public class Listing {
     
     //constructor
     private Listing(int date, int time, String start, String end){
-        date = this.dateOfTrip;
-        time = this.timeOfTrip;
-        start = this.startLocation;
-        end = this.endLocation;
+        this.dateOfTrip = this.dateOfTrip;
+        this.timeOfTrip = this.timeOfTrip;
+        this.startLocation = this.startLocation;
+        this.endLocation = this.endLocation;
     }
     
 }
