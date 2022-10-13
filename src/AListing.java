@@ -1,15 +1,15 @@
 public abstract class AListing {
 
     //fields
-    int dateCreated = 0;
-    int dateOfTrip = 0;
-    int timeOfTrip = 0;
-    String startLocation = "";
-    String endLocation = "";
-    int listingID = 0;
+    int dateCreated;
+    int dateOfTrip;
+    int timeOfTrip;
+    String startLocation;
+    String endLocation;
+    int listingID;
     
     //constructor
-    private AListing(int date, int time, String start, String end, int listingID){
+    public AListing(int date, int time, String start, String end, int listingID){
         this.dateOfTrip = date;
         this.timeOfTrip = time;
         this.startLocation = start;
@@ -17,10 +17,12 @@ public abstract class AListing {
         this.listingID = listingID;
     }
 
+    protected AListing(){}
+
 
     @Override
     public String toString() {
-        return "Listing{" +
+        return "AListing{" +
                 "dateCreated=" + dateCreated +
                 ", dateOfTrip=" + dateOfTrip +
                 ", timeOfTrip=" + timeOfTrip +
