@@ -5,3 +5,6 @@
 out/**
 .idea/**/workspace.xml
 .idea/**/usage.statistics.xml
+.idea/markdown.xml
+cmpu203-team-a.iml
+doc/.idea/doc.iml
