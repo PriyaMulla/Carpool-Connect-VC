@@ -130,7 +130,7 @@ hide footbox
 actor "User" as user
 participant "CPA view" as system
 control "MainController" as controller
-database "Listing database" as ldatabase
+database "PageOfListings" as ldatabase
 
 'ACTIONS
 user -> system : input date,start-location,OR end-location 
@@ -172,54 +172,62 @@ controller -> system : show refined page of listings
 @startuml
 
 class Account{
-+name : string
-+username : string
-+email : string
+-name : string
+-username : string
+-email : string
 -password : string
 --
 -public void Account(string username,string password,string email,string name)
 }
 
-interface IListing{
+abstract AListing{
 +int dateCreated
 +int dateOfTrip
 +int timeOfTrip
 +string startLocation
 +string endLocation
+-int Id
 --
-public void Listing(int date,int time,string startLocation,string endLocation)
+public void Listing(int date,int time,string startLocation,string endLocation,int id)
 }
 class DListing{
 int seatsAvailable
+--
+public String toString()
 }
 class PListing{
-
+int seatsRequired
+--
+public String toString()
 }
 class Controller{
-LinkedList<Account> CollectionOfAccounts 
+List<Account> CollectionOfAccounts 
 --
 public boolean isValidString()
 public void createAccount()
 public void createListing()
 public <List> SearchListing()
 public <List> FilterListing()
-public void main(String[] args)
+public static void main(String[] args)
 }
 class PageOfListings{
-int ID
---
-AssignId()
+
+}
+class View{
+ 
+public static void main(String[] args)
 }
 together {
 class Account
 class PageOfListings
 }
 'Association
-Controller ---> PageOfListings
-Controller ---> Account
-PageOfListings --> "\n(1...*)\nListing\n {List}\n\n\n" IListing : \t\t\t
-IListing <|... DListing
-IListing <|... PListing
+View --[hidden] Controller
+Controller -[hidden] PageOfListings
+Controller --[hidden] Account
+PageOfListings --> "\n(1...*)\nListing\n {List}\n\n\n" AListing : \t\t\t
+AListing <|... DListing
+AListing <|... PListing
 Account -[hidden] PageOfListings
 @enduml
 ```
