@@ -177,63 +177,85 @@ class Account{
 +email : string
 -password : string
 --
-getProfile()
--isValidUsername()
--isValidPassword()
--isValidEmail()
--createAccount(string username,string password,string email,string name)
+-public void Account(string username,string password,string email,string name)
 }
 
-class Listing{
+interface IListing{
 +int dateCreated
 +int dateOfTrip
 +int timeOfTrip
 +string startLocation
 +string endLocation
 --
-isDateValid()
-isTimeValid()
-isStarLocValid()
-isEndLocValid()
-createListing(int date,int time,string startLocation,string endLocation)
+public void Listing(int date,int time,string startLocation,string endLocation)
+}
+class DListing{
+int seatsAvailable
+}
+class PListing{
+
 }
 class Controller{
+LinkedList<Account> CollectionOfAccounts 
+--
+public boolean isValidString()
+public void createAccount()
+public void createListing()
+public <List> SearchListing()
+public <List> FilterListing()
+public void main(String[] args)
 }
 class PageOfListings{
-+ E Listing
+int ID
 --
+AssignId()
 }
+together {
+class Account
+class PageOfListings
+}
+'Association
+Controller ---> PageOfListings
+Controller ---> Account
+PageOfListings ---> "(1...*)\nListing\n {List}\n\n\n" IListing : \t\t\t
+IListing <|.. DListing
+IListing <|.. PListing
+Account -[hidden] PageOfListings
 @enduml
 ```
-/'
-account -->> profile **: pr = create(name,email_address)
 
-participant "list : Listing" as listing
-database "Account database" as adatabase
-database "Listing database" as ldatabase
-SINCE ITS MED RISK TRY TO PUT MOST ATTR AS WE CAN BUT FOR HIGH RISK, ALL ATTR ARE NECESSARY
+[//]: # (account -->> profile **: pr = createname,email_address)
 
-For first iteration, think of it as building a project like pet trainer so instead of looking if any of the fields are empty after clicking sign up, it does it at every point cuz its more impossible to do at this stage of the process
+[//]: # (participant "list : Listing" as listing)
 
-from user -> CPA, user inputs raw data so Input account information is ok
+[//]: # (database "Account database" as adatabase)
 
-a method called getProfile() could get the necessary parameters
+[//]: # (database "Listing database" as ldatabase)
 
-If pr/or acc is successfully created, pr pings to CPA that account created
+[//]: # (SINCE ITS MED RISK TRY TO PUT MOST ATTR AS WE CAN BUT FOR HIGH RISK, ALL ATTR ARE NECESSARY)
 
-//CPA sends email ping to email server  // fist iteration just make sure the substring vassar.edu is there
+[//]: # (For first iteration, think of it as building a project like pet trainer so instead of looking if any of the fields are empty after clicking sign up, it does it at every point cuz its more impossible to do at this stage of the process)
 
+[//]: # (from user -> CPA, user inputs raw data so Input account information is ok)
 
-Make :CPA -> Cpa view
+[//]: # (a method called getProfile&#40;&#41; could get the necessary parameters)
 
-make a controller
+[//]: # (If pr/or acc is successfully created, pr pings to CPA that account created)
 
-things like account creation, listing creation etc... are different seq models
+[//]: # (//CPA sends email ping to email server  // fist iteration just make sure the substring vassar.edu is there)
 
-in class diagram have controller class
-method getProfile() etc
-review() method
-upcoming trip class?
--- Review cannot be an attribute cuz it has comment and rating(int)
+[//]: # (Make :CPA -> Cpa view)
 
-'/
+[//]: # (make a controller)
+
+[//]: # (things like account creation, listing creation etc... are different seq models)
+
+[//]: # (in class diagram have controller class)
+
+[//]: # (method getProfile&#40;&#41; etc)
+
+[//]: # (review&#40;&#41; method)
+
+[//]: # (upcoming trip class?)
+
+[//]: # (-- Review cannot be an attribute cuz it has comment and rating&#40;int&#41;)
