@@ -217,9 +217,9 @@ class PageOfListings
 'Association
 Controller ---> PageOfListings
 Controller ---> Account
-PageOfListings ---> "(1...*)\nListing\n {List}\n\n\n" IListing : \t\t\t
-IListing <|.. DListing
-IListing <|.. PListing
+PageOfListings --> "\n(1...*)\nListing\n {List}\n\n\n" IListing : \t\t\t
+IListing <|... DListing
+IListing <|... PListing
 Account -[hidden] PageOfListings
 @enduml
 ```
