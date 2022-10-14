@@ -5,9 +5,7 @@ import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.time.*;
 
-//Change toString to follow the format that we like
 public class Controller{
-//What if they press enter? for view
     //Account creation
     public boolean isValidUsername(String input) {
         return input.length() > 5;
@@ -28,8 +26,6 @@ public class Controller{
     public AListing createListing(int date, int time, String start, String end, int listingID,int seats, int who){
         //An attribute would be the current time and maybe date
         //turn the string of a date into actual time and then compare
-        //should Listing listy = new Listing(etc) be put here
-        //And createListing() be put in the view class
 
         AListing listy;
         if(who == 0) {
@@ -39,11 +35,13 @@ public class Controller{
         }
         return listy;
     }
-    HashMap<Integer, Object> hash_map = new HashMap<Integer, Object>();
+
+    HashMap<Integer, AListing> hash_map = new HashMap<Integer, AListing>();
 //Method to add a Listing to PageOfListings
     public void addToList(Object listing){
-        hash_map.put(listing.get(listingID));
+        //hash_map.put(listing.get(listingID));
     }
+
     public List<AListing> searchListings(){
         return new LinkedList<AListing>();
     }
