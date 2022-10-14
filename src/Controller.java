@@ -1,6 +1,4 @@
 import java.util.*;
-import java.text.SimpleDateFormat;
-import java.time.*;
 
 public class Controller{
     List<AListing> PageOfListings = new ArrayList<>();
@@ -21,8 +19,7 @@ public class Controller{
         return input.length() == 4;
     }
     public Account createAccount(String username, String password,String name,String email){
-        Account acc = new Account(username,password,name,email);
-        return acc;
+        return new Account(username,password,name,email);
     }
 
     public AListing createListing(int date, int time, String start, String end, int listingID,int seats, int who){
@@ -38,15 +35,4 @@ public class Controller{
         return listy;
     }
 
-    public List<AListing> searchListings(){
-        return new LinkedList<AListing>();
-    }
-
-    public List<AListing> filterListings(){
-        return new LinkedList<AListing>();
-    }
-
-//    public static void main(String[] args){
-//
-//    }
 }
