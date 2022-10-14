@@ -24,7 +24,7 @@ public class PListing extends AListing{
 
     @Override
     public String toString() {
-        return "Your Listing [Passenger]" +
+        return "[Passenger] Listing: " +
                // "\n Created: " + dateCreated +
                 "\n Date: " + dateOfTrip +
                 "\n Time: " + timeOfTrip +
