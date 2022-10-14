@@ -1,55 +1,41 @@
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.time.*;
 
+//Change toString to follow the format that we like
 public class Controller{
-    String string = "Java";
-    String substring = "va";
-
-//System.out.println(string.contains(substring));
-    //methods
-    public boolean hasSpecialChar(){
-//*/@#$&
-    }
-
+//What if they press enter? for view
+    //Account creation
     public boolean isValidUsername(String input) {
-        if(input.length() > 5){
-            return true;
-        }
-        else{
-            return false;
-        }
+        return input.length() > 5;
     }
-
     public boolean isValidPassword(String input){
-        if(input.length() > 5)
+        return (input.length() > 5) & (Character.isUpperCase(input.charAt(0))) & ((input.contains("/")) | (input.contains("*")) | (input.contains("@")) | (input.contains("#")) | (input.contains("$")) | (input.contains("&")));
     }
     public boolean isValidEmail(String input){
-
-    }
-     public boolean isValidString(String input){
-        if(input.equals(input.compareTo("user"))){
-            if((input.length() > 5) & (Character.isUpperCase(input.charAt(0))) & ((input.contains("/")) |(input.contains("*")) | (input.contains("@")) | (input.contains("#")) | (input.contains("$")) | (input.contains("&")))){
-                return true;
-            }
-            else {
-                return false;
-            }
-
-        } else if(input.equals(input.compareTo("email"))){
-
-        }
-
-        return false;
+        return ((input.contains("@vassar.edu")) & (input.length() > 11));
     }
 
+    //Listing creation?
     public void createAccount(){
-        return;
+        Account acc = new Account(username,password,name,email);
     }
 
     public void createListing(){
-        return;
+        //An attribute would be the current time and maybe date
+        //turn the string of a date into actual time and then compare
+        //should Listing listy = new Listing(etc) be put here
+        //And createListing() be put in the view class
+        Listing listy = new Listing(date,time,start,end);
     }
-
+    HashMap<Integer, Object> hash_map = new HashMap<Integer, Object>();
+//Method to add a Listing to PageOfListings
+    public void addToList(Object listing){
+        hash_map.put(listing.get(listingID));
+    }
     public List<AListing> searchListings(){
         return new LinkedList<AListing>();
     }
