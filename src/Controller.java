@@ -25,14 +25,19 @@ public class Controller{
         return acc;
     }
 
-    public void createListing(int date, int time, String start, String end){
+    public AListing createListing(int date, int time, String start, String end, int listingID,int seats, int who){
         //An attribute would be the current time and maybe date
         //turn the string of a date into actual time and then compare
         //should Listing listy = new Listing(etc) be put here
         //And createListing() be put in the view class
 
         AListing listy;
-        new PListing(date,time,start,end);
+        if(who == 0) {
+            listy = new PListing(date, time, start, end,listingID,seats);
+        } else{
+            listy = new DListing(date,time,start,end,listingID,seats);
+        }
+        return listy;
     }
     HashMap<Integer, Object> hash_map = new HashMap<Integer, Object>();
 //Method to add a Listing to PageOfListings
