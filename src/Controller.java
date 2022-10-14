@@ -15,10 +15,10 @@ public class Controller{
         return ((input.contains("@vassar.edu")) && (input.length() > 11));
     }
     public boolean isValidDate(int input){
-        return input >= 99999999;
+        return (input < 99999999) && (input > 9999999);
     }
     public boolean isValidTime(int input){
-        return input >= 9999;
+        return (input < 9999) && (input > 999);
     }
     public Account createAccount(String username, String password,String name,String email){
         Account acc = new Account(username,password,name,email);
@@ -46,7 +46,7 @@ public class Controller{
         return new LinkedList<AListing>();
     }
 
-    public static void main(String[] args){
-
-    }
+//    public static void main(String[] args){
+//
+//    }
 }
