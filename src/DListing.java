@@ -9,7 +9,7 @@ public class DListing extends AListing{
     int listingID =0;
     int seats =0;
 
-    private DListing(int date, int time, String start, String end, int listingID, int seats){
+    protected DListing(int date, int time, String start, String end, int listingID, int seats){
         this.dateOfTrip = date;
         this.timeOfTrip = time;
         this.startLocation = start;

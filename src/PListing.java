@@ -10,12 +10,13 @@ public class PListing extends AListing{
     int seatsRequired = 0;
 
     //constructor
-    private PListing(int date, int time, String start, String end,int listingID,int seatsRequired){
+    protected PListing(int date, int time, String start, String end,int listingID,int seats){
         this.dateOfTrip = date;
         this.timeOfTrip = time;
         this.startLocation = start;
         this.endLocation = end;
         this.listingID = listingID;
+        this.seatsRequired = seats;
     }
     public int getListingID() {
         return listingID;

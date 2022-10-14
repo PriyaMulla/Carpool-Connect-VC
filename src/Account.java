@@ -7,7 +7,7 @@ public class Account {
     private String password = "";
     
     //constructor
-    private Account (String username, String password, String name, String email){
+    protected Account(String username, String password, String name, String email){
         this.username = username;
         this.password = password;
         this.name = name;
