@@ -20,7 +20,7 @@ public class Controller{
     }
 
     //Listing creation?
-    public void createAccount(){
+    public void createAccount(String username, String password,String name,String email){
         Account acc = new Account(username,password,name,email);
     }
 
