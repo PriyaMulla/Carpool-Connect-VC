@@ -10,32 +10,38 @@ public class View {
         //Account info
 
         System.out.println("CREATE ACCOUNT");
-
         Scanner scan = new Scanner(System.in);
+
+        //username
         System.out.println("Enter a username (6 characters+):");
         String user = scan.nextLine();
-
         while (!c.isValidUsername(user)){
             System.out.println("ERROR not valid username");
             System.out.println("Enter a username that is 6 characters or more:");
             user = scan.nextLine();
         }
 
+        //password
         System.out.println("Enter a password (6 characters+, first character upper case, at least 1 special character (/,*,@,#,$,&):");
         String password = scan.nextLine();
-
         while (!c.isValidPassword(password)){
             System.out.println("ERROR not valid password");
             System.out.println("Enter a password that is longer than 5 characters, first character is upper case, at least one special character (/,*,@,#,$,&):");
             password = scan.nextLine();
         }
 
+        //name
         System.out.println("Enter your name");
         String name = scan.nextLine();
+        while (name.equals("")){
+            System.out.println("ERROR not valid name");
+            System.out.println("Enter a name:");
+            name = scan.nextLine();
+        }
 
+        //email
         System.out.println("Enter an email address");
         String email = scan.nextLine();
-
         while (!c.isValidEmail(email)){
             System.out.println("ERROR not valid email");
             System.out.println("Enter a vassar email address:");
@@ -45,9 +51,12 @@ public class View {
         Account acc = c.createAccount(user, password, name, email);
         System.out.println(acc.toString());
 
-        //listing creation
+        /////////////////////
+
+        //listing info
         System.out.println("CREATE LISTING");
 
+        //date
         boolean error = true;
         int date = 0;
         while (error) {
@@ -61,6 +70,7 @@ public class View {
             }
         }
 
+        //time
         error = true;
         int time =0;
         while (error) {
@@ -74,32 +84,82 @@ public class View {
             }
         }
 
-
+        //start
         System.out.println("Enter a starting location:");
         String start = scan.nextLine();
+        while (start.equals("")){
+            System.out.println("ERROR not valid location");
+            System.out.println("Enter a starting location:");
+            start = scan.nextLine();
+        }
 
+        //end
         System.out.println("Enter an ending location:");
         String end = scan.nextLine();
+        while (end.equals("")){
+            System.out.println("ERROR not valid location");
+            System.out.println("Enter a ending location:");
+            end = scan.nextLine();
+        }
 
-        System.out.println("If a driver enter how many seats your car has, if passenger enter how many seats you need");
-        String seats = scan.nextLine();
-        int seat = parseInt(seats);
 
-
+        //listing creation
         System.out.println("Enter P if passenger, or D if driver");
         String role = scan.nextLine();
         while (!role.equals("P") && !role.equals("D")){
             System.out.println("ERROR enter P or D");
             role = scan.nextLine();
         }
+
+
+        //passenger
         if (role.equals("P")){
+
+            //seats
+            error = true;
+            int seat =0;
+            while (error) {
+                try {
+                    System.out.println("How many seats do you need?");
+                    String seats = scan.nextLine();
+                    seat = parseInt(seats);
+                    error = false;
+                } catch (Exception e) {
+                    System.out.println("ERROR");
+                }
+            }
+
+            //make new listing
+            System.out.println("Your Listing:");
             AListing newListing = c.createListing(date, time, start, end, 1, seat, 0);
             System.out.println(newListing.toString());
         }
-        else if (role.equals("D")){
+        //driver
+        else {
+
+            //seats
+            error = true;
+            int seat =0;
+            while (error) {
+                try {
+                    System.out.println("How many seats do you have?");
+                    String seats = scan.nextLine();
+                    seat = parseInt(seats);
+                    error = false;
+                } catch (Exception e) {
+                    System.out.println("ERROR");
+                }
+            }
+
+            //make new listing
+            System.out.println("Your Listing:");
             AListing newListing = c.createListing(date, time, start, end, 1, seat, 1);
             System.out.println(newListing.toString());
         }
+
+        //print PageOfListings
+        System.out.println("\n Page of Listings:");
+        System.out.println(c.PageOfListings.toString());
 
     }
 }

@@ -3,6 +3,7 @@
 .idea/modules.xml
 .idea/vcs.xml
 out/**
+.idea/out
 .idea/**/workspace.xml
 .idea/**/usage.statistics.xml
 .idea/markdown.xml
