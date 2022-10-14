@@ -12,21 +12,21 @@ public class View {
         System.out.println("CREATE ACCOUNT");
 
         Scanner scan = new Scanner(System.in);
-        System.out.println("Enter a username:");
+        System.out.println("Enter a username (6 characters+):");
         String user = scan.nextLine();
 
-        while (c.isValidString(user)){
+        while (!c.isValidUsername(user)){
             System.out.println("ERROR not valid username");
-            System.out.println("Enter a username:");
+            System.out.println("Enter a username that is 6 characters or more:");
             user = scan.nextLine();
         }
 
-        System.out.println("Enter a password:");
+        System.out.println("Enter a password (6 characters+, first character upper case, at least 1 special character (/,*,@,#,$,&):");
         String password = scan.nextLine();
 
-        while (c.isValidString(password)){
+        while (!c.isValidPassword(password)){
             System.out.println("ERROR not valid password");
-            System.out.println("Enter a password:");
+            System.out.println("Enter a password that is longer than 5 characters, first character is upper case, at least one special character (/,*,@,#,$,&):");
             password = scan.nextLine();
         }
 
@@ -36,24 +36,43 @@ public class View {
         System.out.println("Enter an email address");
         String email = scan.nextLine();
 
-        while (c.isValidString(email)){
+        while (!c.isValidEmail(email)){
             System.out.println("ERROR not valid email");
-            System.out.println("Enter an email address:");
+            System.out.println("Enter a vassar email address:");
             email = scan.nextLine();
         }
         //Account creation
-        Account acc = new Account(user, password, name, email);
+        Account acc = c.createAccount(user, password, name, email);
+        System.out.println(acc.toString());
 
         //listing creation
         System.out.println("CREATE LISTING");
 
-        System.out.println("Enter a date:");
-        String dates =  scan.nextLine();
-        int date = parseInt(dates);
+        boolean error = true;
+        int date = 0;
+        while (error) {
+            try {
+                System.out.println("Enter a date (10-14-22 should be written 101422):");
+                String dates = scan.nextLine();
+                date = parseInt(dates);
+                error = false;
+            } catch (Exception e) {
+                System.out.println("ERROR");
+            }
+        }
 
-        System.out.println("Enter a time:");
-        String times = scan.nextLine();
-        int time = parseInt(times);
+        error = true;
+        int time =0;
+        while (error) {
+            try {
+                System.out.println("Enter a time (1:30 pm should be written 1330):");
+                String times = scan.nextLine();
+                time = parseInt(times);
+                error = false;
+            } catch (Exception e) {
+                System.out.println("ERROR");
+            }
+        }
 
 
         System.out.println("Enter a starting location:");
@@ -69,15 +88,18 @@ public class View {
 
         System.out.println("Enter P if passenger, or D if driver");
         String role = scan.nextLine();
-        while (role.equals("P") | role.equals("D")){
+        while (!role.equals("P") && !role.equals("D")){
             System.out.println("ERROR enter P or D");
             role = scan.nextLine();
         }
         if (role.equals("P")){
-            DListing driverListing = new DListing(date, time, start, end, 1, seat);
+            AListing newListing = c.createListing(date, time, start, end, 1, seat, 0);
+            System.out.println(newListing.toString());
         }
         else if (role.equals("D")){
-            PListing driverListing = new PListing(date, time, start, end, 1, seat);
+            AListing newListing = c.createListing(date, time, start, end, 1, seat, 1);
+            System.out.println(newListing.toString());
         }
+
     }
 }

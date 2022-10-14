@@ -20,14 +20,12 @@ public class DListing extends AListing{
 
     @Override
     public String toString() {
-        return "DListing{" +
-                "dateCreated=" + dateCreated +
-                ", dateOfTrip=" + dateOfTrip +
-                ", timeOfTrip=" + timeOfTrip +
-                ", startLocation='" + startLocation + '\'' +
-                ", endLocation='" + endLocation + '\'' +
-                ", listingID=" + listingID +
-                ", seats=" + seats +
-                '}';
+        return "Your Listing [Driver]" +
+                // "\n Created: " + dateCreated +
+                "\n Date: " + dateOfTrip +
+                "\n Time: " + timeOfTrip +
+                "\n Start: " + startLocation +
+                "\n End: " + endLocation +
+                "\n Seats available: " + seats;
     }
 }

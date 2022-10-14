@@ -24,15 +24,13 @@ public class PListing extends AListing{
 
     @Override
     public String toString() {
-        return "PListing{" +
-                "dateCreated=" + dateCreated +
-                ", dateOfTrip=" + dateOfTrip +
-                ", timeOfTrip=" + timeOfTrip +
-                ", startLocation='" + startLocation + '\'' +
-                ", endLocation='" + endLocation + '\'' +
-                ", listingID=" + listingID +
-                ", seats=" + seatsRequired +
-                '}';
+        return "Your Listing [Passenger]" +
+               // "\n Created: " + dateCreated +
+                "\n Date: " + dateOfTrip +
+                "\n Time: " + timeOfTrip +
+                "\n Start: " + startLocation +
+                "\n End: " + endLocation +
+                "\n Seats needed: " + seatsRequired;
     }
 }
 
