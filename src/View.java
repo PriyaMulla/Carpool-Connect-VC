@@ -54,15 +54,18 @@ public class View {
         /////////////////////
 
         //listing info
-        System.out.println("CREATE LISTING");
+        System.out.println("\n CREATE LISTING");
 
         //date
         boolean error = true;
         int date = 0;
-        while (error) {
+        System.out.println("Enter a date (10-14-2022 should be written 10142022):");
+        String dates = scan.nextLine();
+        //String dates = "";
+        while (error && !c.isValidDate(dates)) {
             try {
-                System.out.println("Enter a date (10-14-22 should be written 101422):");
-                String dates = scan.nextLine();
+                System.out.println("Enter a date (10-14-2022 should be written 10142022):");
+                dates = scan.nextLine();
                 date = parseInt(dates);
                 error = false;
             } catch (Exception e) {
@@ -73,10 +76,12 @@ public class View {
         //time
         error = true;
         int time =0;
-        while (error) {
+        System.out.println("Enter a time (1:30 pm should be written 1330):");
+        String times = scan.nextLine();
+        while (error && !c.isValidTime(times)) {
             try {
                 System.out.println("Enter a time (1:30 pm should be written 1330):");
-                String times = scan.nextLine();
+                times = scan.nextLine();
                 time = parseInt(times);
                 error = false;
             } catch (Exception e) {
