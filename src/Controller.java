@@ -3,7 +3,7 @@ import java.text.SimpleDateFormat;
 import java.time.*;
 
 public class Controller{
-    List<AListing> PageOfListing = new ArrayList<>();
+    List<AListing> PageOfListings = new ArrayList<>();
     //Account creation
     public boolean isValidUsername(String input) {
         return input.length() > 5;
@@ -14,7 +14,12 @@ public class Controller{
     public boolean isValidEmail(String input){
         return ((input.contains("@vassar.edu")) && (input.length() > 11));
     }
-
+    public boolean isValidDate(int input){
+        return input >= 99999999;
+    }
+    public boolean isValidTime(int input){
+        return input >= 9999;
+    }
     public Account createAccount(String username, String password,String name,String email){
         Account acc = new Account(username,password,name,email);
         return acc;
@@ -29,7 +34,7 @@ public class Controller{
         } else{
             listy = new DListing(date,time,start,end,listingID,seats);
         }
-        PageOfListing.add(listy);
+        PageOfListings.add(listy);
         return listy;
     }
 
