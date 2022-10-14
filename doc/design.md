@@ -133,7 +133,7 @@ control "MainController" as controller
 database "PageOfListings" as ldatabase
 
 'ACTIONS
-user -> system : input date,start-location,OR end-location 
+user -> system : input date,start-location,AND/OR end-location 
 system -> controller : search page of listings
 controller -> ldatabase : search page of listings
 
@@ -149,20 +149,6 @@ deactivate ldatabase
 
 controller -> system : show page of listings
 
-user -> system : filter-by date, start-location, and/or end-location
-system -> controller : update page of listings
-controller -> ldatabase :  update page of listings
-
-activate ldatabase
-
-ldatabase -> ldatabase : validate inputs
-activate ldatabase #CC5500
-
-deactivate ldatabase
-ldatabase -> controller
-deactivate ldatabase
-
-controller -> system : show refined page of listings
 @enduml
 ```
 
