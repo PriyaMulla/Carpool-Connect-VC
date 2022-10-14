@@ -20,16 +20,19 @@ public class Controller{
     }
 
     //Listing creation?
-    public void createAccount(String username, String password,String name,String email){
+    public Account createAccount(String username, String password,String name,String email){
         Account acc = new Account(username,password,name,email);
+        return acc;
     }
 
-    public void createListing(){
+    public void createListing(int date, int time, String start, String end){
         //An attribute would be the current time and maybe date
         //turn the string of a date into actual time and then compare
         //should Listing listy = new Listing(etc) be put here
         //And createListing() be put in the view class
-        Listing listy = new Listing(date,time,start,end);
+
+        AListing listy;
+        new PListing(date,time,start,end);
     }
     HashMap<Integer, Object> hash_map = new HashMap<Integer, Object>();
 //Method to add a Listing to PageOfListings
