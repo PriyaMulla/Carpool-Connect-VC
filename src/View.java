@@ -22,11 +22,11 @@ public class View {
         }
 
         //password
-        System.out.println("Enter a password (6 characters+, first character upper case, at least 1 special character (/,*,@,#,$,&):");
+        System.out.println("Enter a password (6 characters+, first character upper case, at least 1 special character (/,*,@,#,$,&,_,!):");
         String password = scan.nextLine();
         while (!c.isValidPassword(password)){
             System.out.println("ERROR not valid password");
-            System.out.println("Enter a password that is longer than 5 characters, first character is upper case, at least one special character (/,*,@,#,$,&):");
+            System.out.println("Enter a password that is longer than 5 characters, first character is upper case, at least one special character (/,*,@,#,$,&,_,!):");
             password = scan.nextLine();
         }
 
