@@ -59,15 +59,15 @@ public class View {
         //date
         boolean error = true;
         int date = 0;
-        System.out.println("Enter a date (10-14-2022 should be written 10142022):");
-        String dates = scan.nextLine();
-        //String dates = "";
-        while (error && !c.isValidDate(dates)) {
+        while (error) {
             try {
                 System.out.println("Enter a date (10-14-2022 should be written 10142022):");
-                dates = scan.nextLine();
-                date = parseInt(dates);
-                error = false;
+                String dates = scan.nextLine();
+                if (c.isValidDate(dates)){
+                    date = parseInt(dates);
+                    error = false;
+                }
+                else System.out.println("ERROR");
             } catch (Exception e) {
                 System.out.println("ERROR");
             }
@@ -76,14 +76,15 @@ public class View {
         //time
         error = true;
         int time =0;
-        System.out.println("Enter a time (1:30 pm should be written 1330):");
-        String times = scan.nextLine();
-        while (error && !c.isValidTime(times)) {
+        while (error) {
             try {
                 System.out.println("Enter a time (1:30 pm should be written 1330):");
-                times = scan.nextLine();
-                time = parseInt(times);
-                error = false;
+                String times = scan.nextLine();
+                if(c.isValidTime(times)){
+                    time = parseInt(times);
+                    error = false;
+                }
+                else System.out.println("ERROR");
             } catch (Exception e) {
                 System.out.println("ERROR");
             }
