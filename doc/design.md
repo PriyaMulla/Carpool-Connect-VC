@@ -86,7 +86,8 @@ deactivate account
 
 account -> controller : acc1 = create(username,password,emailAdress,name)
 deactivate account
-controller -> system : show account created
+controller -> system : send account created
+system -> user : show accouny created
 
 
 @enduml
@@ -117,7 +118,8 @@ deactivate listing
 listing -> controller : listy = create(date,time,startLoc,endLoc,comment)
 deactivate listing
 
-controller -> system : show listing created
+controller -> system : send listing created
+system -> user : show listing created
 @enduml
 ```
 
@@ -144,10 +146,11 @@ ldatabase -> ldatabase : validate inputs
 activate ldatabase #CC5500
 
 deactivate ldatabase
-ldatabase -> controller
+ldatabase -> controller : updates an array with results of Listings
 deactivate ldatabase
 
-controller -> system : show page of listings
+controller -> system : updates array containing the listings
+system -> user : show result of listings
 
 @enduml
 ```
