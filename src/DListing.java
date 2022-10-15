@@ -20,7 +20,7 @@ public class DListing extends AListing{
 
     @Override
     public String toString() {
-        return "Your Listing [Driver]" +
+        return "[Driver] Listing: " +
                 // "\n Created: " + dateCreated +
                 "\n Date: " + dateOfTrip +
                 "\n Time: " + timeOfTrip +
