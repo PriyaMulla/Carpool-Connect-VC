@@ -72,8 +72,8 @@ participant "acc : Account" as account
 
 
 user -> system : input username,password,email address and name 
-system -> controller : create account
-controller -> account : create account
+system -> controller : createAccount(username,password,name,email)
+controller -> account : createAccount(username,password,name,email)
 
 activate account
 
@@ -82,10 +82,10 @@ activate account #FFBBBB
 
 deactivate account
 
-account -> controller : acc1 = create(username,password,emailAdress,name)
+account --> controller : return account created
 deactivate account
-controller -> system : send account created
-system -> user : show account created
+controller --> system : send account created
+system --> user : show account created
 
 
 @enduml
@@ -104,8 +104,8 @@ participant "list : Listing" as listing
 
 'ACTIONS
 user -> system : input date,time,start-location,end-location and comment
-system -> controller : create listing
-controller -> listing : create listing
+system -> controller : createListing(date,time,start,end,listingID,seats,who)
+controller -> listing : createListing(date,time,start,end,listingID,seats,who)
 
 activate listing
 
@@ -113,11 +113,11 @@ listing -> listing : validate inputs
 activate listing #CC5500
 
 deactivate listing
-listing -> controller : listy = create(date,time,startLoc,endLoc,comment)
+listing --> controller : return listing created
 deactivate listing
 
-controller -> system : send listing created
-system -> user : show listing created
+controller --> system : send listing created
+system --> user : show listing created
 @enduml
 ```
 
@@ -144,11 +144,11 @@ ldatabase -> ldatabase : validate inputs
 activate ldatabase #CC5500
 
 deactivate ldatabase
-ldatabase -> controller : updates an array with results of Listings
+ldatabase --> controller : updates an array with results of Listings
 deactivate ldatabase
 
-controller -> system : updates array containing the listings
-system -> user : show result of listings
+controller --> system : sends updated array containing the listings
+system --> user : show result of listings
 
 @enduml
 ```
