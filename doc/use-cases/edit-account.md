@@ -35,9 +35,14 @@
 1a. No prior data exists:
 1. System goes to <ins>Create an account</ins> for account creation
 
+4a. User clicks delete:
+1. System outputs "Are you sure you want to delete the account? All information will be deleted"
+2. User clicks accept
+3. System returns user to login/signup screen
+
 5a. User inputs a username that does not meet the requirements:
-1. System outputs the error message “Enter a valid username”
-2. User enters a valid username
+5. System outputs the error message “Enter a valid username”
+6. User enters a valid username
 
 5b. User inputs a password that does not meet the requirements:
 1. System outputs the error message “Enter a valid password”
