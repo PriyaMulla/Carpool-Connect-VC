@@ -164,7 +164,7 @@ class Account{
 -email : string
 -password : string
 --
--public void Account(string username,string password,string email,string name)
+public void Account(string username,string password,string email,string name)
 }
 
 abstract AListing{
@@ -177,7 +177,7 @@ abstract AListing{
 --
 public void Listing(int date,int time,string startLocation,string endLocation,int id)
 }
-class DListing{
+class DriverListing{
 int seatsAvailable
 --
 public String toString()
@@ -213,7 +213,7 @@ View --[hidden] Controller
 Controller -[hidden] PageOfListings
 Controller --[hidden] Account
 PageOfListings --> "\n(1...*)\nListing\n {List}\n\n\n" AListing : \t\t\t
-AListing <|... DListing
+AListing <|... DriverListing
 AListing <|... PassengerListing
 Account -[hidden] PageOfListings
 @enduml
