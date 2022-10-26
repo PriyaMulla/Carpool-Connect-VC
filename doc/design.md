@@ -85,7 +85,7 @@ deactivate account
 account -> controller : acc1 = create(username,password,emailAdress,name)
 deactivate account
 controller -> system : send account created
-system -> user : show accouny created
+system -> user : show account created
 
 
 @enduml
@@ -188,7 +188,7 @@ int seatsRequired
 public String toString()
 }
 class Controller{
-List<Account> CollectionOfAccounts 
+List<Account>PageOfListings --> "\n(1...*)\nListing\n {List}\n\n\n" AListing : \t\t\t CollectionOfAccounts 
 --
 public boolean isValidString()
 public void createAccount()
@@ -212,7 +212,8 @@ class PageOfListings
 View --[hidden] Controller
 Controller -[hidden] PageOfListings
 Controller --[hidden] Account
-PageOfListings --> "\n(1...*)\nListing\n {List}\n\n\n" AListing : \t\t\t
+PageOfListings --> "\n(1...*)\nListing\n {List}\n" AListing : \t\t\t
+Account --> "\n(1...*)\nListing\n {List}\n" AListing : \t
 AListing <|... DriverListing
 AListing <|... PassengerListing
 Account -[hidden] PageOfListings

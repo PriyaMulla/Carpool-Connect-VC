@@ -1,13 +1,6 @@
 public class DriverListing extends AListing{
 
-    //fields
-    int dateCreated =0;
-    int dateOfTrip =0;
-    int timeOfTrip =0;
-    String startLocation ="";
-    String endLocation ="";
-    int listingID =0;
-    int seats =0;
+
 
     protected DriverListing(int date, int time, String start, String end, int listingID, int seats){
         this.dateOfTrip = date;
