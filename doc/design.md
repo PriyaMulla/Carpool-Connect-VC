@@ -72,8 +72,8 @@ participant "acc : Account" as account
 
 
 user -> system : input username,password,email address and name 
-system -> controller : create account
-controller -> account : create account
+system -> controller : createAccount(username,password,name,email)
+controller -> account : createAccount(username,password,name,email)
 
 activate account
 
@@ -104,8 +104,8 @@ participant "list : Listing" as listing
 
 'ACTIONS
 user -> system : input date,time,start-location,end-location and comment
-system -> controller : create listing
-controller -> listing : create listing
+system -> controller : createListing(date,time,start,end,listingID,seats,who)
+controller -> listing : createListing(date,time,start,end,listingID,seats,who)
 
 activate listing
 
