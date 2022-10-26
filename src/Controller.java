@@ -27,9 +27,9 @@ public class Controller{
         //turn the string of a date into actual time and then compare
         AListing listy;
         if(who == 0) {
-            listy = new PListing(date, time, start, end,listingID,seats);
+            listy = new PassengerListing(date, time, start, end,listingID,seats);
         } else{
-            listy = new DListing(date,time,start,end,listingID,seats);
+            listy = new DriverListing(date,time,start,end,listingID,seats);
         }
         PageOfListings.add(listy);
         return listy;

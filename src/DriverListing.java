@@ -1,4 +1,4 @@
-public class DListing extends AListing{
+public class DriverListing extends AListing{
 
     //fields
     int dateCreated =0;
@@ -9,7 +9,7 @@ public class DListing extends AListing{
     int listingID =0;
     int seats =0;
 
-    protected DListing(int date, int time, String start, String end, int listingID, int seats){
+    protected DriverListing(int date, int time, String start, String end, int listingID, int seats){
         this.dateOfTrip = date;
         this.timeOfTrip = time;
         this.startLocation = start;

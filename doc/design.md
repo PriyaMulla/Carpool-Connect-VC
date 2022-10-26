@@ -10,37 +10,35 @@ hide empty methods
 class PageOfListings{
 }
 class Listing{
-Date created
-Time of trip
-Date of trip
-Start Location
-End Location
-Comment
+dateCreated
+timeOfTrip
+dateOfTrip
+startLocation
+endLocation
+comment
 }
 
 class Account{
-Name
-Phone number
-Email
-Username
-Password
-Picture
-Dashboard
+name
+phoneNumber
+email
+username
+password
+picture
+dashboard
 }
 
 class Message {
-Send message
-Receive message
-Read message
-message
+dateSent
+timeSent
 }
 
 class MessageCenter{
 }
 
 class Review{
-Rating
-Comment
+rating
+comment
 }
 
 class CollectionOfAccounts{
@@ -166,7 +164,7 @@ class Account{
 -email : string
 -password : string
 --
--public void Account(string username,string password,string email,string name)
+public void Account(string username,string password,string email,string name)
 }
 
 abstract AListing{
@@ -179,12 +177,12 @@ abstract AListing{
 --
 public void Listing(int date,int time,string startLocation,string endLocation,int id)
 }
-class DListing{
+class DriverListing{
 int seatsAvailable
 --
 public String toString()
 }
-class PListing{
+class PassengerListing{
 int seatsRequired
 --
 public String toString()
@@ -215,8 +213,8 @@ View --[hidden] Controller
 Controller -[hidden] PageOfListings
 Controller --[hidden] Account
 PageOfListings --> "\n(1...*)\nListing\n {List}\n\n\n" AListing : \t\t\t
-AListing <|... DListing
-AListing <|... PListing
+AListing <|... DriverListing
+AListing <|... PassengerListing
 Account -[hidden] PageOfListings
 @enduml
 ```

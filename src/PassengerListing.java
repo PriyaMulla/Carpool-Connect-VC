@@ -1,4 +1,4 @@
-public class PListing extends AListing{
+public class PassengerListing extends AListing{
 
     //fields
     int dateCreated = 0;
@@ -10,7 +10,7 @@ public class PListing extends AListing{
     int seatsRequired = 0;
 
     //constructor
-    protected PListing(int date, int time, String start, String end,int listingID,int seats){
+    protected PassengerListing(int date, int time, String start, String end,int listingID,int seats){
         this.dateOfTrip = date;
         this.timeOfTrip = time;
         this.startLocation = start;
