@@ -68,7 +68,7 @@ public class View {
                     error = false;
                 }
                 else System.out.println("ERROR");
-            } catch (Exception e) {
+            } catch (NumberFormatException e) {
                 System.out.println("ERROR");
             }
         }
@@ -85,7 +85,7 @@ public class View {
                     error = false;
                 }
                 else System.out.println("ERROR");
-            } catch (Exception e) {
+            } catch (NumberFormatException e) {
                 System.out.println("ERROR");
             }
         }
@@ -130,7 +130,7 @@ public class View {
                     String seats = scan.nextLine();
                     seat = parseInt(seats);
                     error = false;
-                } catch (Exception e) {
+                } catch (NumberFormatException e) {
                     System.out.println("ERROR");
                 }
             }
@@ -152,7 +152,7 @@ public class View {
                     String seats = scan.nextLine();
                     seat = parseInt(seats);
                     error = false;
-                } catch (Exception e) {
+                } catch (NumberFormatException e) {
                     System.out.println("ERROR");
                 }
             }
