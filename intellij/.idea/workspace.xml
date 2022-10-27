@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="f9456361-0061-45f3-8c32-0096c7da84a1" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="JUnit5 Test Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/View.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Controller.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/Account.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/AListing.java" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2F5ouYNJ2nZSD8SDRRnQdRUS6Md" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
+    <property name="create.test.in.the.same.root" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="project.propCompiler" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.View">
+    <configuration name="Controller" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Controller" />
+      <module name="cmpu203-team-a" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="View" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="View" />
+      <module name="cmpu203-team-a" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.View" />
+        <item itemvalue="Application.Controller" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f9456361-0061-45f3-8c32-0096c7da84a1" name="Changes" comment="" />
+      <created>1663791534684</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1663791534684</updated>
+      <workItem from="1663791536415" duration="107000" />
+      <workItem from="1663791681560" duration="73000" />
+      <workItem from="1663791802304" duration="17000" />
+      <workItem from="1663792378584" duration="321000" />
+      <workItem from="1663792718173" duration="2984000" />
+      <workItem from="1663802367724" duration="2156000" />
+      <workItem from="1663810272392" duration="3211000" />
+      <workItem from="1663884351320" duration="7535000" />
+      <workItem from="1664071932118" duration="24468000" />
+      <workItem from="1664299783824" duration="13000" />
+      <workItem from="1664401093125" duration="695000" />
+      <workItem from="1664488935461" duration="5272000" />
+      <workItem from="1664741359954" duration="5220000" />
+      <workItem from="1665001271697" duration="7550000" />
+      <workItem from="1665093753984" duration="147000" />
+      <workItem from="1665093923787" duration="459000" />
+      <workItem from="1665094413614" duration="367000" />
+      <workItem from="1665094796072" duration="8767000" />
+      <workItem from="1665350148322" duration="3540000" />
+      <workItem from="1665516150491" duration="24000" />
+      <workItem from="1665526325081" duration="157000" />
+      <workItem from="1665526497506" duration="3487000" />
+      <workItem from="1665606095221" duration="5687000" />
+      <workItem from="1665623536737" duration="5816000" />
+      <workItem from="1665629406922" duration="650000" />
+      <workItem from="1665630075809" duration="263000" />
+      <workItem from="1665630358308" duration="295000" />
+      <workItem from="1665698355852" duration="10586000" />
+      <workItem from="1665712584856" duration="55000" />
+      <workItem from="1665712678723" duration="5559000" />
+      <workItem from="1665763525965" duration="3537000" />
+      <workItem from="1665773268377" duration="221000" />
+      <workItem from="1665773506285" duration="4295000" />
+      <workItem from="1665777820615" duration="897000" />
+      <workItem from="1665789398491" duration="2496000" />
+      <workItem from="1665791915029" duration="1609000" />
+      <workItem from="1665793666779" duration="772000" />
+      <workItem from="1665796300991" duration="9571000" />
+      <workItem from="1666816281179" duration="2536000" />
+      <workItem from="1666818834062" duration="2889000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
