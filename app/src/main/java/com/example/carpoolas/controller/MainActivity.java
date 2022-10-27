@@ -1,8 +1,10 @@
-package com.example.carpoolas;
+package com.example.carpoolas.controller;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.carpoolas.R;
 
 public class MainActivity extends AppCompatActivity {
 
