@@ -2,3 +2,4 @@
 *.iml
 doc/.idea/*
 out/*
+.gradle/*
