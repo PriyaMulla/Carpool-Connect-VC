@@ -2,6 +2,10 @@ package com.example.carpoolas.view;
 
 import android.view.View;
 
+import androidx.annotation.NonNull;
+
+import com.example.carpoolas.model.Account;
+
 public interface ICreateAccountView {
 
     /**
@@ -9,7 +13,16 @@ public interface ICreateAccountView {
      * to the view should implement.
      */
     interface Listener{
-        void onCreateAccount();
+        /**
+         * called when an account is created
+         *
+         * @param username
+         * @param password
+         * @param name
+         * @param email
+         * @param view
+         */
+        void onCreateAccount(@NonNull String username, String password, String name, String email, @NonNull ICreateAccountView view);
     }
 
     /**
@@ -18,7 +31,9 @@ public interface ICreateAccountView {
      */
     View getRootView();
 
-    //What should it update?
-    //change this
-    void updateSmtnDisplay();
+    /**
+     * tells view to update display and show account created
+     * @param acc
+     */
+    void updateAccountDisplay(Account acc);
 }

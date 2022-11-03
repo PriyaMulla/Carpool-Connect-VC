@@ -6,64 +6,32 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.text.Editable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.example.carpoolas.R;
 import com.example.carpoolas.databinding.FragmentCreateAccountBinding;
+import com.example.carpoolas.model.Account;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link CreateAccountFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class CreateAccountFragment extends Fragment {
+//implements ICreateView interface using Android Frag
+public class CreateAccountFragment extends Fragment implements ICreateAccountView {
 
     FragmentCreateAccountBinding binding;
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    Listener listener;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public CreateAccountFragment() {
+    public CreateAccountFragment(Listener listener) {
         // Required empty public constructor
+        this.listener = listener;
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment CreateAccountFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static CreateAccountFragment newInstance(String param1, String param2) {
-        CreateAccountFragment fragment = new CreateAccountFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                            @Nullable Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         this.binding = FragmentCreateAccountBinding.inflate(inflater);
         return this.binding.getRoot();
@@ -72,5 +40,16 @@ public class CreateAccountFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+    }
+
+    @Override
+    public View getRootView() {
+        return null;
+    }
+
+    @Override
+    public void updateAccountDisplay(Account acc) {
+
+        this.binding.accountLabel.setText(acc.toString());
     }
 }
