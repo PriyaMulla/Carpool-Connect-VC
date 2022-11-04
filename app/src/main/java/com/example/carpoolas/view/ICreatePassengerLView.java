@@ -5,9 +5,9 @@ import android.view.View;
 import androidx.annotation.NonNull;
 
 import com.example.carpoolas.model.Account;
+import com.example.carpoolas.model.PassengerListing;
 
-public interface ICreateAccountView {
-
+public interface ICreatePassengerLView {
     /**
      * Interface that classes interested in being notified of events happening
      * to the view should implement.
@@ -16,7 +16,7 @@ public interface ICreateAccountView {
         /**
          * called when an account is created
          */
-        void onCreateAccount(@NonNull String username, String password, String name, String email, @NonNull ICreateAccountView view);
+        void onCreatePassengerL(@NonNull int date, int time, String start, String end, int listingID, int seats, @NonNull ICreatePassengerLView view);
     }
 
     /**
@@ -27,7 +27,8 @@ public interface ICreateAccountView {
 
     /**
      * tells view to update display and show account created
-     * @param acc
      */
-    void updateAccountDisplay(Account acc);
+    void updatePageOfListing(PassengerListing lst);
+
 }
+
