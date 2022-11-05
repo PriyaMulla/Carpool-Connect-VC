@@ -6,10 +6,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.carpoolas.view.CreateAccountFragment;
-import com.example.carpoolas.view.ICreatePassengerLView;
+import com.example.carpoolas.view.ICreateListingView;
 import com.example.carpoolas.view.IMainView;
 import com.example.carpoolas.view.MainView;
 import com.example.carpoolas.view.ICreateAccountView;
+
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity implements ICreateAccountView.Listener {
 
@@ -28,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
     }
 
     @Override
-    public void onCreatePassengerListing(@NonNull int date, int time, String start, String end, int listingId, int seats, @NonNull ICreatePassengerLView view){
+    public void onCreateListing(@NonNull Date created, String role, Date dateTime, String start, String end, int seats, int listingID, @NonNull ICreateListingView view){
 
     }
 
