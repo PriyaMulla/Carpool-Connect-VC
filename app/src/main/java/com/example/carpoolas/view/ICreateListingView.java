@@ -5,6 +5,7 @@ import android.view.View;
 import androidx.annotation.NonNull;
 
 import java.util.Date;
+import com.example.carpoolas.model.Listing;
 
 public interface ICreateListingView {
     /**
