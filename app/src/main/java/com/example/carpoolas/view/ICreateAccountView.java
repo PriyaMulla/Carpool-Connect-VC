@@ -13,8 +13,6 @@ public interface ICreateAccountView {
      * to the view should implement.
      */
     interface Listener{
-        void onCreatePassengerListing(@NonNull int date, int time, String start, String end, int listingId, int seats, @NonNull ICreatePassengerLView view);
-
         /**
          * called when an account is created
          */
