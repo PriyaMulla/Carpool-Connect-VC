@@ -58,7 +58,7 @@ public class Listing {
     }
 
     //object for date formatting
-    SimpleDateFormat formatter = new SimpleDateFormat();
+    SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyy HH:mm:ss");
 
     @NonNull
     @Override

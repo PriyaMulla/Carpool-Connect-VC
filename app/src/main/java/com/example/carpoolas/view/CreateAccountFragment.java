@@ -40,16 +40,24 @@ public class CreateAccountFragment extends Fragment implements ICreateAccountVie
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        this.binding.createButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+
+                //TODO: restrictions
+            }
+        }
+
+
+
+        )
     }
 
-    @Override
-    public View getRootView() {
-        return null;
-    }
 
     @Override
-    public void updateAccountDisplay(Account acc) {
-
+    public void updateDisplay(Account acc) {
+        String s = acc.toString();
         this.binding.accountLabel.setText(acc.toString());
     }
 }

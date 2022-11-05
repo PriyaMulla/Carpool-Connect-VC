@@ -19,11 +19,6 @@ public interface ICreateListingView {
         void onCreateListing(@NonNull Date created, String role, Date dateTime, String start, String end, int seats, int listingID, @NonNull ICreateListingView view);
     }
 
-    /**
-     * Retrieve the graphical widget (android view) at the root of the screen hierarchy/
-     * @return the screen's root android view (widget)
-     */
-    View getRootView();
 
     /**
      * tells view to update display and show account created

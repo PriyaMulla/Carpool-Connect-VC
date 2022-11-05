@@ -19,15 +19,9 @@ public interface ICreateAccountView {
         void onCreateAccount(@NonNull String username, String password, String name, String email, @NonNull ICreateAccountView view);
     }
 
-    /**
-     * Retrieve the graphical widget (android view) at the root of the screen hierarchy/
-     * @return the screen's root android view (widget)
-     */
-    View getRootView();
 
     /**
      * tells view to update display and show account created
-     * @param acc
      */
-    void updateAccountDisplay(Account acc);
+    void updateDisplay(Account acc);
 }

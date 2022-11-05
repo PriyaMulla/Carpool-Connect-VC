@@ -35,14 +35,10 @@ public class CreateListingFragment extends Fragment implements ICreateListingVie
         super.onViewCreated(view, savedInstanceState);
     }
 
-    @Override
-    public View getRootView() {
-        return null;
-    }
 
     @Override
     public void updatePageOfListings(Listing lst) {
-
+        String s = lst.toString();
         this.binding.listingLabel.setText(lst.toString());
     }
 }
