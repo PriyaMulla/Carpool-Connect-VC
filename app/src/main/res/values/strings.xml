@@ -20,13 +20,17 @@
     <string name="date_label">Date: </string>
     <string name="time_label">Time: </string>
     <string name="role_label">Driver or Passenger</string>
+    <string name="seats_label"> seats available/required</string>
     <string name="start_location_label">Start Location: </string>
     <string name="end_location_label">End Location: </string>
     <string name="passenger_label">Passenger</string>
     <string name="driver_label">Driver</string>
     <string name="date_hint_label">mm/dd/yyyy</string>
     <string name="time_hint_label">hh:mm</string>
-    <string name="location_hint_label">Enter location</string>
+    <string name="start_location_hint_label">Type start location</string>
+    <string name="end_location_hint_label">Type end location</string>
+    <string name="seats_hint_label">Type seats required/available</string>
+
 
 
 </resources>
