@@ -13,7 +13,7 @@ import com.example.carpoolas.view.ICreateAccountView;
 
 public class MainActivity extends AppCompatActivity implements ICreateAccountView.Listener {
 
-    Account acc = new Account( username,  password,  name,  email);
+    Account acc = new Account(username, password, name, email);
     IMainView mainView;
 
     @Override
