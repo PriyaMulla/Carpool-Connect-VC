@@ -1,7 +1,6 @@
 package com.example.carpoolas.controller;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -16,7 +15,7 @@ import com.example.carpoolas.view.ICreateAccountView;
 
 public class MainActivity extends AppCompatActivity implements ICreateAccountView.Listener {
 
-    Account acc = new Account(String username, String password, String name, String email);
+    Account acc = new Account(username, password, name, email);
     IMainView mainView;
 
     @Override
