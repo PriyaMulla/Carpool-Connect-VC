@@ -6,8 +6,8 @@
     <string name="create_account_label">Create Account</string>
     <string name="username_label">Username: </string>
     <string name="password_label">Password: </string>
-    <string name="name_label">Name:</string>
-    <string name="email_label">Email:</string>
+    <string name="name_label">Name: </string>
+    <string name="email_label">Email: </string>
 
     <string name="enter_name_text_label">Type your name</string>
     <string name="enter_email_text_label">Type your email</string>
@@ -15,10 +15,18 @@
     <string name="enter_password_text_label">Type desired password</string>
     <string name="create_button_label">Create</string>
 
-    <!-- for account creation screen -->
+    <!-- for listing creation screen -->
+    <string name="create_listing_label">Create Listing</string>
+    <string name="date_label">Date: </string>
+    <string name="time_label">Time: </string>
+    <string name="role_label">Driver or Passenger</string>
+    <string name="start_location_label">Start Location: </string>
+    <string name="end_location_label">End Location: </string>
+    <string name="passenger_label">Passenger</string>
+    <string name="driver_label">Driver</string>
+    <string name="date_hint_label">mm/dd/yyyy</string>
+    <string name="time_hint_label">hh:mm</string>
+    <string name="location_hint_label">Enter location</string>
 
 
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
