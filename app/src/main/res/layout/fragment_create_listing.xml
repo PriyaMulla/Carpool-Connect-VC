@@ -21,8 +21,8 @@
         android:layout_width="275dp"
         android:layout_height="600dp"
         android:orientation="vertical"
-        tools:layout_editor_absoluteX="55dp"
-        tools:layout_editor_absoluteY="81dp">
+        tools:layout_editor_absoluteX="68dp"
+        tools:layout_editor_absoluteY="105dp">
 
         <TextView
             android:id="@+id/textView5"
@@ -74,10 +74,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
+                android:autofill="Name"
                 android:ems="10"
-                android:inputType="textPersonName"
                 android:hint="@string/seats_hint_label"
-                android:autofill="Name" />
+                android:inputType="textPersonName"
+                android:textColorHint="#757575"
+                android:autofillHints="" />
         </LinearLayout>
 
         <Space
