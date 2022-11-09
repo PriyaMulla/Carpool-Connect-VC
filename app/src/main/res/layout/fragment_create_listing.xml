@@ -18,11 +18,17 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
-        android:layout_width="275dp"
-        android:layout_height="600dp"
+        android:layout_width="290dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginEnd="61dp"
+        android:layout_marginBottom="121dp"
         android:orientation="vertical"
-        tools:layout_editor_absoluteX="68dp"
-        tools:layout_editor_absoluteY="105dp">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/listingLabel">
 
         <TextView
             android:id="@+id/textView5"
@@ -67,19 +73,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
-                android:text="@string/seats_label" />
+                android:text="@string/seats_label"
+                android:textSize="16sp" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName9"
+                android:id="@+id/enterSeats"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
-                android:autofill="Name"
+                android:autofillHints=""
                 android:ems="10"
                 android:hint="@string/seats_hint_label"
                 android:inputType="textPersonName"
-                android:textColorHint="#757575"
-                android:autofillHints="" />
+                android:minHeight="50dp"
+                android:textColorHint="#757575" />
         </LinearLayout>
 
         <Space
@@ -98,7 +105,7 @@
                 android:textSize="16sp" />
 
             <EditText
-                android:id="@+id/editTextDate5"
+                android:id="@+id/enterDate"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:autofillHints="@string/date_hint_label"
@@ -126,7 +133,7 @@
                 android:textSize="16sp" />
 
             <EditText
-                android:id="@+id/editTextTime"
+                android:id="@+id/enterTime"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:autofillHints="@string/time_hint_label"
@@ -156,7 +163,7 @@
                 android:textSize="16sp" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName6"
+                android:id="@+id/enterStartLocation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
@@ -182,10 +189,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
-                android:text="@string/end_location_label" />
+                android:text="@string/end_location_label"
+                android:textSize="16sp" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName8"
+                android:id="@+id/enterEndLocation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
@@ -195,6 +203,33 @@
                 android:inputType="textPersonName"
                 android:minHeight="50dp"
                 android:textColorHint="#757575" />
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:text="@string/add_button_label" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
         </LinearLayout>
 
     </LinearLayout>
