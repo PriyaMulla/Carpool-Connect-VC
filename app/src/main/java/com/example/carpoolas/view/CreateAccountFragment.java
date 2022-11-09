@@ -41,10 +41,35 @@ public class CreateAccountFragment extends Fragment implements ICreateAccountVie
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        //set up a listener for "create" button clicks
         this.binding.createButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
+                //extract user's name
+                Editable enterName = CreateAccountFragment.this.binding.enterName.getText();
+                String name = enterName.toString();
 
+                //extract user's username
+                Editable enterUsername = CreateAccountFragment.this.binding.enterUsername.getText();
+                String username = enterUsername.toString();
+
+                //extract user's password
+                Editable enterPassword = CreateAccountFragment.this.binding.enterPassword.getText();
+                String password = enterPassword.toString();
+
+                //extract user's email
+                Editable enterEmail = CreateAccountFragment.this.binding.enterEmailAddress.getText();
+                String email = enterEmail.toString();
+
+                //send to controller to validate
+                //delegate the creation to the account to controller
+                //controller handles exceptions? Make controller in charge of making snackbar?
+
+                //empty out the fields in preparation for next account
+                enterEmail.clear();
+                enterUsername.clear();
+                enterPassword.clear();
+                enterName.clear();
                 //TODO: restrictions
             }
         }
@@ -57,7 +82,6 @@ public class CreateAccountFragment extends Fragment implements ICreateAccountVie
 
     @Override
     public void updateDisplay(Account acc) {
-        String s = acc.toString();
         this.binding.accountLabel.setText(acc.toString());
     }
 }

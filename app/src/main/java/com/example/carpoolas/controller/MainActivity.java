@@ -19,8 +19,10 @@ import java.util.Date;
 
 public class MainActivity extends AppCompatActivity implements ICreateAccountView.Listener, ICreateListingView.Listener {
 
-    Listing curLst = new Listing(Date created, String role, Date dateTime, String start, String end,  int seats, int listingID);
-    Account acc = new Account(username, password, name, email);
+    //Listing curLst = new Listing(Date created, String role, Date dateTime, String start, String end,  int seats, int listingID);
+    //Account acc = new Account(username, password, name, email);
+
+    CollOfAccts accounts = new CollAccts();
     IMainView mainView;
 
     @Override
