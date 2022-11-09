@@ -62,7 +62,7 @@ public class CreateAccountFragment extends Fragment implements ICreateAccountVie
                 String email = enterEmail.toString();
 
                 //send to controller to validate
-                //delegate the creation to the account to controller
+                //delegate the creation to the account to controller aka main activity
                 //controller handles exceptions? Make controller in charge of making snackbar?
 
                 //empty out the fields in preparation for next account
