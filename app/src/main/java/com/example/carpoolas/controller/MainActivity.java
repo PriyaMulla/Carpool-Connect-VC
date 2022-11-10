@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.carpoolas.model.Account;
+import com.example.carpoolas.model.CollectionOfAccounts;
 import com.example.carpoolas.model.Listing;
 import com.example.carpoolas.model.PageOfListings;
 import com.example.carpoolas.view.CreateAccountFragment;
@@ -24,7 +25,7 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
     //Listing curLst = new Listing(Date created, String role, Date dateTime, String start, String end,  int seats, int listingID);
     //Account acc = new Account(username, password, name, email);
 
-    //CollOfAccts accounts = new CollAccts();
+    CollectionOfAccounts accounts = new CollectionOfAccounts();
     IMainView mainView;
 
     /**
@@ -43,15 +44,12 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
         CreateAccountFragment createAccountFragment = new CreateAccountFragment(this);
         this.mainView.displayFragment(createAccountFragment, true, "create account");
 
-        CreateListingFragment createListingFragment = new CreateListingFragment(this);
-        this.mainView.displayFragment(createListingFragment, true, "create listing");
-
         setContentView(this.mainView.getRootView()); //display fragment
     }
 
-    //here put validations/snackbar?
+    //Validations
 
-    public boolean isValidName(String input, View view){
+    public static boolean isValidName(String input){
         char ch;
         for (int i = 0; i < input.length(); i++){
             ch = input.charAt(i);
@@ -59,11 +57,8 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
                 return true;
             }
         }
-        Snackbar.make(view, "Please provide your name",
-                Snackbar.LENGTH_INDEFINITE).show();
         return false;
     }
-    //snackbar?
 
     public static boolean isValidUsername (String input){
         return input.length() > 5;
@@ -104,7 +99,8 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
      */
     @Override //addAccount be on collection of Accounts
     public void onCreateAccount(@NonNull String username, String password, String name, String email, @NonNull ICreateAccountView view) {
-    //this.accounts.addAccount(username,password,name,email);
+    this.accounts.addAccount(username,password,name,email);
+    //switch to welcome user fragment with buttons
     }
 
     @Override

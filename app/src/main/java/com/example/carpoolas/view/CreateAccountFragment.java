@@ -1,5 +1,10 @@
 package com.example.carpoolas.view;
 
+import static com.example.carpoolas.controller.MainActivity.isValidEmail;
+import static com.example.carpoolas.controller.MainActivity.isValidName;
+import static com.example.carpoolas.controller.MainActivity.isValidPassword;
+import static com.example.carpoolas.controller.MainActivity.isValidUsername;
+
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,8 +19,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.carpoolas.R;
+import com.example.carpoolas.controller.MainActivity;
 import com.example.carpoolas.databinding.FragmentCreateAccountBinding;
 import com.example.carpoolas.model.Account;
+import com.google.android.material.snackbar.Snackbar;
 
 //implements ICreateView interface using Android Frag
 public class CreateAccountFragment extends Fragment implements ICreateAccountView {
@@ -49,27 +56,51 @@ public class CreateAccountFragment extends Fragment implements ICreateAccountVie
                 Editable enterUsername;
                 Editable enterPassword;
                 Editable enterEmail;
+                String name;
+                String password;
+                String username;
+                String email;
+                boolean isValid = true;
                 do {
                     //extract user's name
                     enterName = CreateAccountFragment.this.binding.enterName.getText();
-                    String name = enterName.toString();
+                    name = enterName.toString();
+                    if (!isValidName(name)){
+                        Snackbar.make(view, "Please provide your name!",
+                                Snackbar.LENGTH_INDEFINITE).show();
+                        isValid = isValid && isValidName(name);
+                    }
 
                     //extract user's username
                     enterUsername = CreateAccountFragment.this.binding.enterUsername.getText();
-                    String username = enterUsername.toString();
+                    username = enterUsername.toString();
+                    if (!isValidUsername(username)){
+                        Snackbar.make(view, "Please provide a valid username!",
+                                Snackbar.LENGTH_INDEFINITE).show();
+                        isValid = isValid && isValidUsername(name);
+                    }
 
                     //extract user's password
                     enterPassword = CreateAccountFragment.this.binding.enterPassword.getText();
-                    String password = enterPassword.toString();
+                    password = enterPassword.toString();
+                    if (!isValidPassword(password)){
+                        Snackbar.make(view, "Please provide your name!",
+                                Snackbar.LENGTH_INDEFINITE).show();
+                        isValid = isValid && isValidPassword(password);
+                    }
 
                     //extract user's email
                     enterEmail = CreateAccountFragment.this.binding.enterEmailAddress.getText();
-                    String email = enterEmail.toString();
+                    email = enterEmail.toString();
+                    if (!isValidEmail(email)){
+                        Snackbar.make(view, "Please provide your name!",
+                                Snackbar.LENGTH_INDEFINITE).show();
+                        isValid = isValid && isValidEmail(name);
+                    }
                 }
-                while (false);
-                //send to controller to validate
+                while (isValid);
                 //delegate the creation to the account to controller aka main activity
-                //controller handles exceptions? Make controller in charge of making snackbar?
+                CreateAccountFragment.this.listener.onCreateAccount(name,password,username,email, CreateAccountFragment.this);
 
                 //CreateAccountFragment.this.listener.onCreateAccount(username,password,name,email,CreateAccountFragment.this);
 
