@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.example.carpoolas.model.Account;
 import com.example.carpoolas.model.Listing;
@@ -14,6 +15,7 @@ import com.example.carpoolas.view.ICreateListingView;
 import com.example.carpoolas.view.IMainView;
 import com.example.carpoolas.view.MainView;
 import com.example.carpoolas.view.ICreateAccountView;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.Date;
 
@@ -22,7 +24,7 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
     //Listing curLst = new Listing(Date created, String role, Date dateTime, String start, String end,  int seats, int listingID);
     //Account acc = new Account(username, password, name, email);
 
-    CollOfAccts accounts = new CollAccts();
+    //CollOfAccts accounts = new CollAccts();
     IMainView mainView;
 
     /**
@@ -49,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
 
     //here put validations/snackbar?
 
-    public static boolean isValidName (String input){
+    public boolean isValidName(String input, View view){
         char ch;
         for (int i = 0; i < input.length(); i++){
             ch = input.charAt(i);
@@ -57,15 +59,39 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
                 return true;
             }
         }
+        Snackbar.make(view, "Please provide your name",
+                Snackbar.LENGTH_INDEFINITE).show();
         return false;
     }
+    //snackbar?
 
     public static boolean isValidUsername (String input){
         return input.length() > 5;
     }
 
     public static boolean isValidPassword (String input){
+    char ch;
+    boolean capitalFlag = false;
+    boolean specialFlag = false;
+    if (!(input.length() > 5)){
+    return false;
+    }
+    for (int i = 0; i < input.length(); i++){
+        ch = input.charAt(i);
+        if (Character.isUpperCase(ch)){
+            capitalFlag = true;
+        } else if (!Character.isLetter(ch) && !Character.isWhitespace(ch)){
+            specialFlag = true;
+        }
+        if (capitalFlag && specialFlag){
+            return true;
+        }
+    }
+    return false;
+    }
 
+    public static boolean isValidEmail (String input){
+        return ((input.contains("@vassar.edu")) && (input.length() > 11));
     }
 
     /**
@@ -78,7 +104,7 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
      */
     @Override //addAccount be on collection of Accounts
     public void onCreateAccount(@NonNull String username, String password, String name, String email, @NonNull ICreateAccountView view) {
-    this.accounts.addAccount(username,password,name,email);
+    //this.accounts.addAccount(username,password,name,email);
     }
 
     @Override

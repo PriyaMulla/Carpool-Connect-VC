@@ -45,25 +45,33 @@ public class CreateAccountFragment extends Fragment implements ICreateAccountVie
         this.binding.createButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                //extract user's name
-                Editable enterName = CreateAccountFragment.this.binding.enterName.getText();
-                String name = enterName.toString();
+                Editable enterName;
+                Editable enterUsername;
+                Editable enterPassword;
+                Editable enterEmail;
+                do {
+                    //extract user's name
+                    enterName = CreateAccountFragment.this.binding.enterName.getText();
+                    String name = enterName.toString();
 
-                //extract user's username
-                Editable enterUsername = CreateAccountFragment.this.binding.enterUsername.getText();
-                String username = enterUsername.toString();
+                    //extract user's username
+                    enterUsername = CreateAccountFragment.this.binding.enterUsername.getText();
+                    String username = enterUsername.toString();
 
-                //extract user's password
-                Editable enterPassword = CreateAccountFragment.this.binding.enterPassword.getText();
-                String password = enterPassword.toString();
+                    //extract user's password
+                    enterPassword = CreateAccountFragment.this.binding.enterPassword.getText();
+                    String password = enterPassword.toString();
 
-                //extract user's email
-                Editable enterEmail = CreateAccountFragment.this.binding.enterEmailAddress.getText();
-                String email = enterEmail.toString();
-
+                    //extract user's email
+                    enterEmail = CreateAccountFragment.this.binding.enterEmailAddress.getText();
+                    String email = enterEmail.toString();
+                }
+                while (false);
                 //send to controller to validate
                 //delegate the creation to the account to controller aka main activity
                 //controller handles exceptions? Make controller in charge of making snackbar?
+
+                //CreateAccountFragment.this.listener.onCreateAccount(username,password,name,email,CreateAccountFragment.this);
 
                 //empty out the fields in preparation for next account
                 enterEmail.clear();
