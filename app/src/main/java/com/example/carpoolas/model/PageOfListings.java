@@ -11,14 +11,14 @@ import java.util.LinkedList;
  */
 public class PageOfListings {
 
-    private final List<Listing> listing;
+    public List<Listing> listings;
 
     public PageOfListings() {
-        this.listing = new LinkedList<>();
+        this.listings = new LinkedList<Listing>();
     }
 
     public List<Listing> getListing() {
-        return listing;
+        return listings;
     }
 
     /**
@@ -26,7 +26,7 @@ public class PageOfListings {
      */
     public void addListing(Date created, String role, Date dateTime, String start, String end, int seats, int listingID) {
         Listing lst = new Listing(created, role, dateTime, start, end, seats, listingID);
-        this.listing.add(lst);
+        this.listings.add(lst);
     }
 
     /**
@@ -39,11 +39,12 @@ public class PageOfListings {
     public String toString() {
         StringBuilder sb = new StringBuilder(); // using a string builder is more ef
 
-        for (Listing lst : this.listing) { // java.util.list supports for-each loop
+        for (Listing lst : this.listings) { // java.util.list supports for-each loop
             sb.append(lst.toString());
             sb.append("\n");
         }
 
         return sb.toString();
     }
+
 }
