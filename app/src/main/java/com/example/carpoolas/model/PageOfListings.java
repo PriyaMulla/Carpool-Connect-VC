@@ -29,10 +29,6 @@ public class PageOfListings {
         this.listings.add(lst);
     }
 
-    /**
-     * TODO: any method we might need, ie SEARCH!!
-     */
-
 
     @NonNull
     @Override
