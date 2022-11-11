@@ -32,6 +32,21 @@
     <string name="seats_hint_label">Type seats available</string>
     <string name="add_button_label">Add</string>
 
-
+    <!-- for filter screen -->
+    <string name="filter_label">Filter All Listings</string>
+    <string name="date_wanted_label">Date: </string>
+    <string name="time_wanted_label">Time: </string>
+    <string name="role_wanted_label">Do You Want a Driver or Passenger?</string>
+    <string name="seats_wanted_label"> Seats available: </string>
+    <string name="start_location_wanted_label">Start Location: </string>
+    <string name="end_location_wanted_label">End Location: </string>
+    <string name="passenger_wanted_label">Passenger</string>
+    <string name="driver_wanted_label">Driver</string>
+    <string name="date_wanted_hint_label">mm/dd/yyyy</string>
+    <string name="time_wanted_hint_label">hh:mm</string>
+    <string name="start_wanted_location_hint_label">Type start location</string>
+    <string name="end_wanted_location_hint_label">Type end location</string>
+    <string name="seats_wanted_hint_label">Type seats available</string>
+    <string name="filter_button_label">Filter</string>
 
 </resources>

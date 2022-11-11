@@ -13,6 +13,7 @@ import com.example.carpoolas.model.PageOfListings;
 import com.example.carpoolas.view.CreateAccountFragment;
 import com.example.carpoolas.view.CreateListingFragment;
 import com.example.carpoolas.view.ICreateListingView;
+import com.example.carpoolas.view.IFilterView;
 import com.example.carpoolas.view.IMainView;
 import com.example.carpoolas.view.MainView;
 import com.example.carpoolas.view.ICreateAccountView;
@@ -20,7 +21,7 @@ import com.google.android.material.snackbar.Snackbar;
 
 import java.util.Date;
 
-public class MainActivity extends AppCompatActivity implements ICreateAccountView.Listener, ICreateListingView.Listener {
+public class MainActivity extends AppCompatActivity implements ICreateAccountView.Listener, ICreateListingView.Listener, IFilterView.Listener {
 
     //Listing curLst = new Listing(Date created, String role, Date dateTime, String start, String end,  int seats, int listingID);
     //Account acc = new Account(username, password, name, email);
@@ -105,6 +106,11 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
 
     @Override
     public void onCreateListing(@NonNull Date created, String role, Date dateTime, String start, String end, int seats, int listingID, @NonNull ICreateListingView view){
+
+    }
+
+    @Override
+    public void onFilter(@NonNull IFilterView view) {
 
     }
 }
