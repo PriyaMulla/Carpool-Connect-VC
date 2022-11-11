@@ -1,5 +1,7 @@
 package com.example.carpoolas.model;
 
+import android.annotation.SuppressLint;
+
 import androidx.annotation.NonNull;
 
 import java.util.Date;
@@ -13,19 +15,19 @@ public class Listing {
     String startLocation;
     String endLocation;
     int seats;
-    int listingID;
+    //int listingID;
 
 
 
 
-    Listing(Date created, String role, Date dateTime, String start, String end,  int seats, int listingID){
+    Listing(Date created, String role, Date dateTime, String start, String end,  int seats){
         this.dateCreated = created;
         this.role = role;
         this.dateTimeOfTrip = dateTime;
         this.startLocation = start;
         this.endLocation = end;
         this.seats = seats;
-        this.listingID = listingID;
+        //this.listingID = listingID;
 
     }
 
@@ -53,12 +55,13 @@ public class Listing {
         return seats;
     }
 
-    public int getListingID() {
-        return listingID;
-    }
+    //public int getListingID() {
+    //    return listingID;
+   // }
 
     //object for date formatting
-    SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyy HH:mm:ss");
+    @SuppressLint("SimpleDateFormat")
+    SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy HH:mm");
 
     @NonNull
     @Override

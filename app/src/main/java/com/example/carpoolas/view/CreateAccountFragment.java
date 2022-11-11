@@ -32,7 +32,6 @@ public class CreateAccountFragment extends Fragment implements ICreateAccountVie
     Listener listener;
 
     public CreateAccountFragment(Listener listener) {
-        // Required empty public constructor
         this.listener = listener;
     }
 

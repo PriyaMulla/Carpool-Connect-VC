@@ -1,8 +1,11 @@
 package com.example.carpoolas.controller;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
+import android.os.Build;
 import android.os.Bundle;
 
 import com.example.carpoolas.model.CollectionOfAccounts;
@@ -14,6 +17,9 @@ import com.example.carpoolas.view.IMainView;
 import com.example.carpoolas.view.MainView;
 import com.example.carpoolas.view.ICreateAccountView;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeParseException;
 import java.util.Date;
 
 public class MainActivity extends AppCompatActivity implements ICreateAccountView.Listener, ICreateListingView.Listener, IFilterView.Listener {
@@ -41,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
     }
 
     //Validations
+    //Account
 
     public static boolean isValidName(String input){
         char ch;
@@ -82,6 +89,19 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
         return ((input.contains("@vassar.edu")) && (input.length() > 11));
     }
 
+    //Listing
+    public static boolean isValidDateTime(String dateTime){
+        @SuppressLint("SimpleDateFormat")
+        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy HH:mm");
+        try{
+            formatter.parse(dateTime);
+        } catch (ParseException e) {
+            return false;
+        }
+        return true;
+    }
+
+
     /**
      * React to the user's intention of adding a new item onto the collection of accounts.
      * @param name name of user
@@ -100,7 +120,7 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
     }
 
     @Override
-    public void onCreateListing(@NonNull Date created, String role, Date dateTime, String start, String end, int seats, int listingID, @NonNull ICreateListingView view){
+    public void onCreateListing(@NonNull Date created, String role, Date dateTime, String start, String end, int seats, @NonNull ICreateListingView view){
 
     }
 
