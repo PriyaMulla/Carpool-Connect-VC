@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.carpoolas.controller.MainActivity;
 import com.example.carpoolas.databinding.ActivityMainBinding;
 
 /**
@@ -25,6 +26,22 @@ public class MainView implements IMainView{
         this.fmanager = activity.getSupportFragmentManager();
         this.binding = ActivityMainBinding.inflate(activity.getLayoutInflater());
         //set up onclick listener for buttons
+        this.binding.searchListingsButton.setOnClickListener(new View.OnClickListener() {
+            private MainActivity binding;
+
+            @Override
+            public void onClick(View view) {
+                this.binding.goToSearchListing();
+            }
+        });
+        this.binding.createListingButton.setOnClickListener(new View.OnClickListener() {
+            private MainActivity binding;
+
+            @Override
+            public void onClick(View view) {
+                this.binding.goToCreateListing();
+            }
+        });
     }
 
     /**

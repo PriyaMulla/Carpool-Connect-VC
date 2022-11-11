@@ -12,7 +12,9 @@ import android.os.Bundle;
 import com.example.carpoolas.model.CollectionOfAccounts;
 import com.example.carpoolas.model.PageOfListings;
 import com.example.carpoolas.view.CreateAccountFragment;
+import com.example.carpoolas.view.CreateListingFragment;
 import com.example.carpoolas.view.DashboardFragment;
+import com.example.carpoolas.view.FilterFragment;
 import com.example.carpoolas.view.ICreateListingView;
 import com.example.carpoolas.view.IFilterView;
 import com.example.carpoolas.view.IMainView;
@@ -153,6 +155,17 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
         FragmentManager fm = getSupportFragmentManager();
         fm.popBackStack();
         fm.executePendingTransactions();
+
+    }
+
+    public void goToCreateListing(){
+        CreateListingFragment ListingFragment = new CreateListingFragment();
+        this.mainView.displayFragment(ListingFragment, true, "create a listing");
+
+    }
+    public void goToSearchListing(){
+        FilterFragment filterFragment = new FilterFragment();
+        this.mainView.displayFragment(filterFragment, true, "create a listing");
 
     }
 

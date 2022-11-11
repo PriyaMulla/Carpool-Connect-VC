@@ -20,6 +20,8 @@ public class FilterFragment extends Fragment implements IFilterView{
     private FragmentFilterBinding binding;
     private Listener listener;
 
+    public FilterFragment( ) {
+    }
 
     public FilterFragment(Listener listener) {
         this.listener = listener;

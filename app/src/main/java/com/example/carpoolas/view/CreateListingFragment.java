@@ -35,6 +35,8 @@ public class CreateListingFragment extends Fragment implements ICreateListingVie
     FragmentCreateListingBinding binding;
     Listener listener;
 
+    public CreateListingFragment() {
+    }
     public CreateListingFragment(Listener listener) {
         this.listener = listener;
     }
