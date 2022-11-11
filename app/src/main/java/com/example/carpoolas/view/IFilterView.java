@@ -15,7 +15,7 @@ public interface IFilterView {
         /**
          * called when an account is created
          */
-        void onFilter(@NonNull IFilterView view);
+        void onFilter(@NonNull PageOfListings lst, @NonNull IFilterView view);
     }
 
 
