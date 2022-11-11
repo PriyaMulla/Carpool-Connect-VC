@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Carpool AS</string>
     <string name="welcome_label">Welcome</string>
+    <string name="search_listing_label">Search Listings</string>
 
     <!-- for account creation screen -->
     <string name="create_account_label">Create Account</string>
