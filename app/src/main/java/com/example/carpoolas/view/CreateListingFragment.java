@@ -1,6 +1,9 @@
 package com.example.carpoolas.view;
 
 import static com.example.carpoolas.controller.MainActivity.isValidDateTime;
+import static com.example.carpoolas.controller.MainActivity.isValidEnd;
+import static com.example.carpoolas.controller.MainActivity.isValidSeats;
+import static com.example.carpoolas.controller.MainActivity.isValidStart;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -59,8 +62,9 @@ public class CreateListingFragment extends Fragment implements ICreateListingVie
                 if (!isValidDateTime(dateTimeString)){
                     Snackbar.make(view, "Please enter Date and Time!", Snackbar.LENGTH_INDEFINITE).show();
                     isValid = isValidDateTime(dateTimeString);
-                    date = new SimpleDateFormat("MM/dd/yyyy HH:mm").parse((dateTimeString));
+
                 }
+                else date = new SimpleDateFormat("MM/dd/yyyy HH:mm").parse((dateTimeString));
 
                 //extract start location
                 Editable enterStart = CreateListingFragment.this.binding.enterStartLocation.getText();
@@ -80,14 +84,16 @@ public class CreateListingFragment extends Fragment implements ICreateListingVie
 
                 //extract seats
                 Editable enterSeats = CreateListingFragment.this.binding.enterSeats.getText();
-                int seats = Integer.parseInt(enterSeats.toString());
-                if (!isValidSeats(seats)){
+                String stringSeats = null;
+                int seats = 0;
+                if (!isValidSeats(stringSeats)){
                     Snackbar.make(view, "Please enter number of seats!", Snackbar.LENGTH_INDEFINITE).show();
-                    isValid = isValid && isValidSeats(seats);
+                    isValid = isValid && isValidSeats(stringSeats);
                 }
+                else seats = Integer.parseInt(enterSeats.toString());
 
                 if(isValid){
-                    Snackbar.make((View) view, "Listing added!", Snackbar.LENGTH_INDEFINITE.show();
+                    Snackbar.make(view, "Listing added!", Snackbar.LENGTH_INDEFINITE).show();
                     CreateListingFragment.this.listener.onCreateListing(dateCreated, role, date, start, end, seats, CreateListingFragment.this);
                 }
 

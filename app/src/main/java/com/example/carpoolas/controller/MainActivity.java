@@ -21,6 +21,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeParseException;
 import java.util.Date;
+import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity implements ICreateAccountView.Listener, ICreateListingView.Listener, IFilterView.Listener {
 
@@ -96,6 +97,27 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
         try{
             formatter.parse(dateTime);
         } catch (ParseException e) {
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean isValidStart(String start){
+        return Pattern.compile("^(\\d{1,}) [a-zA-Z0-9\\s]+(\\,)? [a-zA-Z]+(\\,)? [A-Z]{2} [0-9]{5,6}$")
+                .matcher(start)
+                .find();
+    }
+
+    public static boolean isValidEnd(String end){
+        return Pattern.compile("^(\\d{1,}) [a-zA-Z0-9\\s]+(\\,)? [a-zA-Z]+(\\,)? [A-Z]{2} [0-9]{5,6}$")
+                .matcher(end)
+                .find();
+    }
+
+    public static boolean isValidSeats(String seats){
+        try{
+            int numSeats = Integer.parseInt(seats.toString());
+        } catch (NumberFormatException e) {
             return false;
         }
         return true;
