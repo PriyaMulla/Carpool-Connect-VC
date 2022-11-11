@@ -4,22 +4,15 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.view.View;
 
-import com.example.carpoolas.model.Account;
 import com.example.carpoolas.model.CollectionOfAccounts;
-import com.example.carpoolas.model.Listing;
-import com.example.carpoolas.model.PageOfListings;
 import com.example.carpoolas.view.CreateAccountFragment;
-import com.example.carpoolas.view.WelcomeFragment;
-import com.example.carpoolas.view.CreateListingFragment;
+import com.example.carpoolas.view.DashboardFragment;
 import com.example.carpoolas.view.ICreateListingView;
 import com.example.carpoolas.view.IFilterView;
 import com.example.carpoolas.view.IMainView;
 import com.example.carpoolas.view.MainView;
 import com.example.carpoolas.view.ICreateAccountView;
-import com.example.carpoolas.view.WelcomeFragment;
-import com.google.android.material.snackbar.Snackbar;
 
 import java.util.Date;
 
@@ -101,7 +94,7 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
     public void onCreateAccount(@NonNull String username, String password, String name, String email, @NonNull ICreateAccountView view) {
         this.accounts.addAccount(username,password,name,email);
         //transition to Welcome page
-        WelcomeFragment welcomeFragment = new WelcomeFragment();
+        DashboardFragment welcomeFragment = new DashboardFragment();
         this.mainView.displayFragment(welcomeFragment, true, "welcome");
         //switch to welcome user fragment with buttons
     }
