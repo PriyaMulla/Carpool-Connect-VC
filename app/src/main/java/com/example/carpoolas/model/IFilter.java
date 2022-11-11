@@ -1,7 +1,7 @@
 package com.example.carpoolas.model;
 
 
-public interface IFilter<PageOfListings> {
+public interface IFilter {
     PageOfListings filterListings(PageOfListings lst);
 
 
