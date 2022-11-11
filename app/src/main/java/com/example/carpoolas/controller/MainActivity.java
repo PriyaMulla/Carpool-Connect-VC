@@ -100,7 +100,8 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
     @Override //addAccount be on collection of Accounts
     public void onCreateAccount(@NonNull String username, String password, String name, String email, @NonNull ICreateAccountView view) {
     this.accounts.addAccount(username,password,name,email);
-    //switch to welcome user fragment with buttons
+
+        //switch to welcome user fragment with buttons
     }
 
     @Override
