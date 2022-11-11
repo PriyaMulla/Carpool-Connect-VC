@@ -22,6 +22,7 @@ import com.example.carpoolas.R;
 import com.example.carpoolas.controller.MainActivity;
 import com.example.carpoolas.databinding.FragmentCreateAccountBinding;
 import com.example.carpoolas.model.Account;
+import com.example.carpoolas.model.CollectionOfAccounts;
 import com.google.android.material.snackbar.Snackbar;
 
 //implements ICreateView interface using Android Frag
@@ -61,7 +62,7 @@ public class CreateAccountFragment extends Fragment implements ICreateAccountVie
                 String username;
                 String email;
                 boolean isValid = true;
-                do {
+
                     //extract user's name
                     enterName = CreateAccountFragment.this.binding.enterName.getText();
                     name = enterName.toString();
@@ -75,8 +76,7 @@ public class CreateAccountFragment extends Fragment implements ICreateAccountVie
                     enterUsername = CreateAccountFragment.this.binding.enterUsername.getText();
                     username = enterUsername.toString();
                     if (!isValidUsername(username)){
-                        Snackbar.make(view, "Please provide a valid username!",
-                                Snackbar.LENGTH_INDEFINITE).show();
+                        Snackbar.make(view, "Please provide a valid username!", Snackbar.LENGTH_INDEFINITE).show();
                         isValid = isValid && isValidUsername(name);
                     }
 
@@ -84,7 +84,7 @@ public class CreateAccountFragment extends Fragment implements ICreateAccountVie
                     enterPassword = CreateAccountFragment.this.binding.enterPassword.getText();
                     password = enterPassword.toString();
                     if (!isValidPassword(password)){
-                        Snackbar.make(view, "Please provide your name!",
+                        Snackbar.make(view, "Please provide your password!",
                                 Snackbar.LENGTH_INDEFINITE).show();
                         isValid = isValid && isValidPassword(password);
                     }
@@ -93,26 +93,29 @@ public class CreateAccountFragment extends Fragment implements ICreateAccountVie
                     enterEmail = CreateAccountFragment.this.binding.enterEmailAddress.getText();
                     email = enterEmail.toString();
                     if (!isValidEmail(email)){
-                        Snackbar.make(view, "Please provide your name!",
+                        Snackbar.make(view, "Please provide your email!",
                                 Snackbar.LENGTH_INDEFINITE).show();
                         isValid = isValid && isValidEmail(name);
                     }
+                if(isValid) {
+                        Snackbar.make((View) view, "Account created!",
+                                Snackbar.LENGTH_INDEFINITE).show();
+                    CreateAccountFragment.this.listener.onCreateAccount(name, password, username, email, CreateAccountFragment.this);
                 }
-                while (isValid);
-                //delegate the creation to the account to controller aka main activity
-                CreateAccountFragment.this.listener.onCreateAccount(name,password,username,email, CreateAccountFragment.this);
-
-                //CreateAccountFragment.this.listener.onCreateAccount(username,password,name,email,CreateAccountFragment.this);
-
-                //empty out the fields in preparation for next account
                 enterEmail.clear();
                 enterUsername.clear();
                 enterPassword.clear();
                 enterName.clear();
+            }
+
+                //delegate the creation to the account to controller aka main activity
+
+                //CreateAccountFragment.this.listener.onCreateAccount(username,password,name,email,CreateAccountFragment.this);
+
+                //empty out the fields in preparation for next account
+
                 //TODO: restrictions
             }
-        }
-
 
 
         );
