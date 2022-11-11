@@ -16,7 +16,7 @@ public interface ICreateListingView {
         /**
          * called when an account is created
          */
-        void onCreateListing(@NonNull Date created, String role, Date dateTime, String start, String end, int seats, int listingID, @NonNull ICreateListingView view);
+        void onCreateListing(@NonNull Date created, String role, Date dateTime, String start, String end, int seats, @NonNull ICreateListingView view);
     }
 
 
