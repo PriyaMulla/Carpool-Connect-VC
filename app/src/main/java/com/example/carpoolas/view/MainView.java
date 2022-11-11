@@ -16,7 +16,7 @@ public class MainView implements IMainView{
 
     FragmentManager fmanager; // lets us perform fragment transactions
     ActivityMainBinding binding;     // gives us access to all the graphical components in main.xml
-
+//set visibility
     /**
      *
      * @param activity The android activity the screen is associated with.
@@ -24,6 +24,7 @@ public class MainView implements IMainView{
     public MainView(FragmentActivity activity){
         this.fmanager = activity.getSupportFragmentManager();
         this.binding = ActivityMainBinding.inflate(activity.getLayoutInflater());
+        //set up onclick listener for buttons
     }
 
     /**

@@ -11,20 +11,19 @@ import com.example.carpoolas.model.CollectionOfAccounts;
 import com.example.carpoolas.model.Listing;
 import com.example.carpoolas.model.PageOfListings;
 import com.example.carpoolas.view.CreateAccountFragment;
+import com.example.carpoolas.view.WelcomeFragment;
 import com.example.carpoolas.view.CreateListingFragment;
 import com.example.carpoolas.view.ICreateListingView;
 import com.example.carpoolas.view.IFilterView;
 import com.example.carpoolas.view.IMainView;
 import com.example.carpoolas.view.MainView;
 import com.example.carpoolas.view.ICreateAccountView;
+import com.example.carpoolas.view.WelcomeFragment;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.Date;
 
 public class MainActivity extends AppCompatActivity implements ICreateAccountView.Listener, ICreateListingView.Listener, IFilterView.Listener {
-
-    //Listing curLst = new Listing(Date created, String role, Date dateTime, String start, String end,  int seats, int listingID);
-    //Account acc = new Account(username, password, name, email);
 
     CollectionOfAccounts accounts = new CollectionOfAccounts();
     IMainView mainView;
@@ -66,24 +65,24 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
     }
 
     public static boolean isValidPassword (String input){
-    char ch;
-    boolean capitalFlag = false;
-    boolean specialFlag = false;
-    if (!(input.length() > 5)){
-    return false;
-    }
-    for (int i = 0; i < input.length(); i++){
-        ch = input.charAt(i);
-        if (Character.isUpperCase(ch)){
-            capitalFlag = true;
-        } else if (!Character.isLetter(ch) && !Character.isWhitespace(ch)){
-            specialFlag = true;
+        char ch;
+        boolean capitalFlag = false;
+        boolean specialFlag = false;
+        if (!(input.length() > 5)){
+            return false;
         }
-        if (capitalFlag && specialFlag){
-            return true;
+        for (int i = 0; i < input.length(); i++){
+            ch = input.charAt(i);
+            if (Character.isUpperCase(ch)){
+                capitalFlag = true;
+            } else if (!Character.isLetter(ch) && !Character.isWhitespace(ch)){
+                specialFlag = true;
+            }
+            if (capitalFlag && specialFlag){
+                return true;
+            }
         }
-    }
-    return false;
+        return false;
     }
 
     public static boolean isValidEmail (String input){
@@ -100,8 +99,10 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
      */
     @Override //addAccount be on collection of Accounts
     public void onCreateAccount(@NonNull String username, String password, String name, String email, @NonNull ICreateAccountView view) {
-    this.accounts.addAccount(username,password,name,email);
-    this.mainView.displayFragment()
+        this.accounts.addAccount(username,password,name,email);
+        //transition to Welcome page
+        WelcomeFragment welcomeFragment = new WelcomeFragment();
+        this.mainView.displayFragment(welcomeFragment, true, "welcome");
         //switch to welcome user fragment with buttons
     }
 

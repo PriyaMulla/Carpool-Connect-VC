@@ -67,8 +67,7 @@ public class CreateAccountFragment extends Fragment implements ICreateAccountVie
                     enterName = CreateAccountFragment.this.binding.enterName.getText();
                     name = enterName.toString();
                     if (!isValidName(name)){
-                        Snackbar.make(view, "Please provide your name!",
-                                Snackbar.LENGTH_INDEFINITE).show();
+                        Snackbar.make(view, "Please provide your name!",Snackbar.LENGTH_INDEFINITE).show();
                         isValid = isValid && isValidName(name);
                     }
 
@@ -84,8 +83,7 @@ public class CreateAccountFragment extends Fragment implements ICreateAccountVie
                     enterPassword = CreateAccountFragment.this.binding.enterPassword.getText();
                     password = enterPassword.toString();
                     if (!isValidPassword(password)){
-                        Snackbar.make(view, "Please provide your password!",
-                                Snackbar.LENGTH_INDEFINITE).show();
+                        Snackbar.make(view, "Please provide your password!",Snackbar.LENGTH_INDEFINITE).show();
                         isValid = isValid && isValidPassword(password);
                     }
 
@@ -93,13 +91,11 @@ public class CreateAccountFragment extends Fragment implements ICreateAccountVie
                     enterEmail = CreateAccountFragment.this.binding.enterEmailAddress.getText();
                     email = enterEmail.toString();
                     if (!isValidEmail(email)){
-                        Snackbar.make(view, "Please provide your email!",
-                                Snackbar.LENGTH_INDEFINITE).show();
+                        Snackbar.make(view, "Please provide your email!",Snackbar.LENGTH_INDEFINITE).show();
                         isValid = isValid && isValidEmail(name);
                     }
                 if(isValid) {
-                        Snackbar.make((View) view, "Account created!",
-                                Snackbar.LENGTH_INDEFINITE).show();
+                        Snackbar.make((View) view, "Account created!",Snackbar.LENGTH_INDEFINITE).show();
                     CreateAccountFragment.this.listener.onCreateAccount(name, password, username, email, CreateAccountFragment.this);
                 }
                 enterEmail.clear();
