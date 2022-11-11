@@ -20,12 +20,15 @@ import android.widget.RadioButton;
 
 import com.example.carpoolas.R;
 import com.example.carpoolas.databinding.FragmentCreateListingBinding;
+import com.example.carpoolas.model.DateFilter;
 import com.example.carpoolas.model.Listing;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.time.LocalDate;
 
 public class CreateListingFragment extends Fragment implements ICreateListingView {
 
@@ -47,6 +50,7 @@ public class CreateListingFragment extends Fragment implements ICreateListingVie
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy HH:mm");
 
         //listener for create button clicks
         this.binding.addButton.setOnClickListener(new View.OnClickListener(){
@@ -65,7 +69,14 @@ public class CreateListingFragment extends Fragment implements ICreateListingVie
                     isValid = isValidDateTime(dateTimeString);
 
                 }
-                //else date = new SimpleDateFormat("MM/dd/yyyy HH:mm").parse((dateTimeString));
+                else {
+                    try {
+                        date = formatter.parse(dateTimeString);
+                    } catch (ParseException e) {
+                        Snackbar.make(view, "Please enter Date and Time!", Snackbar.LENGTH_INDEFINITE).show();
+                        isValid = isValidDateTime(dateTimeString);
+                    }
+                }
 
                 //extract start location
                 Editable enterStart = CreateListingFragment.this.binding.enterStartLocation.getText();
@@ -93,24 +104,27 @@ public class CreateListingFragment extends Fragment implements ICreateListingVie
                 }
                 else seats = Integer.parseInt(enterSeats.toString());
 
+
+
                 if(isValid){
                     Snackbar.make(view, "Listing added!", Snackbar.LENGTH_INDEFINITE).show();
                     boolean checked = ((RadioButton) view).isChecked();
+                    Date dateCreated = new Date();
+                    //TODO: dateCreated = formatter.format(dateCreated);
                     switch(view.getId()) {
                         case R.id.driverRadioButton:
                             if (checked)
-                                //CreateListingFragment.this.listener.onCreateListing(dateCreated, "Driver", date, start, end, seats, CreateListingFragment.this);
+                                CreateListingFragment.this.listener.onCreateListing(dateCreated, "Driver", date, start, end, seats, CreateListingFragment.this);
                             break;
                         case R.id.passengerRadioButton:
                             if (checked)
-                                //CreateListingFragment.this.listener.onCreateListing(dateCreated, "Passenger", date, start, end, seats, CreateListingFragment.this);
+                                CreateListingFragment.this.listener.onCreateListing(dateCreated, "Passenger", date, start, end, seats, CreateListingFragment.this);
                             break;
                     }
 
                 }
 
             }
-            //TODO: clear?? date created, role
 
         }
         );
@@ -118,9 +132,4 @@ public class CreateListingFragment extends Fragment implements ICreateListingVie
     }
 
 
-    @Override
-    public void updatePageOfListings(Listing lst) {
-        String s = lst.toString();
-        this.binding.listingLabel.setText(lst.toString());
-    }
 }

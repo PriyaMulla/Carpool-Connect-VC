@@ -15,7 +15,6 @@ public class Listing {
     String startLocation;
     String endLocation;
     int seats;
-    //int listingID;
 
 
 
@@ -27,7 +26,6 @@ public class Listing {
         this.startLocation = start;
         this.endLocation = end;
         this.seats = seats;
-        //this.listingID = listingID;
 
     }
 
@@ -55,9 +53,6 @@ public class Listing {
         return seats;
     }
 
-    //public int getListingID() {
-    //    return listingID;
-   // }
 
     //object for date formatting
     @SuppressLint("SimpleDateFormat")

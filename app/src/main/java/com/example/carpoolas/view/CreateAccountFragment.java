@@ -109,8 +109,4 @@ public class CreateAccountFragment extends Fragment implements ICreateAccountVie
     }
 
 
-    @Override
-    public void updateDisplay(Account acc) {
-        this.binding.accountLabel.setText(acc.toString());
-    }
 }

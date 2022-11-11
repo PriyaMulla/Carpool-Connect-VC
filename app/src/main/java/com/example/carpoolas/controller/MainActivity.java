@@ -10,6 +10,7 @@ import android.os.Build;
 import android.os.Bundle;
 
 import com.example.carpoolas.model.CollectionOfAccounts;
+import com.example.carpoolas.model.PageOfListings;
 import com.example.carpoolas.view.CreateAccountFragment;
 import com.example.carpoolas.view.DashboardFragment;
 import com.example.carpoolas.view.ICreateListingView;
@@ -27,6 +28,7 @@ import java.util.regex.Pattern;
 public class MainActivity extends AppCompatActivity implements ICreateAccountView.Listener, ICreateListingView.Listener, IFilterView.Listener {
 
     CollectionOfAccounts accounts = new CollectionOfAccounts();
+    PageOfListings listings = new PageOfListings();
     IMainView mainView;
 
     /**
@@ -146,6 +148,11 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
 
     @Override
     public void onCreateListing(@NonNull Date created, String role, Date dateTime, String start, String end, int seats, @NonNull ICreateListingView view){
+        this.listings.addListing(created, role, dateTime, start, end, seats);
+        //transition back to mainview
+        FragmentManager fm = getSupportFragmentManager();
+        fm.popBackStack();
+        fm.executePendingTransactions();
 
     }
 

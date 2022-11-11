@@ -20,9 +20,4 @@ public interface ICreateListingView {
     }
 
 
-    /**
-     * tells view to update display and show account created
-     */
-    void updatePageOfListings(Listing lst);
-
 }

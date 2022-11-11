@@ -20,8 +20,5 @@ public interface ICreateAccountView {
     }
 
 
-    /**
-     * tells view to update display and show account created
-     */
-    void updateDisplay(Account acc);
+
 }

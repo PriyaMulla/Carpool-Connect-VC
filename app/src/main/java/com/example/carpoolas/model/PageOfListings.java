@@ -24,7 +24,7 @@ public class PageOfListings {
     /**
      * Creates listing and associates it with the Page of Listings.
      */
-    public void addListing(Date created, String role, Date dateTime, String start, String end, int seats, int listingID) {
+    public void addListing(Date created, String role, Date dateTime, String start, String end, int seats) {
         Listing lst = new Listing(created, role, dateTime, start, end, seats);
         this.listings.add(lst);
     }
