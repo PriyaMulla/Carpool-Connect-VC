@@ -43,14 +43,14 @@
             android:orientation="horizontal">
 
             <RadioButton
-                android:id="@+id/radioButton6"
+                android:id="@+id/driverRadioButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/driver_label" />
 
             <RadioButton
-                android:id="@+id/radioButton7"
+                android:id="@+id/passengerRadioButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

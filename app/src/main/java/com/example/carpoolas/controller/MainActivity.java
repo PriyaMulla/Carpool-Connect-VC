@@ -3,6 +3,7 @@ package com.example.carpoolas.controller;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 
 import android.annotation.SuppressLint;
 import android.os.Build;
@@ -113,9 +114,11 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
     @Override //addAccount be on collection of Accounts
     public void onCreateAccount(@NonNull String username, String password, String name, String email, @NonNull ICreateAccountView view) {
         this.accounts.addAccount(username,password,name,email);
-        //transition to Welcome page
-        DashboardFragment welcomeFragment = new DashboardFragment();
-        this.mainView.displayFragment(welcomeFragment, true, "welcome");
+        //transition back to Mainview
+        FragmentManager fm = getSupportFragmentManager();
+        fm.popBackStack();
+        fm.executePendingTransactions();
+
         //switch to welcome user fragment with buttons
     }
 

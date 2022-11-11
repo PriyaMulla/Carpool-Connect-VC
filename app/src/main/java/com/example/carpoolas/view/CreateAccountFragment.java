@@ -94,7 +94,7 @@ public class CreateAccountFragment extends Fragment implements ICreateAccountVie
                         isValid = isValid && isValidEmail(name);
                     }
                 if(isValid) {
-                        Snackbar.make((View) view, "Account created!",Snackbar.LENGTH_INDEFINITE).show();
+                        Snackbar.make(view, "Account created!",Snackbar.LENGTH_INDEFINITE).show();
                     CreateAccountFragment.this.listener.onCreateAccount(name, password, username, email, CreateAccountFragment.this);
                 }
                 enterEmail.clear();
@@ -102,14 +102,6 @@ public class CreateAccountFragment extends Fragment implements ICreateAccountVie
                 enterPassword.clear();
                 enterName.clear();
             }
-
-                //delegate the creation to the account to controller aka main activity
-
-                //CreateAccountFragment.this.listener.onCreateAccount(username,password,name,email,CreateAccountFragment.this);
-
-                //empty out the fields in preparation for next account
-
-                //TODO: restrictions
             }
 
 
