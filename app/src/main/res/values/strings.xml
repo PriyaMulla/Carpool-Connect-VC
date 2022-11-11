@@ -27,8 +27,8 @@
     <string name="driver_label">Driver</string>
     <string name="date_hint_label">mm/dd/yyyy</string>
     <string name="time_hint_label">hh:mm</string>
-    <string name="start_location_hint_label">Ex: 123 Main Street, Poughkeepsie, NY 12604</string>
-    <string name="end_location_hint_label">Ex: 123 Main Street, Poughkeepsie, NY 12604</string>
+    <string name="start_location_hint_label">Ex:123 Name Street, City, ST ZIP</string>
+    <string name="end_location_hint_label">Ex:123 Name Street, City, ST ZIP</string>
     <string name="seats_hint_label">Type seats available</string>
     <string name="add_button_label">Add</string>
 
@@ -44,8 +44,8 @@
     <string name="driver_wanted_label">Driver</string>
     <string name="date_wanted_hint_label">mm/dd/yyyy</string>
     <string name="time_wanted_hint_label">hh:mm</string>
-    <string name="start_wanted_location_hint_label">Ex:123 Main Street, Poughkeepsie, NY 12604</string>
-    <string name="end_wanted_location_hint_label">Ex:123 Main Street, Poughkeepsie, NY 12604</string>
+    <string name="start_wanted_location_hint_label">Ex:123 Name Street, City, ST ZIP</string>
+    <string name="end_wanted_location_hint_label">Ex:123 Name Street, City, ST ZIP</string>
     <string name="seats_wanted_hint_label">Type seats available</string>
     <string name="filter_button_label">Filter</string>
 <!-- TODO: Remove or change this placeholder text -->
