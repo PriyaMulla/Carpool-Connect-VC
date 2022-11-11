@@ -16,6 +16,7 @@ import android.text.Editable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RadioButton;
 
 import com.example.carpoolas.R;
 import com.example.carpoolas.databinding.FragmentCreateListingBinding;
@@ -64,7 +65,7 @@ public class CreateListingFragment extends Fragment implements ICreateListingVie
                     isValid = isValidDateTime(dateTimeString);
 
                 }
-                else date = new SimpleDateFormat("MM/dd/yyyy HH:mm").parse((dateTimeString));
+                //else date = new SimpleDateFormat("MM/dd/yyyy HH:mm").parse((dateTimeString));
 
                 //extract start location
                 Editable enterStart = CreateListingFragment.this.binding.enterStartLocation.getText();
@@ -94,7 +95,18 @@ public class CreateListingFragment extends Fragment implements ICreateListingVie
 
                 if(isValid){
                     Snackbar.make(view, "Listing added!", Snackbar.LENGTH_INDEFINITE).show();
-                    CreateListingFragment.this.listener.onCreateListing(dateCreated, role, date, start, end, seats, CreateListingFragment.this);
+                    boolean checked = ((RadioButton) view).isChecked();
+                    switch(view.getId()) {
+                        case R.id.driverRadioButton:
+                            if (checked)
+                                //CreateListingFragment.this.listener.onCreateListing(dateCreated, "Driver", date, start, end, seats, CreateListingFragment.this);
+                            break;
+                        case R.id.passengerRadioButton:
+                            if (checked)
+                                //CreateListingFragment.this.listener.onCreateListing(dateCreated, "Passenger", date, start, end, seats, CreateListingFragment.this);
+                            break;
+                    }
+
                 }
 
             }
