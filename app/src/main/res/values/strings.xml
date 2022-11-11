@@ -48,5 +48,7 @@
     <string name="end_wanted_location_hint_label">Type end location</string>
     <string name="seats_wanted_hint_label">Type seats available</string>
     <string name="filter_button_label">Filter</string>
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
