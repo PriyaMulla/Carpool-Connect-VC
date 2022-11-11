@@ -163,7 +163,7 @@
 
             <EditText
                 android:id="@+id/enterStartLocation"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
                 android:autofillHints="@string/start_location_hint_label"
@@ -171,7 +171,8 @@
                 android:hint="@string/start_location_hint_label"
                 android:inputType="textPersonName"
                 android:minHeight="50dp"
-                android:textColorHint="#757575" />
+                android:textColorHint="#757575"
+                android:textSize="12sp" />
         </LinearLayout>
 
         <Space
@@ -193,7 +194,7 @@
 
             <EditText
                 android:id="@+id/enterEndLocation"
-                android:layout_width="wrap_content"
+                android:layout_width="180sp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
                 android:autofillHints="@string/end_location_hint_label"
@@ -201,7 +202,8 @@
                 android:hint="@string/end_location_hint_label"
                 android:inputType="textPersonName"
                 android:minHeight="50dp"
-                android:textColorHint="#757575" />
+                android:textColorHint="#757575"
+                android:textSize="12sp" />
         </LinearLayout>
 
         <Space
