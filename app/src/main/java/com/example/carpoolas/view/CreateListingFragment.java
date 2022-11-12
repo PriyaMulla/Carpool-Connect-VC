@@ -16,6 +16,7 @@ import android.text.Editable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 
 import com.example.carpoolas.R;
@@ -98,7 +99,7 @@ public class CreateListingFragment extends Fragment implements ICreateListingVie
 
                 //extract seats
                 Editable enterSeats = CreateListingFragment.this.binding.enterSeats.getText();
-                String stringSeats = null;
+                String stringSeats = enterSeats.toString();
                 int seats = 0;
                 if (!isValidSeats(stringSeats)){
                     Snackbar.make(view, "Please enter number of seats!", Snackbar.LENGTH_INDEFINITE).show();
@@ -112,6 +113,8 @@ public class CreateListingFragment extends Fragment implements ICreateListingVie
                     Snackbar.make(view, "Listing added!", Snackbar.LENGTH_INDEFINITE).show();
                     boolean checked = ((RadioButton) view).isChecked();
                     Date dateCreated = new Date();
+                    LinearLayout layout = (LinearLayout) view.getRootView().findViewById(R.id.mainLayout);
+                    layout.setVisibility(View.VISIBLE);
                     //TODO: dateCreated = formatter.format(dateCreated);
                     switch(view.getId()) {
                         case R.id.driverRadioButton:

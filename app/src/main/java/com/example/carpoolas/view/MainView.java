@@ -1,12 +1,16 @@
 package com.example.carpoolas.view;
 
+import static android.view.View.INVISIBLE;
+
 import android.view.View;
+import android.widget.LinearLayout;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.carpoolas.R;
 import com.example.carpoolas.controller.MainActivity;
 import com.example.carpoolas.databinding.ActivityMainBinding;
 
@@ -27,19 +31,21 @@ public class MainView implements IMainView{
         this.binding = ActivityMainBinding.inflate(activity.getLayoutInflater());
         //set up onclick listener for buttons
         this.binding.searchListingsButton.setOnClickListener(new View.OnClickListener() {
-            private MainActivity binding;
 
             @Override
             public void onClick(View view) {
-                this.binding.goToSearchListing();
+                LinearLayout layout = (LinearLayout) getRootView().findViewById(R.id.mainLayout);
+                layout.setVisibility(INVISIBLE);
+                displayFragment(new FilterFragment(),true,"search listings");
             }
         });
         this.binding.createListingButton.setOnClickListener(new View.OnClickListener() {
-            private MainActivity binding;
 
             @Override
             public void onClick(View view) {
-                this.binding.goToCreateListing();
+                LinearLayout layout = (LinearLayout) getRootView().findViewById(R.id.mainLayout);
+                layout.setVisibility(INVISIBLE);
+                displayFragment(new CreateListingFragment(),true,"create a listing");
             }
         });
     }

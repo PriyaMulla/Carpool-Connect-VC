@@ -17,6 +17,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
 import com.example.carpoolas.R;
 import com.example.carpoolas.controller.MainActivity;
@@ -94,7 +95,9 @@ public class CreateAccountFragment extends Fragment implements ICreateAccountVie
                         isValid = isValid && isValidEmail(name);
                     }
                 if(isValid) {
-                        Snackbar.make(view, "Account created!",Snackbar.LENGTH_INDEFINITE).show();
+                        Snackbar.make(view, "Account created!",Snackbar.LENGTH_SHORT).show();
+                    LinearLayout layout = (LinearLayout) view.getRootView().findViewById(R.id.mainLayout);
+                    layout.setVisibility(View.VISIBLE);
                     CreateAccountFragment.this.listener.onCreateAccount(name, password, username, email, CreateAccountFragment.this);
                 }
                 enterEmail.clear();
