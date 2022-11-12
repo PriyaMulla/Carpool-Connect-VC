@@ -1,5 +1,7 @@
 package com.example.carpoolas.model;
 
+import androidx.annotation.NonNull;
+
 public class Account {
     
     //fields
@@ -28,6 +30,7 @@ public class Account {
         return email;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return name + "'s Account " +
