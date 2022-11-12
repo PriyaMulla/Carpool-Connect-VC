@@ -173,6 +173,10 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
 
     }
 
+    public PageOfListings getListings() {
+        return listings;
+    }
+
     @Override
     public void onFilter(@NonNull PageOfListings lst, @NonNull IFilterView view) {
         //display filtered listings

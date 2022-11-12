@@ -20,6 +20,7 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 
 import com.example.carpoolas.R;
+import com.example.carpoolas.controller.MainActivity;
 import com.example.carpoolas.databinding.FragmentFilterBinding;
 import com.example.carpoolas.model.DateFilter;
 import com.example.carpoolas.model.PageOfListings;
@@ -35,7 +36,7 @@ public class FilterFragment extends Fragment implements IFilterView{
 
     private FragmentFilterBinding binding;
     private Listener listener;
-
+    PageOfListings filteredPage = FilterFragment.this.listener.getListings(); //all listings at first
     public FilterFragment( ) {
     }
 
@@ -54,7 +55,7 @@ public class FilterFragment extends Fragment implements IFilterView{
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy HH:mm");
-        PageOfListings filteredPage = new PageOfListings(); //starts out as all listings
+
 
         //listener for filter button clicks
         this.binding.filterButton.setOnClickListener(new View.OnClickListener() {
@@ -80,9 +81,8 @@ public class FilterFragment extends Fragment implements IFilterView{
                     }
                     DateFilter dateFilter = new DateFilter();
                     dateFilter.dDate = date;
-                    dateFilter.newPage = filteredPage;
-                    dateFilter.filterListings( ); //TODO: page of all listings??
-                    filteredPage = dateFiler.newPage;
+                    dateFilter.filterListings(filteredPage);
+                    filteredPage = dateFilter.newPage;
                 }
                 //extract start location
                 Editable enterStart = FilterFragment.this.binding.enterStartLocation.getText();
