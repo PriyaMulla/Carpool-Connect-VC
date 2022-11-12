@@ -36,7 +36,7 @@ import java.util.Iterator;
 import java.util.List;
 
 
-public class DashboardFragment extends Fragment implements IDashboardView, OnItemClickListener {
+public class DashboardFragment extends Fragment implements IDashboardView {
     private static final String TAG = "RecyclerViewFragment";
     private static final String KEY_LAYOUT_MANAGER = "layoutManager";
     private static final int SPAN_COUNT = 2;
@@ -66,78 +66,78 @@ public class DashboardFragment extends Fragment implements IDashboardView, OnIte
 
     }
 
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+   // public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+     //   super.onViewCreated(view, savedInstanceState);
         //bind data to listview
 
-    }
+    //}
 
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-    }
-
-    private enum LayoutManagerType {
-        LINEAR_LAYOUT_MANAGER
-    }
-
-    protected LayoutManagerType mCurrentLayoutManagerType;
-
-    protected RadioButton mLinearLayoutRadioButton;
-
-    protected RecyclerView mRecyclerView;
-    protected CustomAdapter mAdapter;
-    protected RecyclerView.LayoutManager mLayoutManager;
-
-    DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy HH:mm");
-    Date date;
-
-    {
-        try {
-            date = formatter.parse("12/12/2023 19:00");
-        } catch (ParseException e) {
-            Log.d("hio","wow");
-        }
-    }
-
-    Listing listy = new Listing(date,"Driver",date,"123 Name Street, City, NY 12345","456 Name Street, City, NY 56789",4);
-    protected String[] listings = {listy.toString(),listy.toString(),listy.toString(),listy.toString(),listy.toString(),listy.toString()};
-
-    /**
-     * Set RecyclerView's LayoutManager to the one given.
-     *
-     * @param layoutManagerType Type of layout manager to switch to.
-     */
-    public void setRecyclerViewLayoutManager(LayoutManagerType layoutManagerType) {
-        int scrollPosition = 0;
-
-        // If a layout manager has already been set, get current scroll position.
-        if (mRecyclerView.getLayoutManager() != null) {
-            scrollPosition = ((LinearLayoutManager) mRecyclerView.getLayoutManager())
-                    .findFirstCompletelyVisibleItemPosition();
-        }
-                mLayoutManager = new LinearLayoutManager(getActivity());
-                mCurrentLayoutManagerType = LayoutManagerType.LINEAR_LAYOUT_MANAGER;
-
-        mRecyclerView.setLayoutManager(mLayoutManager);
-        mRecyclerView.scrollToPosition(scrollPosition);
-    }
-
-    @Override
-    public void onSaveInstanceState(Bundle savedInstanceState) {
-        // Save currently selected layout manager.
-        savedInstanceState.putSerializable(KEY_LAYOUT_MANAGER, mCurrentLayoutManagerType);
-        super.onSaveInstanceState(savedInstanceState);
-    }
-
-    /**
-     * Generates Strings for RecyclerView's adapter. This data would usually come
-     * from a local content provider or remote server.
-     */
-    private void initDataset() {
-        //listings = new String[DATASET_COUNT];
-        for (int i = 0; i < DATASET_COUNT; i++) {
-            Log.d("hi","This is element #" + Array.get(listings,i));
-        }
-    }
+//    @Override
+//    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//
+//    }
+//
+//    private enum LayoutManagerType {
+//        LINEAR_LAYOUT_MANAGER
+//    }
+//
+//    protected LayoutManagerType mCurrentLayoutManagerType;
+//
+//    protected RadioButton mLinearLayoutRadioButton;
+//
+//    protected RecyclerView mRecyclerView;
+//    protected CustomAdapter mAdapter;
+//    protected RecyclerView.LayoutManager mLayoutManager;
+//
+//    DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy HH:mm");
+//    Date date;
+//
+//    {
+//        try {
+//            date = formatter.parse("12/12/2023 19:00");
+//        } catch (ParseException e) {
+//            Log.d("hio","wow");
+//        }
+//    }
+//
+//    Listing listy = new Listing(date,"Driver",date,"123 Name Street, City, NY 12345","456 Name Street, City, NY 56789",4);
+//    protected String[] listings = {listy.toString(),listy.toString(),listy.toString(),listy.toString(),listy.toString(),listy.toString()};
+//
+//    /**
+//     * Set RecyclerView's LayoutManager to the one given.
+//     *
+//     * @param layoutManagerType Type of layout manager to switch to.
+//     */
+//    public void setRecyclerViewLayoutManager(LayoutManagerType layoutManagerType) {
+//        int scrollPosition = 0;
+//
+//        // If a layout manager has already been set, get current scroll position.
+//        if (mRecyclerView.getLayoutManager() != null) {
+//            scrollPosition = ((LinearLayoutManager) mRecyclerView.getLayoutManager())
+//                    .findFirstCompletelyVisibleItemPosition();
+//        }
+//                mLayoutManager = new LinearLayoutManager(getActivity());
+//                mCurrentLayoutManagerType = LayoutManagerType.LINEAR_LAYOUT_MANAGER;
+//
+//        mRecyclerView.setLayoutManager(mLayoutManager);
+//        mRecyclerView.scrollToPosition(scrollPosition);
+//    }
+//
+//    @Override
+//    public void onSaveInstanceState(Bundle savedInstanceState) {
+//        // Save currently selected layout manager.
+//        savedInstanceState.putSerializable(KEY_LAYOUT_MANAGER, mCurrentLayoutManagerType);
+//        super.onSaveInstanceState(savedInstanceState);
+//    }
+//
+//    /**
+//     * Generates Strings for RecyclerView's adapter. This data would usually come
+//     * from a local content provider or remote server.
+//     */
+//    private void initDataset() {
+//        //listings = new String[DATASET_COUNT];
+//        for (int i = 0; i < DATASET_COUNT; i++) {
+//            Log.d("hi","This is element #" + Array.get(listings,i));
+//        }
+//    }
 }
