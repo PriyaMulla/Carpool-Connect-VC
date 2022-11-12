@@ -3,11 +3,11 @@ package com.example.carpoolas.model;
 import java.util.Iterator;
 
 public class StartFilter implements IFilter{
-    String dStart;
+    public String dStart;
+    public PageOfListings newPage;
 
     @Override
     public PageOfListings filterListings(PageOfListings lst) {
-        PageOfListings newPage = new PageOfListings();
 
         Iterator<Listing> listingsIterator = lst.listings.iterator();
         while (listingsIterator.hasNext()) {
