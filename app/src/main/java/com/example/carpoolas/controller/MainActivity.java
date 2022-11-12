@@ -130,7 +130,7 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
 
 
     /**
-     * React to the user's intention of adding a new item onto the collection of accounts.
+     * React to the user's intention of adding a new account onto the collection of accounts.
      * @param name name of user
      * @param username username of user
      * @param password password of user
@@ -141,9 +141,11 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
     public void onCreateAccount(@NonNull String username, String password, String name, String email, @NonNull ICreateAccountView view) {
         this.accounts.addAccount(username,password,name,email);
         //transition back to Mainview
-        FragmentManager fm = getSupportFragmentManager();
-        fm.popBackStack();
-        fm.executePendingTransactions();
+        //FragmentManager fm = getSupportFragmentManager();
+        //fm.popBackStack();
+        //fm.executePendingTransactions();
+        DashboardFragment dashboardFragment = new DashboardFragment();
+        this.mainView.displayFragment(dashboardFragment,true,"dashboard");
 
         //switch to welcome user fragment with buttons
     }
@@ -152,9 +154,11 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
     public void onCreateListing(@NonNull Date created, String role, Date dateTime, String start, String end, int seats, @NonNull ICreateListingView view){
         this.listings.addListing(created, role, dateTime, start, end, seats);
         //transition back to mainview
-        FragmentManager fm = getSupportFragmentManager();
-        fm.popBackStack();
-        fm.executePendingTransactions();
+        //FragmentManager fm = getSupportFragmentManager();
+        //fm.popBackStack();
+        //fm.executePendingTransactions();
+        DashboardFragment dashboardFragment = new DashboardFragment();
+        this.mainView.displayFragment(dashboardFragment,true,"dashboard");
 
     }
 

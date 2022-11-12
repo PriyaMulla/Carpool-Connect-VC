@@ -19,7 +19,7 @@ public class Listing {
 
 
 
-    Listing(Date created, String role, Date dateTime, String start, String end,  int seats){
+    public Listing(Date created, String role, Date dateTime, String start, String end,  int seats){
         this.dateCreated = created;
         this.role = role;
         this.dateTimeOfTrip = dateTime;

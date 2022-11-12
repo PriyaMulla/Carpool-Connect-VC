@@ -68,7 +68,7 @@ public class CreateListingFragment extends Fragment implements ICreateListingVie
                 Date date = null;
 
                 if (!isValidDateTime(dateTimeString)){
-                    Snackbar.make(view, "Please enter Date and Time!", Snackbar.LENGTH_INDEFINITE).show();
+                    Snackbar.make(view, "Please enter Date and Time!", Snackbar.LENGTH_SHORT).show();
                     isValid = isValidDateTime(dateTimeString);
 
                 }
@@ -76,7 +76,7 @@ public class CreateListingFragment extends Fragment implements ICreateListingVie
                     try {
                         date = formatter.parse(dateTimeString);
                     } catch (ParseException e) {
-                        Snackbar.make(view, "Please enter Date and Time!", Snackbar.LENGTH_INDEFINITE).show();
+                        Snackbar.make(view, "Please enter Date and Time!", Snackbar.LENGTH_SHORT).show();
                         isValid = isValidDateTime(dateTimeString);
                     }
                 }
@@ -85,7 +85,7 @@ public class CreateListingFragment extends Fragment implements ICreateListingVie
                 Editable enterStart = CreateListingFragment.this.binding.enterStartLocation.getText();
                 String start = enterStart.toString();
                 if (!isValidStart(start)){
-                    Snackbar.make(view, "Please enter Start Location!", Snackbar.LENGTH_INDEFINITE).show();
+                    Snackbar.make(view, "Please enter Start Location!", Snackbar.LENGTH_SHORT).show();
                     isValid = isValid && isValidStart(start);
                 }
 
@@ -93,7 +93,7 @@ public class CreateListingFragment extends Fragment implements ICreateListingVie
                 Editable enterEnd = CreateListingFragment.this.binding.enterEndLocation.getText();
                 String end = enterEnd.toString();
                 if (!isValidEnd(end)){
-                    Snackbar.make(view, "Please enter End Location!", Snackbar.LENGTH_INDEFINITE).show();
+                    Snackbar.make(view, "Please enter End Location!", Snackbar.LENGTH_SHORT).show();
                     isValid = isValid && isValidEnd(end);
                 }
 
@@ -102,7 +102,7 @@ public class CreateListingFragment extends Fragment implements ICreateListingVie
                 String stringSeats = enterSeats.toString();
                 int seats = 0;
                 if (!isValidSeats(stringSeats)){
-                    Snackbar.make(view, "Please enter number of seats!", Snackbar.LENGTH_INDEFINITE).show();
+                    Snackbar.make(view, "Please enter number of seats!", Snackbar.LENGTH_SHORT).show();
                     isValid = isValid && isValidSeats(stringSeats);
                 }
                 else seats = Integer.parseInt(enterSeats.toString());
@@ -110,22 +110,31 @@ public class CreateListingFragment extends Fragment implements ICreateListingVie
 
 
                 if(isValid){
-                    Snackbar.make(view, "Listing added!", Snackbar.LENGTH_INDEFINITE).show();
-                    boolean checked = ((RadioButton) view).isChecked();
+                    Snackbar.make(view, "Listing added!", Snackbar.LENGTH_SHORT).show();
+                    //boolean checked = ((RadioButton) view).isChecked();
                     Date dateCreated = new Date();
                     LinearLayout layout = (LinearLayout) view.getRootView().findViewById(R.id.mainLayout);
                     layout.setVisibility(View.VISIBLE);
                     //TODO: dateCreated = formatter.format(dateCreated);
-                    switch(view.getId()) {
-                        case R.id.driverRadioButton:
-                            if (checked)
+                    RadioButton driverButton = (RadioButton) view.getRootView().findViewById(R.id.driverRadioButton);
+                    RadioButton PassengerButton = (RadioButton) view.getRootView().findViewById(R.id.driverRadioButton);
+                    //switch(view.getId()) {
+                        //case R.id.driverRadioButton:
+                            if (driverButton.isChecked()){
                                 CreateListingFragment.this.listener.onCreateListing(dateCreated, "Driver", date, start, end, seats, CreateListingFragment.this);
-                            break;
-                        case R.id.passengerRadioButton:
-                            if (checked)
+                            }
+                        //    break;
+                        //case R.id.passengerRadioButton:
+                            if (PassengerButton.isChecked()){
                                 CreateListingFragment.this.listener.onCreateListing(dateCreated, "Passenger", date, start, end, seats, CreateListingFragment.this);
-                            break;
-                    }
+                            }
+                         //   break;
+                    //}
+                    enterDate.clear();
+                    enterSeats.clear();
+                    enterStart.clear();
+                    enterEnd.clear();
+                    enterTime.clear();
 
                 }
 

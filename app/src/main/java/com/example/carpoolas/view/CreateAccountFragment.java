@@ -67,7 +67,7 @@ public class CreateAccountFragment extends Fragment implements ICreateAccountVie
                     enterName = CreateAccountFragment.this.binding.enterName.getText();
                     name = enterName.toString();
                     if (!isValidName(name)){
-                        Snackbar.make(view, "Please provide your name!",Snackbar.LENGTH_INDEFINITE).show();
+                        Snackbar.make(view, "Please provide your name!",Snackbar.LENGTH_SHORT).show();
                         isValid = isValid && isValidName(name);
                     }
 
@@ -75,7 +75,7 @@ public class CreateAccountFragment extends Fragment implements ICreateAccountVie
                     enterUsername = CreateAccountFragment.this.binding.enterUsername.getText();
                     username = enterUsername.toString();
                     if (!isValidUsername(username)){
-                        Snackbar.make(view, "Please provide a valid username!", Snackbar.LENGTH_INDEFINITE).show();
+                        Snackbar.make(view, "Please provide a valid username!", Snackbar.LENGTH_SHORT).show();
                         isValid = isValid && isValidUsername(name);
                     }
 
@@ -83,7 +83,7 @@ public class CreateAccountFragment extends Fragment implements ICreateAccountVie
                     enterPassword = CreateAccountFragment.this.binding.enterPassword.getText();
                     password = enterPassword.toString();
                     if (!isValidPassword(password)){
-                        Snackbar.make(view, "Please provide your password!",Snackbar.LENGTH_INDEFINITE).show();
+                        Snackbar.make(view, "Please provide your password!",Snackbar.LENGTH_SHORT).show();
                         isValid = isValid && isValidPassword(password);
                     }
 
@@ -91,7 +91,7 @@ public class CreateAccountFragment extends Fragment implements ICreateAccountVie
                     enterEmail = CreateAccountFragment.this.binding.enterEmailAddress.getText();
                     email = enterEmail.toString();
                     if (!isValidEmail(email)){
-                        Snackbar.make(view, "Please provide your email!",Snackbar.LENGTH_INDEFINITE).show();
+                        Snackbar.make(view, "Please provide your email!",Snackbar.LENGTH_SHORT).show();
                         isValid = isValid && isValidEmail(name);
                     }
                 if(isValid) {
