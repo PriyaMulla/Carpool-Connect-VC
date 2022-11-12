@@ -15,19 +15,25 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.RadioButton;
 
 import com.example.carpoolas.R;
 import com.example.carpoolas.databinding.FragmentCreateAccountBinding;
+import com.example.carpoolas.databinding.FragmentDashboardBinding;
 import com.example.carpoolas.model.CustomAdapter;
 import com.example.carpoolas.model.Listing;
+import com.example.carpoolas.model.PageOfListings;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.lang.reflect.Array;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
 
 
 public class DashboardFragment extends Fragment implements IDashboardView, OnItemClickListener {
@@ -35,6 +41,36 @@ public class DashboardFragment extends Fragment implements IDashboardView, OnIte
     private static final String KEY_LAYOUT_MANAGER = "layoutManager";
     private static final int SPAN_COUNT = 2;
     private static final int DATASET_COUNT = 10;
+    private Listener listener;
+    //PageOfListings lst = DashboardFragment.this.listener.getListings();
+    FragmentDashboardBinding binding;
+
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_dashboard,container,false);
+        //Iterator<Listing> listingsIterator = lst.listings.iterator();
+        ArrayList<String> data = new ArrayList<>();
+        data.add("Windows 10");
+        data.add("Android");
+        data.add("iOS");
+        data.add("Mac OSX");
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1,data);
+
+        ListView lvData = (ListView) view.findViewById(R.id.listview);
+        lvData.setAdapter(adapter);
+        // Inflate the layout for this fragment
+        this.binding = FragmentDashboardBinding.inflate(inflater);
+
+        return view;
+
+    }
+
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        //bind data to listview
+
+    }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -66,46 +102,6 @@ public class DashboardFragment extends Fragment implements IDashboardView, OnIte
 
     Listing listy = new Listing(date,"Driver",date,"123 Name Street, City, NY 12345","456 Name Street, City, NY 56789",4);
     protected String[] listings = {listy.toString(),listy.toString(),listy.toString(),listy.toString(),listy.toString(),listy.toString()};
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        // Initialize dataset, this data would usually come from a local content provider or
-        // remote server.
-        initDataset();
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_dashboard, container, false);
-        rootView.setTag(TAG);
-
-        // BEGIN_INCLUDE(initializeRecyclerView)
-        mRecyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView);
-
-        // LinearLayoutManager is used here, this will layout the elements in a similar fashion
-        // to the way ListView would layout elements. The RecyclerView.LayoutManager defines how
-        // elements are laid out.
-        mLayoutManager = new LinearLayoutManager(getActivity());
-
-        mCurrentLayoutManagerType = LayoutManagerType.LINEAR_LAYOUT_MANAGER;
-
-        if (savedInstanceState != null) {
-            // Restore saved layout manager type.
-            mCurrentLayoutManagerType = (LayoutManagerType) savedInstanceState
-                    .getSerializable(KEY_LAYOUT_MANAGER);
-        }
-        setRecyclerViewLayoutManager(mCurrentLayoutManagerType);
-
-        mAdapter = new CustomAdapter(listings);
-        // Set CustomAdapter as the adapter for RecyclerView.
-        mRecyclerView.setAdapter(mAdapter);
-        // END_INCLUDE(initializeRecyclerView)
-
-
-        return rootView;
-    }
 
     /**
      * Set RecyclerView's LayoutManager to the one given.
@@ -120,16 +116,8 @@ public class DashboardFragment extends Fragment implements IDashboardView, OnIte
             scrollPosition = ((LinearLayoutManager) mRecyclerView.getLayoutManager())
                     .findFirstCompletelyVisibleItemPosition();
         }
-
-        switch (layoutManagerType) {
-            case LINEAR_LAYOUT_MANAGER:
                 mLayoutManager = new LinearLayoutManager(getActivity());
                 mCurrentLayoutManagerType = LayoutManagerType.LINEAR_LAYOUT_MANAGER;
-                break;
-            default:
-                mLayoutManager = new LinearLayoutManager(getActivity());
-                mCurrentLayoutManagerType = LayoutManagerType.LINEAR_LAYOUT_MANAGER;
-        }
 
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.scrollToPosition(scrollPosition);
@@ -148,7 +136,7 @@ public class DashboardFragment extends Fragment implements IDashboardView, OnIte
      */
     private void initDataset() {
         //listings = new String[DATASET_COUNT];
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < DATASET_COUNT; i++) {
             Log.d("hi","This is element #" + Array.get(listings,i));
         }
     }

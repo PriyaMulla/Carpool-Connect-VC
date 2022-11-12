@@ -8,6 +8,7 @@
     tools:context=".view.DashboardFragment" >
 
     <LinearLayout
+        android:id="@+id/linearLayout5"
         android:layout_width="0dp"
         android:layout_height="500dp"
         android:layout_marginStart="37dp"
@@ -19,17 +20,17 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/linear_layout_rb"
+            android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/linear_layout_manager"
             android:textSize="18sp" />
 
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
+        <ListView
+            android:id="@+id/listview"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
+
     </LinearLayout>
 
 

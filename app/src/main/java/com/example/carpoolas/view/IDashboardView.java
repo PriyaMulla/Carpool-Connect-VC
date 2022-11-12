@@ -2,6 +2,8 @@ package com.example.carpoolas.view;
 
 import androidx.annotation.NonNull;
 
+import com.example.carpoolas.model.PageOfListings;
+
 public interface IDashboardView {
 
     /**
@@ -13,5 +15,7 @@ public interface IDashboardView {
          * called when an account is created
          */
         void onCreateDashboard(@NonNull String username, String password, String name, String email, @NonNull ICreateAccountView view);
+
+        PageOfListings getListings();
     }
 }
