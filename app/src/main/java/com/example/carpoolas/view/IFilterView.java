@@ -22,9 +22,4 @@ public interface IFilterView {
     }
 
 
-    /**
-     * tells view to update display and show filtered page
-     */
-    void updateDisplay(PageOfListings newPage);
-
 }

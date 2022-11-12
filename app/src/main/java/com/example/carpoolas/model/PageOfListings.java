@@ -43,4 +43,10 @@ public class PageOfListings {
         return sb.toString();
     }
 
+    public boolean isEmpty() {
+        if (this.listings.isEmpty()){
+            return true;
+        }
+        return false;
+    }
 }
