@@ -34,9 +34,9 @@ import java.time.LocalDate;
 public class CreateListingFragment extends Fragment implements ICreateListingView {
 
     FragmentCreateListingBinding binding;
-    Listener listener;
+    private Listener listener;
 
-    public CreateListingFragment() {
+    public CreateListingFragment() {this.listener = listener;
     }
     public CreateListingFragment(Listener listener) {
         this.listener = listener;
@@ -53,13 +53,13 @@ public class CreateListingFragment extends Fragment implements ICreateListingVie
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy HH:mm");
 
         //listener for create button clicks
         this.binding.addButton.setOnClickListener(new View.OnClickListener(){
             @SuppressLint("SimpleDateFormat")
             @Override
             public void onClick(View view){
+                DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy HH:mm");
                 boolean isValid = true;
                 //extract trip date and time
                 Editable enterDate = CreateListingFragment.this.binding.enterDate.getText();
@@ -108,40 +108,34 @@ public class CreateListingFragment extends Fragment implements ICreateListingVie
                 else seats = Integer.parseInt(enterSeats.toString());
 
 
-
                 if(isValid){
                     Snackbar.make(view, "Listing added!", Snackbar.LENGTH_SHORT).show();
-                    //boolean checked = ((RadioButton) view).isChecked();
-                    Date dateCreated = new Date();
+
                     LinearLayout layout = (LinearLayout) view.getRootView().findViewById(R.id.mainLayout);
                     layout.setVisibility(View.VISIBLE);
                     //TODO: dateCreated = formatter.format(dateCreated);
-                    RadioButton driverButton = (RadioButton) view.getRootView().findViewById(R.id.driverRadioButton);
-                    RadioButton PassengerButton = (RadioButton) view.getRootView().findViewById(R.id.passengerRadioButton);
-                    //switch(view.getId()) {
-                        //case R.id.driverRadioButton:
-                            if (driverButton.isChecked()){
-                                CreateListingFragment.this.listener.onCreateListing(dateCreated, "Driver", date, start, end, seats, CreateListingFragment.this);
-                            }
-                        //    break;
-                        //case R.id.passengerRadioButton:
-                            if (PassengerButton.isChecked()){
-                                CreateListingFragment.this.listener.onCreateListing(dateCreated, "Passenger", date, start, end, seats, CreateListingFragment.this);
-                            }
-                         //   break;
-                    //}
-                    enterDate.clear();
-                    enterSeats.clear();
-                    enterStart.clear();
-                    enterEnd.clear();
-                    enterTime.clear();
-
                 }
+                Date dateCreated = new Date();
+                RadioButton driverButton = (RadioButton) view.getRootView().findViewById(R.id.driverRadioButton);
+                RadioButton PassengerButton = (RadioButton) view.getRootView().findViewById(R.id.passengerRadioButton);
+
+                if (driverButton.isChecked()){
+                    CreateListingFragment.this.listener.onCreateListing(dateCreated, "Driver", date, start, end, seats, CreateListingFragment.this);
+                }
+
+                if (PassengerButton.isChecked()){
+                    CreateListingFragment.this.listener.onCreateListing(dateCreated, "Passenger", date, start, end, seats, CreateListingFragment.this);
+                }
+                enterDate.clear();
+                enterSeats.clear();
+                enterStart.clear();
+                enterEnd.clear();
+                enterTime.clear();
+
 
             }
 
-        }
-        );
+        });
 
     }
 

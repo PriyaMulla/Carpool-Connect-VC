@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
     CollectionOfAccounts accounts = new CollectionOfAccounts();
     static PageOfListings listings = new PageOfListings();
     IMainView mainView;
-    IDashboardView.Listener listener = DashboardFragment.listener;
+    //IDashboardView.Listener listener = DashboardFragment.listener;
 
     /**
      * Called whenever the activity is (re)created.
@@ -198,7 +198,7 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
         //FragmentManager fm = getSupportFragmentManager();
         //fm.popBackStack();
         //fm.executePendingTransactions();
-        DashboardFragment dashboardFragment = new DashboardFragment(listener);
+        DashboardFragment dashboardFragment = new DashboardFragment();
         this.mainView.displayFragment(dashboardFragment,true,"dashboard");
 
         //switch to welcome user fragment with buttons
@@ -211,7 +211,7 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
         //FragmentManager fm = getSupportFragmentManager();
         //fm.popBackStack();
         //fm.executePendingTransactions();
-        DashboardFragment dashboardFragment = new DashboardFragment(listener);
+        DashboardFragment dashboardFragment = new DashboardFragment();
         this.mainView.displayFragment(dashboardFragment,true,"dashboard");
 
     }

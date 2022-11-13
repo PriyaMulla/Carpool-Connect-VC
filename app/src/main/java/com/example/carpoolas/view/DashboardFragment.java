@@ -45,6 +45,7 @@ public class DashboardFragment extends Fragment implements IDashboardView {
     //private Listener listener;
     //PageOfListings lst = DashboardFragment.this.listener.getListings();
     FragmentDashboardBinding binding;
+    public DashboardFragment(){this.listener = listener;}
     public DashboardFragment(IDashboardView.Listener listener) {
         this.listener = listener;
     }
