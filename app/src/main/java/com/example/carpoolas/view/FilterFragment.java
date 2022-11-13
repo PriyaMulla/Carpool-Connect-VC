@@ -1,5 +1,10 @@
 package com.example.carpoolas.view;
 
+import static com.example.carpoolas.controller.MainActivity.filterDates;
+import static com.example.carpoolas.controller.MainActivity.filterDriverRole;
+import static com.example.carpoolas.controller.MainActivity.filterEnd;
+import static com.example.carpoolas.controller.MainActivity.filterPassengerRole;
+import static com.example.carpoolas.controller.MainActivity.filterStart;
 import static com.example.carpoolas.controller.MainActivity.isValidDateTime;
 import static com.example.carpoolas.controller.MainActivity.isValidEnd;
 import static com.example.carpoolas.controller.MainActivity.isValidSeats;
@@ -94,10 +99,7 @@ public class FilterFragment extends Fragment implements IFilterView{
                         Snackbar.make(view, "Please enter Date and Time!", Snackbar.LENGTH_SHORT).show();
                         isValid = isValidDateTime(dateTimeString);
                     }
-                    DateFilter dateFilter = new DateFilter();
-                    dateFilter.dDate = date;
-                    dateFilter.filterListings(filteredPage);
-                    filteredPage = dateFilter.newPage;
+                    filterDates(date, filteredPage);
                 }
                 //extract start location
                 Editable enterStart = FilterFragment.this.binding.enterStartLocation.getText();
@@ -110,10 +112,7 @@ public class FilterFragment extends Fragment implements IFilterView{
                     isValid = isValid && isValidStart(start);
                 }
                 else{
-                    StartFilter startFilter = new StartFilter();
-                    startFilter.dStart = start;
-                    startFilter.filterListings(filteredPage);
-                    filteredPage = startFilter.newPage;
+                    filterStart(start, filteredPage);
                 }
 
                 //extract end location
@@ -127,10 +126,7 @@ public class FilterFragment extends Fragment implements IFilterView{
                     isValid = isValid && isValidEnd(end);
                 }
                 else{
-                    EndFilter endFilter = new EndFilter();
-                    endFilter.dEnd = start;
-                    endFilter.filterListings(filteredPage);
-                    filteredPage = endFilter.newPage;
+                    filterEnd(end, filteredPage);
                 }
 
                 //extract seats
@@ -154,19 +150,15 @@ public class FilterFragment extends Fragment implements IFilterView{
                      //TODO: dateCreated = formatter.format(dateCreated);
                      RadioButton driverButton = (RadioButton) view.getRootView().findViewById(R.id.driverRadioButton);
                      RadioButton PassengerButton = (RadioButton) view.getRootView().findViewById(R.id.passengerRadioButton);
-                     RoleFilter roleFilter = new RoleFilter();
+
                      if (driverButton.isChecked()) {
 
-                         roleFilter.dRole = "Driver";
-                         roleFilter.filterListings(filteredPage);
-                         filteredPage = roleFilter.newPage;
+                         filterDriverRole(filteredPage);
 
                          FilterFragment.this.listener.onFilter(filteredPage, FilterFragment.this);
                      }
                      if (PassengerButton.isChecked()) {
-                         roleFilter.dRole = "Passenger";
-                         roleFilter.filterListings(filteredPage);
-                         filteredPage = roleFilter.newPage;
+                         filterPassengerRole(filteredPage);
 
                          FilterFragment.this.listener.onFilter(filteredPage, FilterFragment.this);
                      }

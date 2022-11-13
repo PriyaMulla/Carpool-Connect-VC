@@ -10,7 +10,11 @@ import android.os.Build;
 import android.os.Bundle;
 
 import com.example.carpoolas.model.CollectionOfAccounts;
+import com.example.carpoolas.model.DateFilter;
+import com.example.carpoolas.model.EndFilter;
 import com.example.carpoolas.model.PageOfListings;
+import com.example.carpoolas.model.RoleFilter;
+import com.example.carpoolas.model.StartFilter;
 import com.example.carpoolas.view.CreateAccountFragment;
 import com.example.carpoolas.view.CreateListingFragment;
 import com.example.carpoolas.view.DashboardFragment;
@@ -127,6 +131,50 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
         }
         return true;
     }
+
+    //filters
+    //date
+    public static PageOfListings filterDates(Date date, PageOfListings filteredPage){
+        DateFilter dateFilter = new DateFilter();
+        dateFilter.dDate = date;
+        dateFilter.filterListings(filteredPage);
+        return filteredPage = dateFilter.newPage;
+    }
+
+    //start location
+    public static PageOfListings filterStart(String start, PageOfListings filteredPage){
+        StartFilter startFilter = new StartFilter();
+        startFilter.dStart = start;
+        startFilter.filterListings(filteredPage);
+        return filteredPage = startFilter.newPage;
+    }
+
+    //end location
+    public static PageOfListings filterEnd(String end, PageOfListings filteredPage){
+        EndFilter endFilter = new EndFilter();
+        endFilter.dEnd = end;
+        endFilter.filterListings(filteredPage);
+        return filteredPage = endFilter.newPage;
+    }
+
+    //driver
+    public static PageOfListings filterDriverRole(PageOfListings filteredPage){
+        RoleFilter roleFilter = new RoleFilter();
+        roleFilter.dRole = "Driver";
+        roleFilter.filterListings(filteredPage);
+        return filteredPage = roleFilter.newPage;
+    }
+
+    //passenger
+    public static PageOfListings filterPassengerRole(PageOfListings filteredPage){
+        RoleFilter roleFilter = new RoleFilter();
+        roleFilter.dRole = "Passenger";
+        roleFilter.filterListings(filteredPage);
+        return filteredPage = roleFilter.newPage;
+    }
+
+
+
 
 
     /**
