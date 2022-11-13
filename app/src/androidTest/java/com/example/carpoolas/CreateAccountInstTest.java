@@ -15,30 +15,37 @@ public class CreateAccountInstTest {
     public ActivityScenarioRule<MainActivity> activityRule
             = new ActivityScenarioRule<>(MainActivity.class);
 
+    /**
+     * tests use case of create account
+     */
     @Test
     public void testCreateAccount(){
 
-
+        //input name
         ViewInteraction nameTextVI = Espresso.onView(ViewMatchers.withId(R.id.enterName));
         nameTextVI.perform(ViewActions.typeText("Priya Muldowney"));
 
         Espresso.closeSoftKeyboard();
 
+        //email
         ViewInteraction emailTextVI = Espresso.onView(ViewMatchers.withId(R.id.enterEmailAddress));
         emailTextVI.perform(ViewActions.typeText("p@vassar.edu"));
 
         Espresso.closeSoftKeyboard();
 
+        //username
         ViewInteraction usernameTextVI = Espresso.onView(ViewMatchers.withId(R.id.enterUsername));
         usernameTextVI.perform(ViewActions.typeText("priyankamu"));
 
         Espresso.closeSoftKeyboard();
 
+        //password
         ViewInteraction passwordTextVI = Espresso.onView(ViewMatchers.withId(R.id.enterPassword));
         passwordTextVI.perform(ViewActions.typeText("hello!Hi"));
 
         Espresso.closeSoftKeyboard();
 
+        //click create account
         ViewInteraction createButtonVI = Espresso.onView(ViewMatchers.withId(R.id.createButton));
         createButtonVI.perform(ViewActions.click());
 
