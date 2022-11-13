@@ -6,9 +6,15 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Date;
 
+/**
+ * tests filterListings method applied to all types by creating a page of listings
+ * with 2 listings and having a given type match 1 of the listings
+ */
+
 class FilterTest {
 
     @Test
+    //date filtering
     void testDateFilterListings() {
         Date cDate = new Date(122, 10, 13, 2, 52);
         Date dDate = new Date(122, 10, 16, 2, 30);
@@ -23,6 +29,7 @@ class FilterTest {
         nLst.addListing(cDate, "Passenger", dDate, "123 Ray Ave, Pough, NY 12605", "3 Ray Ave, Pough, NY 12604", 2);
         assertEquals(nLst, dateFilter.newPage);
     }
+    //start location filtering
     @Test
     void testStartFilterListings() {
         Date cDate = new Date(122, 10, 13, 2, 52);
