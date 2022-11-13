@@ -224,5 +224,7 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
     @Override
     public void onFilter(@NonNull PageOfListings lst, @NonNull IFilterView view) {
         //display filtered listings
+        DashboardFragment dashboardFragment = new DashboardFragment(listener);
+        this.mainView.displayFragment(dashboardFragment,true,"dashboard");
     }
 }
