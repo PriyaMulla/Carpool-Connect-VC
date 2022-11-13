@@ -29,6 +29,13 @@ public class PageOfListings {
         this.listings.add(lst);
     }
 
+    /**
+     * associates listing with the Page of Listings.
+     */
+    public void addCreatedListing(Listing lst) {
+        this.listings.add(lst);
+    }
+
 
     @NonNull
     @Override

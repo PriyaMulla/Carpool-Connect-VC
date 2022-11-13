@@ -14,8 +14,8 @@ public class DateFilter implements IFilter{
         Iterator<Listing> listingsIterator = lst.listings.iterator();
         while (listingsIterator.hasNext()){
             Listing listing = listingsIterator.next();
-            if (this.dDate == listing.dateCreated){
-                this.newPage.listings.add(listing);
+            if (this.dDate.equals(listing.dateTimeOfTrip)){
+                this.newPage.addCreatedListing(listing);
             }
         }
 
