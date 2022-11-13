@@ -20,6 +20,7 @@ import com.example.carpoolas.view.CreateListingFragment;
 import com.example.carpoolas.view.DashboardFragment;
 import com.example.carpoolas.view.FilterFragment;
 import com.example.carpoolas.view.ICreateListingView;
+import com.example.carpoolas.view.IDashboardView;
 import com.example.carpoolas.view.IFilterView;
 import com.example.carpoolas.view.IMainView;
 import com.example.carpoolas.view.MainView;
@@ -36,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
     CollectionOfAccounts accounts = new CollectionOfAccounts();
     PageOfListings listings = new PageOfListings();
     IMainView mainView;
+    IDashboardView.Listener listener = DashboardFragment.listener;
 
     /**
      * Called whenever the activity is (re)created.
@@ -192,7 +194,7 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
         //FragmentManager fm = getSupportFragmentManager();
         //fm.popBackStack();
         //fm.executePendingTransactions();
-        DashboardFragment dashboardFragment = new DashboardFragment();
+        DashboardFragment dashboardFragment = new DashboardFragment(listener);
         this.mainView.displayFragment(dashboardFragment,true,"dashboard");
 
         //switch to welcome user fragment with buttons
@@ -205,21 +207,11 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
         //FragmentManager fm = getSupportFragmentManager();
         //fm.popBackStack();
         //fm.executePendingTransactions();
-        DashboardFragment dashboardFragment = new DashboardFragment();
+        DashboardFragment dashboardFragment = new DashboardFragment(listener);
         this.mainView.displayFragment(dashboardFragment,true,"dashboard");
 
     }
 
-    public void goToCreateListing(){
-        CreateListingFragment ListingFragment = new CreateListingFragment();
-        this.mainView.displayFragment(ListingFragment, true, "create a listing");
-
-    }
-    public void goToSearchListing(){
-        FilterFragment filterFragment = new FilterFragment();
-        this.mainView.displayFragment(filterFragment, true, "create a listing");
-
-    }
 
     public PageOfListings getListings() {
         return listings;

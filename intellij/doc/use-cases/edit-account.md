@@ -13,7 +13,7 @@
 * User: Wants an easily readable system to create an account and easily gain access to the application
 
 ### Preconditions
-* User should have a password
+* User should have an account
 
 ### Postconditions
 * User edited their account
