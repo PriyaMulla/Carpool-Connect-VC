@@ -17,9 +17,7 @@ public class PageOfListings {
         this.listings = new LinkedList<Listing>();
     }
 
-    public List<Listing> getListing() {
-        return listings;
-    }
+
 
     /**
      * Creates listing and associates it with the Page of Listings.

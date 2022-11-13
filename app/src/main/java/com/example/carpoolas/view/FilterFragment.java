@@ -5,6 +5,7 @@ import static com.example.carpoolas.controller.MainActivity.filterDriverRole;
 import static com.example.carpoolas.controller.MainActivity.filterEnd;
 import static com.example.carpoolas.controller.MainActivity.filterPassengerRole;
 import static com.example.carpoolas.controller.MainActivity.filterStart;
+//import com.example.carpoolas.controller.MainActivity.getListings;
 import static com.example.carpoolas.controller.MainActivity.isValidDateTime;
 import static com.example.carpoolas.controller.MainActivity.isValidEnd;
 import static com.example.carpoolas.controller.MainActivity.isValidSeats;
@@ -44,7 +45,7 @@ public class FilterFragment extends Fragment implements IFilterView{
 
     private FragmentFilterBinding binding;
     private Listener listener;
-    PageOfListings filteredPage = FilterFragment.this.listener.getListings(); //all listings at first
+
     public FilterFragment( ) {
     }
 
@@ -70,7 +71,7 @@ public class FilterFragment extends Fragment implements IFilterView{
             @SuppressLint("SimpleDateFormat")
             @Override
             public void onClick(View view) {
-
+                PageOfListings filteredPage = FilterFragment.this.listener.getListings(); //all listings at first
                 //if no listings
                 if (filteredPage.isEmpty()){
                     Snackbar.make(view, "No listings to filter!", Snackbar.LENGTH_SHORT).show();

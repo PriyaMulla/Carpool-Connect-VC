@@ -12,6 +12,7 @@ import android.os.Bundle;
 import com.example.carpoolas.model.CollectionOfAccounts;
 import com.example.carpoolas.model.DateFilter;
 import com.example.carpoolas.model.EndFilter;
+import com.example.carpoolas.model.Listing;
 import com.example.carpoolas.model.PageOfListings;
 import com.example.carpoolas.model.RoleFilter;
 import com.example.carpoolas.model.StartFilter;
@@ -30,12 +31,13 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeParseException;
 import java.util.Date;
+import java.util.List;
 import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity implements ICreateAccountView.Listener, ICreateListingView.Listener, IFilterView.Listener {
 
     CollectionOfAccounts accounts = new CollectionOfAccounts();
-    PageOfListings listings = new PageOfListings();
+    static PageOfListings listings = new PageOfListings();
     IMainView mainView;
     IDashboardView.Listener listener = DashboardFragment.listener;
 
@@ -175,7 +177,9 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
         return filteredPage = roleFilter.newPage;
     }
 
-
+    public PageOfListings getListing() {
+        return listings;
+    }
 
 
 
