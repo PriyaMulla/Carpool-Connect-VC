@@ -14,7 +14,7 @@ public interface IDashboardView {
         /**
          * called when an account is created
          */
-        void onCreateDashboard(@NonNull String username, String password, String name, String email, @NonNull ICreateAccountView view);
+        //void onCreateDashboard(@NonNull String username, String password, String name, String email, @NonNull ICreateAccountView view);
 
         PageOfListings getListings();
     }

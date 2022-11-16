@@ -36,8 +36,6 @@ public class CreateListingFragment extends Fragment implements ICreateListingVie
     FragmentCreateListingBinding binding;
     private Listener listener;
 
-    public CreateListingFragment() {this.listener = listener;
-    }
     public CreateListingFragment(Listener listener) {
         this.listener = listener;
     }
@@ -114,17 +112,17 @@ public class CreateListingFragment extends Fragment implements ICreateListingVie
                     LinearLayout layout = (LinearLayout) view.getRootView().findViewById(R.id.mainLayout);
                     layout.setVisibility(View.VISIBLE);
                     //TODO: dateCreated = formatter.format(dateCreated);
-                }
-                Date dateCreated = new Date();
-                RadioButton driverButton = (RadioButton) view.getRootView().findViewById(R.id.driverRadioButton);
-                RadioButton PassengerButton = (RadioButton) view.getRootView().findViewById(R.id.passengerRadioButton);
+                    Date dateCreated = new Date();
+                    RadioButton driverButton = (RadioButton) view.getRootView().findViewById(R.id.driverRadioButton);
+                    RadioButton PassengerButton = (RadioButton) view.getRootView().findViewById(R.id.passengerRadioButton);
 
-                if (driverButton.isChecked()){
-                    CreateListingFragment.this.listener.onCreateListing(dateCreated, "Driver", date, start, end, seats, CreateListingFragment.this);
-                }
+                    if (driverButton.isChecked()){
+                        CreateListingFragment.this.listener.onCreateListing(dateCreated, "Driver", date, start, end, seats, CreateListingFragment.this);
+                    }
 
-                if (PassengerButton.isChecked()){
-                    CreateListingFragment.this.listener.onCreateListing(dateCreated, "Passenger", date, start, end, seats, CreateListingFragment.this);
+                    if (PassengerButton.isChecked()){
+                        CreateListingFragment.this.listener.onCreateListing(dateCreated, "Passenger", date, start, end, seats, CreateListingFragment.this);
+                    }
                 }
                 enterDate.clear();
                 enterSeats.clear();

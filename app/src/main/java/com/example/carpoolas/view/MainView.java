@@ -36,7 +36,8 @@ public class MainView implements IMainView{
             public void onClick(View view) {
                 LinearLayout layout = (LinearLayout) getRootView().findViewById(R.id.mainLayout);
                 layout.setVisibility(INVISIBLE);
-                displayFragment(new FilterFragment(),true,"search listings");
+
+                displayFragment(new MainActivity().getListingFragListener(),true,"create a listing");
             }
         });
         this.binding.createListingButton.setOnClickListener(new View.OnClickListener() {
@@ -45,7 +46,8 @@ public class MainView implements IMainView{
             public void onClick(View view) {
                 LinearLayout layout = (LinearLayout) getRootView().findViewById(R.id.mainLayout);
                 layout.setVisibility(INVISIBLE);
-                displayFragment(new CreateListingFragment(),true,"create a listing");
+                //CreateListingFragment createListingFragment =  new MainActivity().getAccountFragListener();
+                displayFragment(new MainActivity().getListingFragListener(),true,"create a listing");
             }
         });
     }

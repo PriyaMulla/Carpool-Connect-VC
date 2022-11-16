@@ -34,12 +34,11 @@ import java.util.Date;
 import java.util.List;
 import java.util.regex.Pattern;
 
-public class MainActivity extends AppCompatActivity implements ICreateAccountView.Listener, ICreateListingView.Listener, IFilterView.Listener {
+public class MainActivity extends AppCompatActivity implements ICreateAccountView.Listener, ICreateListingView.Listener, IFilterView.Listener, IDashboardView.Listener {
 
     CollectionOfAccounts accounts = new CollectionOfAccounts();
     static PageOfListings listings = new PageOfListings();
     IMainView mainView;
-    //IDashboardView.Listener listener = DashboardFragment.listener;
 
     /**
      * Called whenever the activity is (re)created.
@@ -60,6 +59,18 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
         setContentView(this.mainView.getRootView()); //display fragment
     }
 
+    public CreateListingFragment getListingFragListener(){
+        CreateListingFragment createListingFragment = new CreateListingFragment(this);
+        return createListingFragment;
+    }
+    public DashboardFragment getDashboardFragListener(){
+        DashboardFragment dashboardFragment = new DashboardFragment(this);
+        return dashboardFragment;
+    }
+    public FilterFragment getSearchFragListener(){
+        FilterFragment filterFragment = new FilterFragment(this);
+        return filterFragment;
+    }
     //Validations
     //Account
 
@@ -194,12 +205,7 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
     @Override //addAccount be on collection of Accounts
     public void onCreateAccount(@NonNull String username, String password, String name, String email, @NonNull ICreateAccountView view) {
         this.accounts.addAccount(username,password,name,email);
-        //transition back to Mainview
-        //FragmentManager fm = getSupportFragmentManager();
-        //fm.popBackStack();
-        //fm.executePendingTransactions();
-        DashboardFragment dashboardFragment = new DashboardFragment();
-        this.mainView.displayFragment(dashboardFragment,true,"dashboard");
+        this.mainView.displayFragment(this.getDashboardFragListener(),true,"dashboard");
 
         //switch to welcome user fragment with buttons
     }
@@ -207,12 +213,7 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
     @Override
     public void onCreateListing(@NonNull Date created, String role, Date dateTime, String start, String end, int seats, @NonNull ICreateListingView view){
         this.listings.addListing(created, role, dateTime, start, end, seats);
-        //transition back to mainview
-        //FragmentManager fm = getSupportFragmentManager();
-        //fm.popBackStack();
-        //fm.executePendingTransactions();
-        DashboardFragment dashboardFragment = new DashboardFragment();
-        this.mainView.displayFragment(dashboardFragment,true,"dashboard");
+        this.mainView.displayFragment(this.getDashboardFragListener(),true,"dashboard");
 
     }
 
@@ -224,7 +225,6 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
     @Override
     public void onFilter(@NonNull PageOfListings lst, @NonNull IFilterView view) {
         //display filtered listings
-        DashboardFragment dashboardFragment = new DashboardFragment(listener);
-        this.mainView.displayFragment(dashboardFragment,true,"dashboard");
+        this.mainView.displayFragment(new MainActivity().getDashboardFragListener(),true,"dashboard");
     }
 }
