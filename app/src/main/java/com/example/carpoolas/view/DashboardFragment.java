@@ -17,8 +17,10 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.RadioButton;
+import android.widget.Toast;
 
 import com.example.carpoolas.R;
+import com.example.carpoolas.controller.MainActivity;
 import com.example.carpoolas.databinding.FragmentCreateAccountBinding;
 import com.example.carpoolas.databinding.FragmentDashboardBinding;
 import com.example.carpoolas.model.CustomAdapter;
@@ -38,55 +40,63 @@ import java.util.List;
 
 public class DashboardFragment extends Fragment implements IDashboardView {
 
-    Listener listener;
     FragmentDashboardBinding binding;
+    Listener listener;
 
     public DashboardFragment(IDashboardView.Listener listener) {
         this.listener = listener;
     }
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_dashboard,container,false);
-        //Iterator<Listing> listingsIterator = lst.listings.iterator();
+        // Inflate the layout for this fragment
+        this.binding = FragmentDashboardBinding.inflate(inflater);
+        return this.binding.getRoot();
+
+    }
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
+        super.onViewCreated(view, savedInstanceState);
         ArrayList<String> dash = new ArrayList<>();
         dash.add("Listing 1");
         dash.add("Listing 2");
         dash.add("Listing 3");
         dash.add("Listing 4");
         dash.add("Listing 5");
+        dash.add("Listing 1");
+        dash.add("Listing 2");
+        dash.add("Listing 3");
+        dash.add("Listing 4");
+        dash.add("Listing 5");
+        dash.add("Listing 1");
+        dash.add("Listing 2");
+        dash.add("Listing 3");
+        dash.add("Listing 4");
+        dash.add("Listing 5");
+        //somehow add listings into arrayList
+        int i =0;
+        Iterator<Listing> listingsIterator = new MainActivity().getListings().listings.iterator();
+        while (listingsIterator.hasNext()){
+            dash.add("Next");
+            Listing listing = listingsIterator.next();
+            dash.set(i, listing.toString());
+            i++;
+            }
+        if(new MainActivity().getListings().isEmpty() == true){
+            dash.add("yes");
+        }
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1,dash);
 
-        ListView lvData = (ListView) view.findViewById(R.id.listview);
-        lvData.setAdapter(adapter);
-        // Inflate the layout for this fragment
-        this.binding = FragmentDashboardBinding.inflate(inflater);
+        ListView listView = (ListView) view.findViewById(R.id.listview);
+        listView.setAdapter(adapter);
 
-        return view;
-        //this.binding = FragmentDashboardBinding.inflate(inflater);
-        //return this.binding.getRoot();
-
-    }
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState,PageOfListings Pagelistings){
-        super.onViewCreated(view, savedInstanceState);
-        //ArrayList<String> dash = new ArrayList<>();
-        //dash.add("Listing 1");
-        //dash.add("Listing 2");
-        //dash.add("Listing 3");
-        //dash.add("Listing 4");
-        //dash.add("Listing 5");
-        //somehow add listings into arrayList
-        //int i =0;
-        //Iterator<Listing> listingsIterator = Pagelistings.listings.iterator();
-        //while (listingsIterator.hasNext()){
-        //    Listing listing = listingsIterator.next();
-        //    dash.set(i, Pagelistings.listings.get(i).toString());
-        //    i++;
-        //    }
-        //ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1,dash);
-
-        //ListView lvData = (ListView) view.findViewById(R.id.listview);
-        //lvData.setAdapter(adapter);
+//        listView.setOnClickListener(new AdapterView.OnItemClickListener(){
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                Toast.makeText(getContext(), "Click ListItem Number " + position, Toast.LENGTH_LONG).show();
+//            }
+//        });
     }
 
 }

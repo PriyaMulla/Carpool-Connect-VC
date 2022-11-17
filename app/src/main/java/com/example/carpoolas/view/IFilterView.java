@@ -18,7 +18,7 @@ public interface IFilterView {
         void onFilter(@NonNull PageOfListings lst, @NonNull IFilterView view);
 
 
-        PageOfListings getListings();
+
     }
 
 

@@ -205,7 +205,7 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
     @Override //addAccount be on collection of Accounts
     public void onCreateAccount(@NonNull String username, String password, String name, String email, @NonNull ICreateAccountView view) {
         this.accounts.addAccount(username,password,name,email);
-        this.mainView.displayFragment(this.getDashboardFragListener(),true,"dashboard");
+        this.mainView.displayFragment(new DashboardFragment(this),true,"dashboard");
 
         //switch to welcome user fragment with buttons
     }
@@ -213,7 +213,7 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
     @Override
     public void onCreateListing(@NonNull Date created, String role, Date dateTime, String start, String end, int seats, @NonNull ICreateListingView view){
         this.listings.addListing(created, role, dateTime, start, end, seats);
-        this.mainView.displayFragment(this.getDashboardFragListener(),true,"dashboard");
+        this.mainView.displayFragment(new DashboardFragment(this),true,"dashboard");
 
     }
 

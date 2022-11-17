@@ -16,6 +16,6 @@ public interface IDashboardView {
          */
         //void onCreateDashboard(@NonNull String username, String password, String name, String email, @NonNull ICreateAccountView view);
 
-        PageOfListings getListings();
-    }
+
+}
 }
