@@ -71,7 +71,7 @@ public class FilterFragment extends Fragment implements IFilterView{
             @SuppressLint("SimpleDateFormat")
             @Override
             public void onClick(View view) {
-                PageOfListings filteredPage = FilterFragment.this.listener.getListings(); //all listings at first
+                PageOfListings filteredPage = new MainActivity().getListings(); //all listings at first
                 //if no listings
                 if (filteredPage.isEmpty()){
                     Snackbar.make(view, "No listings to filter!", Snackbar.LENGTH_SHORT).show();
@@ -85,9 +85,8 @@ public class FilterFragment extends Fragment implements IFilterView{
                 String timeString = enterTime.toString();
                 String dateTimeString = dateString + " " + timeString;
                 Date date = null;
-                if (dateString.isEmpty() && timeString.isEmpty()){
-                    isValid = true;
-                }
+                if (dateString.isEmpty() && timeString.isEmpty());
+
                 else if (!isValidDateTime(dateTimeString)) {
                     Snackbar.make(view, "Please enter Date and Time!", Snackbar.LENGTH_SHORT).show();
                     isValid = isValidDateTime(dateTimeString);
@@ -105,9 +104,8 @@ public class FilterFragment extends Fragment implements IFilterView{
                 //extract start location
                 Editable enterStart = FilterFragment.this.binding.enterStartLocation.getText();
                 String start = enterStart.toString();
-                if(start.isEmpty()){
-                    isValid = isValid;
-                }
+                if(start.isEmpty());
+
                 else if (!isValidStart(start)) {
                     Snackbar.make(view, "Please enter Start Location!", Snackbar.LENGTH_SHORT).show();
                     isValid = isValid && isValidStart(start);
@@ -119,9 +117,7 @@ public class FilterFragment extends Fragment implements IFilterView{
                 //extract end location
                 Editable enterEnd = FilterFragment.this.binding.enterEndLocation.getText();
                 String end = enterEnd.toString();
-                if(end.isEmpty()){
-                    isValid = isValid;
-                }
+                if(end.isEmpty());
                 else if (!isValidEnd(end)) {
                     Snackbar.make(view, "Please enter End Location!", Snackbar.LENGTH_SHORT).show();
                     isValid = isValid && isValidEnd(end);
@@ -134,9 +130,8 @@ public class FilterFragment extends Fragment implements IFilterView{
                 Editable enterSeats = FilterFragment.this.binding.enterSeats.getText();
                 String stringSeats = enterSeats.toString();
                 int seats = 0;
-                if(stringSeats.isEmpty()){
-                    isValid = isValid;
-                }
+                if(stringSeats.isEmpty());
+
                 else if (!isValidSeats(stringSeats)) {
                     Snackbar.make(view, "Please enter number of seats!", Snackbar.LENGTH_SHORT).show();
                     isValid = isValid && isValidSeats(stringSeats);

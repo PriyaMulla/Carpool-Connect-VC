@@ -4,7 +4,7 @@ import java.util.Iterator;
 
 public class EndFilter implements IFilter{
     public String dEnd;
-    public PageOfListings newPage;
+    public PageOfListings newPage = new PageOfListings();
 
     @Override
     public PageOfListings filterListings(PageOfListings lst) {
@@ -13,7 +13,7 @@ public class EndFilter implements IFilter{
         while (listingsIterator.hasNext()) {
             Listing listing = listingsIterator.next();
             if (this.dEnd.equals(listing.endLocation)) {
-                newPage.listings.add(listing);
+                newPage.addCreatedListing(listing);
             }
         }
 

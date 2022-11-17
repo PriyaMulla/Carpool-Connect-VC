@@ -5,7 +5,7 @@ import java.util.Iterator;
 
 public class DateFilter implements IFilter{
     public Date dDate;
-    public PageOfListings newPage;
+    public PageOfListings newPage = new PageOfListings();
 
     @Override
     public PageOfListings filterListings(PageOfListings lst) {
@@ -15,7 +15,7 @@ public class DateFilter implements IFilter{
         while (listingsIterator.hasNext()){
             Listing listing = listingsIterator.next();
             if (this.dDate.equals(listing.dateTimeOfTrip)){
-                this.newPage.addCreatedListing(listing);
+                newPage.addCreatedListing(listing);
             }
         }
 
