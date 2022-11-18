@@ -20,6 +20,7 @@ import com.example.carpoolas.controller.MainActivity;
 import com.example.carpoolas.databinding.FragmentDashboardBinding;
 import com.example.carpoolas.model.CustomAdapter;
 import com.example.carpoolas.model.Listing;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -48,11 +49,10 @@ public class DashboardFragment extends Fragment implements IDashboardView {
         ArrayList<String> dash = new ArrayList<>();
         //dash.add("No listings available :'(");
 
-        //somehow add listings into arrayList
+        //Import listings into an arrayList
         int i =0;
         Iterator<Listing> listingsIterator = new MainActivity().getListings().listings.iterator();
         while (listingsIterator.hasNext()){
-            dash.add("Next");
             Listing listing = listingsIterator.next();
             dash.set(i, listing.toString());
             i++;
@@ -65,6 +65,13 @@ public class DashboardFragment extends Fragment implements IDashboardView {
 
         ListView listView = (ListView) view.findViewById(R.id.listview);
         listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new android.widget.AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
+                String item = (String) listView.getItemAtPosition(position);
+                Snackbar.make(view,"You selected : " + item,Snackbar.LENGTH_SHORT).show();
+            }
+        });
         //listView.setOnItemClickListener();
 //        listView.setOnClickListener(new AdapterView.OnItemClickListener(){
 //            @Override

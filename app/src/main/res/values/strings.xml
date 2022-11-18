@@ -2,6 +2,9 @@
     <string name="app_name">Carpool AS</string>
     <string name="welcome_label">Welcome!</string>
     <string name="search_listing_label">Search Listings</string>
+    <string name="sign_up_button">Sign up</string>
+    <string name="username_login_label">Username</string>
+    <string name="password_login_label">Password</string>
 
     <!-- for account creation screen -->
     <string name="create_account_label">Create Account</string>
@@ -52,5 +55,7 @@
     <!-- Dashboard -->
     <string name="element_text">Element</string>
     <string name="linear_layout_manager">Latest trips planned</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

@@ -24,7 +24,9 @@ import com.example.carpoolas.view.FilterFragment;
 import com.example.carpoolas.view.ICreateListingView;
 import com.example.carpoolas.view.IDashboardView;
 import com.example.carpoolas.view.IFilterView;
+import com.example.carpoolas.view.ILogInScreen;
 import com.example.carpoolas.view.IMainView;
+import com.example.carpoolas.view.LogInScreen;
 import com.example.carpoolas.view.MainView;
 import com.example.carpoolas.view.ICreateAccountView;
 
@@ -36,7 +38,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.regex.Pattern;
 
-public class MainActivity extends AppCompatActivity implements ICreateAccountView.Listener, ICreateListingView.Listener, IFilterView.Listener, IDashboardView.Listener {
+public class MainActivity extends AppCompatActivity implements ICreateAccountView.Listener, ICreateListingView.Listener, IFilterView.Listener, IDashboardView.Listener, ILogInScreen.Listener {
 
     CollectionOfAccounts accounts = new CollectionOfAccounts();
     static PageOfListings listings = new PageOfListings();
@@ -55,8 +57,8 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
         this.mainView = new MainView(this); // create the main screen view
 
         //to begin with, make the screen display the create account fragment
-        CreateAccountFragment createAccountFragment = new CreateAccountFragment(this);
-        this.mainView.displayFragment(createAccountFragment, true, "create account");
+        LogInScreen logInScreen = new LogInScreen(this);
+        this.mainView.displayFragment(logInScreen, true, "create account");
 
         setContentView(this.mainView.getRootView()); //display fragment
     }
@@ -79,6 +81,8 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
         return listings;
     }
 
+    DashboardFragment dashboardFragment = new DashboardFragment(this);
+
     /**
      * React to the user's intention of adding a new account onto the collection of accounts.
      * @param name name of user
@@ -90,7 +94,7 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
     @Override //addAccount be on collection of Accounts
     public void onCreateAccount(@NonNull String username, String password, String name, String email, @NonNull ICreateAccountView view) {
         this.accounts.addAccount(username,password,name,email);
-        this.mainView.displayFragment(new DashboardFragment(this),true,"dashboard");
+        this.mainView.displayFragment(dashboardFragment,true,"dashboard");
 
         //switch to welcome user fragment with buttons
     }
@@ -98,7 +102,7 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
     @Override
     public void onCreateListing(@NonNull Date created, String role, Date dateTime, String start, String end, int seats, @NonNull ICreateListingView view){
         this.listings.addListing(created, role, dateTime, start, end, seats);
-        this.mainView.displayFragment(new DashboardFragment(this),true,"dashboard");
+        this.mainView.displayFragment(dashboardFragment,true,"dashboard");
 
     }
 
@@ -106,12 +110,20 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
     public PageOfListings getListings() {
         return listings;
     }
-
     @Override
     public void onFilter(@NonNull PageOfListings lst, Set<IFilter> filterSet, @NonNull IFilterView view) {
         //TODO:call generic filter method here, for every member of the set filter
 
         //display filtered listings
         this.mainView.displayFragment(new MainActivity().getDashboardFragListener(),true,"dashboard");
+    }
+    @Override
+    public void goToCreateAccount(@NonNull ILogInScreen view) {
+        this.mainView.displayFragment(new CreateAccountFragment(this),true,"create an account");
+    }
+
+    @Override
+    public void goToDashboard(@NonNull ILogInScreen view) {
+        this.mainView.displayFragment(dashboardFragment,true,"go to dashboard");
     }
 }
