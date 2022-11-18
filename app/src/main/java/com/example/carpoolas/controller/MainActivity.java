@@ -34,6 +34,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeParseException;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import java.util.regex.Pattern;
@@ -113,9 +114,15 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
     @Override
     public void onFilter(@NonNull PageOfListings lst, Set<IFilter> filterSet, @NonNull IFilterView view) {
         //TODO:call generic filter method here, for every member of the set filter
+        Iterator<IFilter> filterIterator = filterSet.iterator();
+        while (filterIterator.hasNext()){
+            IFilter filter = filterIterator.next();
+            filter.filterListings(lst);
+            }
+
 
         //display filtered listings
-        this.mainView.displayFragment(new MainActivity().getDashboardFragListener(),true,"dashboard");
+        this.mainView.displayFragment(dashboardFragment,true,"dashboard");
     }
     @Override
     public void goToCreateAccount(@NonNull ILogInScreen view) {
