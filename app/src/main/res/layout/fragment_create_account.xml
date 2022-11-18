@@ -44,9 +44,9 @@
                 android:id="@+id/enterName"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
-                android:autofillHints="@string/enter_name_text_label"
+                android:autofillHints="@string/name_hint_label"
                 android:ems="10"
-                android:hint="@string/enter_name_text_label"
+                android:hint="@string/name_hint_label"
                 android:inputType="textPersonName"
                 android:textColorHint="#757575" />
         </LinearLayout>
@@ -73,7 +73,7 @@
                 android:layout_height="wrap_content"
                 android:autofillHints="Hi"
                 android:ems="10"
-                android:hint="@string/enter_email_text_label"
+                android:hint="@string/email_hint_label"
                 android:inputType="textEmailAddress"
                 android:minHeight="50dp"
                 android:textColorHint="#757575" />
@@ -100,9 +100,9 @@
                 android:id="@+id/enterUsername"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
-                android:autofillHints="@string/enter_username_text_label"
+                android:autofillHints="@string/username_hint_label"
                 android:ems="10"
-                android:hint="@string/enter_username_text_label"
+                android:hint="@string/username_hint_label"
                 android:inputType="textPersonName"
                 android:textColorHint="#757575" />
         </LinearLayout>
@@ -127,9 +127,9 @@
                 android:id="@+id/enterPassword"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:autofillHints="@string/enter_password_text_label"
+                android:autofillHints="@string/password_hint_label"
                 android:ems="10"
-                android:hint="@string/enter_password_text_label"
+                android:hint="@string/password_hint_label"
                 android:inputType="textVisiblePassword"
                 android:minHeight="50dp"
                 android:textColorHint="#757575" />

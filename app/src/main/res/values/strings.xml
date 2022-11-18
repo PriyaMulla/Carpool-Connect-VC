@@ -7,13 +7,13 @@
     <string name="create_account_label">Create Account</string>
     <string name="username_label">Username: </string>
     <string name="password_label">Password: </string>
-    <string name="name_label">Name: </string>
-    <string name="email_label">Email: </string>
+    <string name="name_label">Full Name: </string>
+    <string name="email_label">Vassar Email: </string>
 
-    <string name="enter_name_text_label">Type your name</string>
-    <string name="enter_email_text_label">Type your email</string>
-    <string name="enter_username_text_label">Type desired username</string>
-    <string name="enter_password_text_label">Type desired password</string>
+    <string name="name_hint_label">Ex: John Doe</string>
+    <string name="email_hint_label">Ex: jdoe@vassar.edu</string>
+    <string name="username_hint_label">Ex: johndoe</string>
+    <string name="password_hint_label">Ex: johnDoe!</string>
     <string name="create_button_label">Create</string>
 
     <!-- for listing creation screen -->

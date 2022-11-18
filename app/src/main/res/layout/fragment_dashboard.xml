@@ -26,6 +26,10 @@
             android:text="@string/linear_layout_manager"
             android:textSize="18sp" />
 
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
         <ListView
             android:id="@+id/listview"
             android:layout_width="match_parent"

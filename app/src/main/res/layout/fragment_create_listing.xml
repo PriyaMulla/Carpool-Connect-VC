@@ -82,7 +82,7 @@
                 android:autofillHints=""
                 android:ems="10"
                 android:hint="@string/seats_hint_label"
-                android:inputType="textPersonName"
+                android:inputType="number"
                 android:minHeight="50dp"
                 android:textColorHint="#757575" />
         </LinearLayout>

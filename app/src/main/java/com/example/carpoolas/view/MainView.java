@@ -18,7 +18,6 @@ import com.example.carpoolas.databinding.ActivityMainBinding;
  * An implementation of the application's screen template.
  */
 public class MainView implements IMainView{
-
     FragmentManager fmanager; // lets us perform fragment transactions
     ActivityMainBinding binding;     // gives us access to all the graphical components in main.xml
 //set visibility
@@ -26,7 +25,7 @@ public class MainView implements IMainView{
      *
      * @param activity The android activity the screen is associated with.
      */
-    public MainView(FragmentActivity activity){
+    public MainView(MainActivity activity){
         this.fmanager = activity.getSupportFragmentManager();
         this.binding = ActivityMainBinding.inflate(activity.getLayoutInflater());
         //set up onclick listener for buttons
@@ -37,7 +36,7 @@ public class MainView implements IMainView{
                 LinearLayout layout = (LinearLayout) getRootView().findViewById(R.id.mainLayout);
                 layout.setVisibility(INVISIBLE);
 
-                displayFragment(new MainActivity().getListingFragListener(),true,"create a listing");
+                displayFragment(activity.getSearchFragListener(),true,"search listings");
             }
         });
         this.binding.createListingButton.setOnClickListener(new View.OnClickListener() {
@@ -47,7 +46,7 @@ public class MainView implements IMainView{
                 LinearLayout layout = (LinearLayout) getRootView().findViewById(R.id.mainLayout);
                 layout.setVisibility(INVISIBLE);
                 //CreateListingFragment createListingFragment =  new MainActivity().getAccountFragListener();
-                displayFragment(new MainActivity().getListingFragListener(),true,"create a listing");
+                displayFragment(activity.getListingFragListener(),true,"create a listing");
             }
         });
     }
