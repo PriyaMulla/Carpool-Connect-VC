@@ -1,10 +1,5 @@
 package com.example.carpoolas.view;
 
-import static com.example.carpoolas.controller.MainActivity.filterDates;
-import static com.example.carpoolas.controller.MainActivity.filterDriverRole;
-import static com.example.carpoolas.controller.MainActivity.filterEnd;
-import static com.example.carpoolas.controller.MainActivity.filterPassengerRole;
-import static com.example.carpoolas.controller.MainActivity.filterStart;
 import static com.example.carpoolas.model.Listing.isValidEnd;
 import static com.example.carpoolas.model.Listing.isValidStart;
 
