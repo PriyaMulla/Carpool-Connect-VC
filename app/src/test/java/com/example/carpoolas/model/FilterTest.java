@@ -28,11 +28,10 @@ class FilterTest {
 
         DateFilter dateFilter = new DateFilter();
         dateFilter.dDate = gDate;
-        dateFilter.filterListings(lst);
         PageOfListings nLst = new PageOfListings();
         nLst.addCreatedListing(listing1);
         nLst.addCreatedListing(listing3);
-        assertEquals(nLst.listings, dateFilter.newPage.listings);
+        assertEquals(nLst.listings, dateFilter.filterListings(lst).listings);
     }
     //start location filtering
     @Test
@@ -43,11 +42,10 @@ class FilterTest {
 
         StartFilter startFilter = new StartFilter();
         startFilter.dStart = "123 Ray Ave, Pough, NY 12604";
-        startFilter.filterListings(lst);
         PageOfListings nLst = new PageOfListings();
         nLst.addCreatedListing(listing1);
         nLst.addCreatedListing(listing3);
-        assertEquals(nLst.listings, startFilter.newPage.listings);
+        assertEquals(nLst.listings, startFilter.filterListings(lst).listings);
     }
 
     //end location filtering
@@ -59,11 +57,10 @@ class FilterTest {
 
         EndFilter endFilter = new EndFilter();
         endFilter.dEnd = "62 Grad Ave, Ton, NJ 23154";
-        endFilter.filterListings(lst);
         PageOfListings nLst = new PageOfListings();
         nLst.addCreatedListing(listing2);
         nLst.addCreatedListing(listing3);
-        assertEquals(nLst.listings, endFilter.newPage.listings);
+        assertEquals(nLst.listings, endFilter.filterListings(lst).listings);
     }
 
     //end location filtering
@@ -75,10 +72,9 @@ class FilterTest {
 
         RoleFilter roleFilter = new RoleFilter();
         roleFilter.dRole = "Driver";
-        roleFilter.filterListings(lst);
         PageOfListings nLst = new PageOfListings();
         nLst.addCreatedListing(listing2);
         nLst.addCreatedListing(listing3);
-        assertEquals(nLst.listings, roleFilter.newPage.listings);
+        assertEquals(nLst.listings, roleFilter.filterListings(lst).listings);
     }
 }

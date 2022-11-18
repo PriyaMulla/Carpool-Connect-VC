@@ -4,8 +4,10 @@ import android.annotation.SuppressLint;
 
 import androidx.annotation.NonNull;
 
+import java.text.ParseException;
 import java.util.Date;
 import java.text.SimpleDateFormat;
+import java.util.regex.Pattern;
 
 public class Listing {
     //fields
@@ -29,28 +31,17 @@ public class Listing {
 
     }
 
-    public Date getDateCreated() {
-        return dateCreated;
+
+    public static boolean isValidStart(String start){
+        return Pattern.compile("^(\\d{1,}) [a-zA-Z0-9\\s]+(\\,)? [a-zA-Z]+(\\,)? [A-Z]{2} [0-9]{5,6}$")
+                .matcher(start)
+                .find();
     }
 
-    public String getRole() {
-        return role;
-    }
-
-    public Date getDateTimeOfTrip() {
-        return dateTimeOfTrip;
-    }
-
-    public String getStartLocation() {
-        return startLocation;
-    }
-
-    public String getEndLocation() {
-        return endLocation;
-    }
-
-    public int getSeats() {
-        return seats;
+    public static boolean isValidEnd(String end){
+        return Pattern.compile("^(\\d{1,}) [a-zA-Z0-9\\s]+(\\,)? [a-zA-Z]+(\\,)? [A-Z]{2} [0-9]{5,6}$")
+                .matcher(end)
+                .find();
     }
 
 

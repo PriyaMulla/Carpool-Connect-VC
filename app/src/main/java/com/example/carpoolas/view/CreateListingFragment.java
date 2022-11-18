@@ -1,9 +1,7 @@
 package com.example.carpoolas.view;
 
-import static com.example.carpoolas.controller.MainActivity.isValidDateTime;
-import static com.example.carpoolas.controller.MainActivity.isValidEnd;
-import static com.example.carpoolas.controller.MainActivity.isValidSeats;
-import static com.example.carpoolas.controller.MainActivity.isValidStart;
+import static com.example.carpoolas.model.Listing.isValidEnd;
+import static com.example.carpoolas.model.Listing.isValidStart;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -65,26 +63,20 @@ public class CreateListingFragment extends Fragment implements ICreateListingVie
                 String dateTimeString = enterDate.toString() + " " + enterTime.toString();
                 Date date = null;
 
-                if (!isValidDateTime(dateTimeString)){
+                try {
+                    date = formatter.parse(dateTimeString);
+                } catch (ParseException e) {
                     Snackbar.make(view, "Please enter Date and Time!", Snackbar.LENGTH_SHORT).show();
-                    isValid = isValidDateTime(dateTimeString);
+                    isValid = false;
+                }
 
-                }
-                else {
-                    try {
-                        date = formatter.parse(dateTimeString);
-                    } catch (ParseException e) {
-                        Snackbar.make(view, "Please enter Date and Time!", Snackbar.LENGTH_SHORT).show();
-                        isValid = isValidDateTime(dateTimeString);
-                    }
-                }
 
                 //extract start location
                 Editable enterStart = CreateListingFragment.this.binding.enterStartLocation.getText();
                 String start = enterStart.toString();
                 if (!isValidStart(start)){
                     Snackbar.make(view, "Please enter Start Location!", Snackbar.LENGTH_SHORT).show();
-                    isValid = isValid && isValidStart(start);
+                    isValid = false;
                 }
 
                 //extract end location
@@ -92,18 +84,19 @@ public class CreateListingFragment extends Fragment implements ICreateListingVie
                 String end = enterEnd.toString();
                 if (!isValidEnd(end)){
                     Snackbar.make(view, "Please enter End Location!", Snackbar.LENGTH_SHORT).show();
-                    isValid = isValid && isValidEnd(end);
+                    isValid = false;
                 }
 
                 //extract seats
                 Editable enterSeats = CreateListingFragment.this.binding.enterSeats.getText();
-                String stringSeats = enterSeats.toString();
                 int seats = 0;
-                if (!isValidSeats(stringSeats)){
+
+                try{
+                    seats = Integer.parseInt(enterSeats.toString());
+                } catch (NumberFormatException e) {
                     Snackbar.make(view, "Please enter number of seats!", Snackbar.LENGTH_SHORT).show();
-                    isValid = isValid && isValidSeats(stringSeats);
+                    isValid = false;
                 }
-                else seats = Integer.parseInt(enterSeats.toString());
 
 
                 if(isValid){

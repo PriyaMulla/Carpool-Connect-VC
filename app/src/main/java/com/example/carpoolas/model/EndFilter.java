@@ -4,10 +4,10 @@ import java.util.Iterator;
 
 public class EndFilter implements IFilter{
     public String dEnd;
-    public PageOfListings newPage = new PageOfListings();
 
     @Override
     public PageOfListings filterListings(PageOfListings lst) {
+        PageOfListings newPage = new PageOfListings();
 
         Iterator<Listing> listingsIterator = lst.listings.iterator();
         while (listingsIterator.hasNext()) {

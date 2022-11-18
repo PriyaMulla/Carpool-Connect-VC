@@ -5,11 +5,11 @@ import java.util.Iterator;
 
 public class DateFilter implements IFilter{
     public Date dDate;
-    public PageOfListings newPage = new PageOfListings();
+
 
     @Override
     public PageOfListings filterListings(PageOfListings lst) {
-
+        PageOfListings newPage = new PageOfListings();
 
         Iterator<Listing> listingsIterator = lst.listings.iterator();
         while (listingsIterator.hasNext()){

@@ -1,9 +1,10 @@
 package com.example.carpoolas.view;
 
-import static com.example.carpoolas.controller.MainActivity.isValidEmail;
-import static com.example.carpoolas.controller.MainActivity.isValidName;
-import static com.example.carpoolas.controller.MainActivity.isValidPassword;
-import static com.example.carpoolas.controller.MainActivity.isValidUsername;
+
+import static com.example.carpoolas.model.Account.isValidEmail;
+import static com.example.carpoolas.model.Account.isValidName;
+import static com.example.carpoolas.model.Account.isValidPassword;
+import static com.example.carpoolas.model.Account.isValidUsername;
 
 import android.os.Bundle;
 
@@ -12,18 +13,13 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.text.Editable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.example.carpoolas.R;
-import com.example.carpoolas.controller.MainActivity;
 import com.example.carpoolas.databinding.FragmentCreateAccountBinding;
-import com.example.carpoolas.model.Account;
-import com.example.carpoolas.model.CollectionOfAccounts;
 import com.google.android.material.snackbar.Snackbar;
 
 //implements ICreateView interface using Android Frag
@@ -68,7 +64,7 @@ public class CreateAccountFragment extends Fragment implements ICreateAccountVie
                     name = enterName.toString();
                     if (!isValidName(name)){
                         Snackbar.make(view, "Please provide your name!",Snackbar.LENGTH_SHORT).show();
-                        isValid = isValid && isValidName(name);
+                        isValid = isValidName(name);
                     }
 
                     //extract user's username

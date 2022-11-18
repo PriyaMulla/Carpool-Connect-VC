@@ -5,11 +5,8 @@ import static com.example.carpoolas.controller.MainActivity.filterDriverRole;
 import static com.example.carpoolas.controller.MainActivity.filterEnd;
 import static com.example.carpoolas.controller.MainActivity.filterPassengerRole;
 import static com.example.carpoolas.controller.MainActivity.filterStart;
-//import com.example.carpoolas.controller.MainActivity.getListings;
-import static com.example.carpoolas.controller.MainActivity.isValidDateTime;
-import static com.example.carpoolas.controller.MainActivity.isValidEnd;
-import static com.example.carpoolas.controller.MainActivity.isValidSeats;
-import static com.example.carpoolas.controller.MainActivity.isValidStart;
+import static com.example.carpoolas.model.Listing.isValidEnd;
+import static com.example.carpoolas.model.Listing.isValidStart;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -30,6 +27,7 @@ import com.example.carpoolas.controller.MainActivity;
 import com.example.carpoolas.databinding.FragmentFilterBinding;
 import com.example.carpoolas.model.DateFilter;
 import com.example.carpoolas.model.EndFilter;
+import com.example.carpoolas.model.IFilter;
 import com.example.carpoolas.model.PageOfListings;
 import com.example.carpoolas.model.RoleFilter;
 import com.example.carpoolas.model.StartFilter;
@@ -39,6 +37,8 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 
 public class FilterFragment extends Fragment implements IFilterView{
@@ -64,11 +64,10 @@ public class FilterFragment extends Fragment implements IFilterView{
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         @SuppressLint("SimpleDateFormat") DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy HH:mm");
-
+        Set<IFilter> filterSet = new HashSet<>();
 
         //listener for filter button clicks
         this.binding.filterButton.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("SimpleDateFormat")
             @Override
             public void onClick(View view) {
                 PageOfListings filteredPage = new MainActivity().getListings(); //all listings at first
@@ -85,22 +84,21 @@ public class FilterFragment extends Fragment implements IFilterView{
                 String timeString = enterTime.toString();
                 String dateTimeString = dateString + " " + timeString;
                 Date date = null;
+
                 if (dateString.isEmpty() && timeString.isEmpty());
 
-                else if (!isValidDateTime(dateTimeString)) {
-                    Snackbar.make(view, "Please enter Date and Time!", Snackbar.LENGTH_SHORT).show();
-                    isValid = isValidDateTime(dateTimeString);
-
-                }
                 else {
                     try {
                         date = formatter.parse(dateTimeString);
                     } catch (ParseException e) {
                         Snackbar.make(view, "Please enter Date and Time!", Snackbar.LENGTH_SHORT).show();
-                        isValid = isValidDateTime(dateTimeString);
+                        isValid = false;
                     }
-                    filterDates(date, filteredPage);
+                    DateFilter dateFilter = new DateFilter();
+                    dateFilter.dDate = date;
+                    filterSet.add(dateFilter);
                 }
+
                 //extract start location
                 Editable enterStart = FilterFragment.this.binding.enterStartLocation.getText();
                 String start = enterStart.toString();
@@ -108,10 +106,12 @@ public class FilterFragment extends Fragment implements IFilterView{
 
                 else if (!isValidStart(start)) {
                     Snackbar.make(view, "Please enter Start Location!", Snackbar.LENGTH_SHORT).show();
-                    isValid = isValid && isValidStart(start);
+                    isValid = false;
                 }
                 else{
-                    filterStart(start, filteredPage);
+                    StartFilter startFilter = new StartFilter();
+                    startFilter.dStart = start;
+                    filterSet.add(startFilter);
                 }
 
                 //extract end location
@@ -120,10 +120,12 @@ public class FilterFragment extends Fragment implements IFilterView{
                 if(end.isEmpty());
                 else if (!isValidEnd(end)) {
                     Snackbar.make(view, "Please enter End Location!", Snackbar.LENGTH_SHORT).show();
-                    isValid = isValid && isValidEnd(end);
+                    isValid = false;
                 }
                 else{
-                    filterEnd(end, filteredPage);
+                    EndFilter endFilter = new EndFilter();
+                    endFilter.dEnd = end;
+                    filterSet.add(endFilter);
                 }
 
                 //extract seats
@@ -132,15 +134,19 @@ public class FilterFragment extends Fragment implements IFilterView{
                 int seats = 0;
                 if(stringSeats.isEmpty());
 
-                else if (!isValidSeats(stringSeats)) {
-                    Snackbar.make(view, "Please enter number of seats!", Snackbar.LENGTH_SHORT).show();
-                    isValid = isValid && isValidSeats(stringSeats);
-                } else seats = Integer.parseInt(enterSeats.toString());
+                else {
+                    try{
+                        seats = Integer.parseInt(enterSeats.toString());
+                    } catch (NumberFormatException e) {
+                        Snackbar.make(view, "Please enter number of seats!", Snackbar.LENGTH_SHORT).show();
+                        isValid = false;
+                    }
+                    seats = Integer.parseInt(enterSeats.toString());
+                }
 
-
-
+                //TODO:record filters, create filter, set of them, send to main activity
                  if (isValid) {
-                     Snackbar.make(view, "Listing added!", Snackbar.LENGTH_SHORT).show();
+                     Snackbar.make(view, "Filtered Listings!", Snackbar.LENGTH_SHORT).show();
                      LinearLayout layout = (LinearLayout) view.getRootView().findViewById(R.id.mainLayout);
                      layout.setVisibility(View.VISIBLE);
                      //TODO: dateCreated = formatter.format(dateCreated);
@@ -148,16 +154,18 @@ public class FilterFragment extends Fragment implements IFilterView{
                      RadioButton PassengerButton = (RadioButton) view.getRootView().findViewById(R.id.passengerRadioButton);
 
                      if (driverButton.isChecked()) {
-
-                         filterDriverRole(filteredPage);
-
-                         FilterFragment.this.listener.onFilter(filteredPage, FilterFragment.this);
+                         RoleFilter roleFilter = new RoleFilter();
+                         roleFilter.dRole = "Driver";
+                         filterSet.add(roleFilter);
                      }
                      if (PassengerButton.isChecked()) {
-                         filterPassengerRole(filteredPage);
-
-                         FilterFragment.this.listener.onFilter(filteredPage, FilterFragment.this);
+                         RoleFilter roleFilter = new RoleFilter();
+                         roleFilter.dRole = "Passenger";
+                         filterSet.add(roleFilter);
                      }
+
+                     FilterFragment.this.listener.onFilter(filteredPage, filterSet, FilterFragment.this);
+
                      enterDate.clear();
                      enterSeats.clear();
                      enterStart.clear();

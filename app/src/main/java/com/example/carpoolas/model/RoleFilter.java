@@ -4,10 +4,10 @@ import java.util.Iterator;
 
 public class RoleFilter implements IFilter{
     public String dRole;
-    public PageOfListings newPage = new PageOfListings();
 
     @Override
     public PageOfListings filterListings(PageOfListings lst) {
+        PageOfListings newPage = new PageOfListings();
 
         Iterator<Listing> listingsIterator = lst.listings.iterator();
         while (listingsIterator.hasNext()) {
