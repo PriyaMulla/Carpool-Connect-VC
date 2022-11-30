@@ -1,14 +1,22 @@
 package com.example.carpoolas;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 
+import static org.hamcrest.Matchers.allOf;
+
+import android.widget.ArrayAdapter;
+
+import androidx.test.espresso.DataInteraction;
 import androidx.test.espresso.Espresso;
+import androidx.test.espresso.ViewAssertion;
 import androidx.test.espresso.ViewInteraction;
 import androidx.test.espresso.action.ViewActions;
+import androidx.test.espresso.assertion.ViewAssertions;
 import androidx.test.espresso.matcher.ViewMatchers;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 
 import com.example.carpoolas.controller.MainActivity;
 
+import org.hamcrest.Matchers;
 import org.junit.Test;
 public class CreateListingInstTest {
     @org.junit.Rule
@@ -65,6 +73,11 @@ public class CreateListingInstTest {
         //add listing
         ViewInteraction createButtonVI = Espresso.onView(ViewMatchers.withId(R.id.addButton));
         createButtonVI.perform(ViewActions.click());
+
+        //check that it added
+
+        DataInteraction pageListing = Espresso.onData(Matchers.anything()).inAdapterView(ViewMatchers.withId(R.id.listview)).atPosition(0);
+        pageListing.check(ViewAssertions.matches(ViewMatchers.withSubstring("Passenger")));
 
     }
 }
