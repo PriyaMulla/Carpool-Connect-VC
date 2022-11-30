@@ -31,6 +31,7 @@ public class DashboardFragment extends Fragment implements IDashboardView {
     FragmentDashboardBinding binding;
     Listener listener;
 
+
     public DashboardFragment(Listener listener) {
         this.listener = listener;
     }
@@ -50,14 +51,12 @@ public class DashboardFragment extends Fragment implements IDashboardView {
         //dash.add("No listings available :'(");
 
         //Import listings into an arrayList
-        int i =0;
-        Iterator<Listing> listingsIterator = new MainActivity().getListings().listings.iterator();
+        Iterator<Listing> listingsIterator = ((MainActivity)getActivity()).getListings().listings.iterator();
         while (listingsIterator.hasNext()){
             Listing listing = listingsIterator.next();
-            dash.set(i, listing.toString());
-            i++;
+            dash.add(listing.toString());
             }
-        if(new MainActivity().getListings().isEmpty() == true){
+        if(((MainActivity)getActivity()).getListings().isEmpty()){
             //dash.add("yes");
             dash.add("No listings available :'(");
         }
