@@ -21,6 +21,10 @@ public class CreateAccountInstTest {
     @Test
     public void testCreateAccount(){
 
+        //click sign up
+        ViewInteraction signUpVI = Espresso.onView(ViewMatchers.withId(R.id.signUpButton));
+        signUpVI.perform(ViewActions.click());
+
         //input name
         ViewInteraction nameTextVI = Espresso.onView(ViewMatchers.withId(R.id.enterName));
         nameTextVI.perform(ViewActions.typeText("Priya Muldowney"));
