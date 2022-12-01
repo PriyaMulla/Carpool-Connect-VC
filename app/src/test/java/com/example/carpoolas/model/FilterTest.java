@@ -17,7 +17,7 @@ class FilterTest {
     Listing listing1 = new Listing(cDate, "Passenger", gDate, "123 Ray Ave, Pough, NY 12604", "3 Mond St, Keepsie, KY 13094", 2);
     Listing listing2 = new Listing(cDate, "Driver", cDate, "23 College Ave, Arling, CO 53597", "62 Grad Ave, Ton, NJ 23154", 4);
     Listing listing3 = new Listing(cDate, "Driver", gDate, "123 Ray Ave, Pough, NY 12604", "62 Grad Ave, Ton, NJ 23154", 4);
-    PageOfListings lst = new PageOfListings();
+    CollectionOfListings lst = new CollectionOfListings();
 
     @Test
     //date filtering
@@ -28,7 +28,7 @@ class FilterTest {
 
         DateFilter dateFilter = new DateFilter();
         dateFilter.dDate = gDate;
-        PageOfListings nLst = new PageOfListings();
+        CollectionOfListings nLst = new CollectionOfListings();
         nLst.addCreatedListing(listing1);
         nLst.addCreatedListing(listing3);
         assertEquals(nLst.listings, dateFilter.filterListings(lst).listings);
@@ -42,7 +42,7 @@ class FilterTest {
 
         StartFilter startFilter = new StartFilter();
         startFilter.dStart = "123 Ray Ave, Pough, NY 12604";
-        PageOfListings nLst = new PageOfListings();
+        CollectionOfListings nLst = new CollectionOfListings();
         nLst.addCreatedListing(listing1);
         nLst.addCreatedListing(listing3);
         assertEquals(nLst.listings, startFilter.filterListings(lst).listings);
@@ -57,7 +57,7 @@ class FilterTest {
 
         EndFilter endFilter = new EndFilter();
         endFilter.dEnd = "62 Grad Ave, Ton, NJ 23154";
-        PageOfListings nLst = new PageOfListings();
+        CollectionOfListings nLst = new CollectionOfListings();
         nLst.addCreatedListing(listing2);
         nLst.addCreatedListing(listing3);
         assertEquals(nLst.listings, endFilter.filterListings(lst).listings);
@@ -72,7 +72,7 @@ class FilterTest {
 
         RoleFilter roleFilter = new RoleFilter();
         roleFilter.dRole = "Driver";
-        PageOfListings nLst = new PageOfListings();
+        CollectionOfListings nLst = new CollectionOfListings();
         nLst.addCreatedListing(listing2);
         nLst.addCreatedListing(listing3);
         assertEquals(nLst.listings, roleFilter.filterListings(lst).listings);

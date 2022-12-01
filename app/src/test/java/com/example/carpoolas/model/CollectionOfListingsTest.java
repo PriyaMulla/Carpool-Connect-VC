@@ -7,14 +7,14 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Date;
 
-class PageOfListingsTest {
+class CollectionOfListingsTest {
     /**
-     * Tests PageOfListings toString  and addListing method by adding listings to PageOL and checking result
+     * Tests CollectionOfListings toString  and addListing method by adding listings to PageOL and checking result
      */
 
     @Test
     void testToString() {
-        PageOfListings lst = new PageOfListings();
+        CollectionOfListings lst = new CollectionOfListings();
         assertEquals("", lst.toString(), "non-empty string for empty page");
 
         //dates to check against

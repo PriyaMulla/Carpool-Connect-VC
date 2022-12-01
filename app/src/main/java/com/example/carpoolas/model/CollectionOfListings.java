@@ -9,11 +9,11 @@ import java.util.LinkedList;
 /**
  * Represents a Page, which is composed of listings.
  */
-public class PageOfListings {
+public class CollectionOfListings {
 
     public List<Listing> listings;
 
-    public PageOfListings() {
+    public CollectionOfListings() {
         this.listings = new LinkedList<Listing>();
     }
 

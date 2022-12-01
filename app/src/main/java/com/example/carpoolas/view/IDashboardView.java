@@ -1,9 +1,5 @@
 package com.example.carpoolas.view;
 
-import androidx.annotation.NonNull;
-
-import com.example.carpoolas.model.PageOfListings;
-
 public interface IDashboardView {
 
     /**

@@ -1,22 +1,13 @@
 package com.example.carpoolas.controller;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
 
-import android.annotation.SuppressLint;
-import android.os.Build;
 import android.os.Bundle;
 
 import com.example.carpoolas.model.CollectionOfAccounts;
-import com.example.carpoolas.model.DateFilter;
-import com.example.carpoolas.model.EndFilter;
+import com.example.carpoolas.model.CollectionOfListings;
 import com.example.carpoolas.model.IFilter;
-import com.example.carpoolas.model.Listing;
-import com.example.carpoolas.model.PageOfListings;
-import com.example.carpoolas.model.RoleFilter;
-import com.example.carpoolas.model.StartFilter;
 import com.example.carpoolas.view.CreateAccountFragment;
 import com.example.carpoolas.view.CreateListingFragment;
 import com.example.carpoolas.view.DashboardFragment;
@@ -30,20 +21,15 @@ import com.example.carpoolas.view.LogInScreen;
 import com.example.carpoolas.view.MainView;
 import com.example.carpoolas.view.ICreateAccountView;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.format.DateTimeParseException;
 import java.util.Date;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Set;
-import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity implements ICreateAccountView.Listener, ICreateListingView.Listener, IFilterView.Listener, IDashboardView.Listener, ILogInScreen.Listener {
 
     public static final String IN_PROGRESS = "inProgress";
     CollectionOfAccounts accounts = new CollectionOfAccounts();
-    static PageOfListings listings = new PageOfListings();
+    static CollectionOfListings listings = new CollectionOfListings();
     IMainView mainView;
 
     /**
@@ -88,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
     }
 
 
-    public PageOfListings getListing() {
+    public CollectionOfListings getListing() {
         return listings;
     }
 
@@ -118,11 +104,11 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
     }
 
 
-    public PageOfListings getListings() {
+    public CollectionOfListings getListings() {
         return listings;
     }
     @Override
-    public void onFilter(@NonNull PageOfListings lst, Set<IFilter> filterSet, @NonNull IFilterView view) {
+    public void onFilter(@NonNull CollectionOfListings lst, Set<IFilter> filterSet, @NonNull IFilterView view) {
         //TODO:call generic filter method here, for every member of the set filter
         Iterator<IFilter> filterIterator = filterSet.iterator();
         while (filterIterator.hasNext()){

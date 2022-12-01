@@ -8,8 +8,8 @@ public class DateFilter implements IFilter{
 
 
     @Override
-    public PageOfListings filterListings(PageOfListings lst) {
-        PageOfListings newPage = new PageOfListings();
+    public CollectionOfListings filterListings(CollectionOfListings lst) {
+        CollectionOfListings newPage = new CollectionOfListings();
 
         Iterator<Listing> listingsIterator = lst.listings.iterator();
         while (listingsIterator.hasNext()){

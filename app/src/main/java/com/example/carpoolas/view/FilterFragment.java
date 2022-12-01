@@ -20,10 +20,10 @@ import android.widget.RadioButton;
 import com.example.carpoolas.R;
 import com.example.carpoolas.controller.MainActivity;
 import com.example.carpoolas.databinding.FragmentFilterBinding;
+import com.example.carpoolas.model.CollectionOfListings;
 import com.example.carpoolas.model.DateFilter;
 import com.example.carpoolas.model.EndFilter;
 import com.example.carpoolas.model.IFilter;
-import com.example.carpoolas.model.PageOfListings;
 import com.example.carpoolas.model.RoleFilter;
 import com.example.carpoolas.model.StartFilter;
 import com.google.android.material.snackbar.Snackbar;
@@ -65,7 +65,7 @@ public class FilterFragment extends Fragment implements IFilterView{
         this.binding.filterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                PageOfListings filteredPage = new MainActivity().getListings(); //all listings at first
+                CollectionOfListings filteredPage = new MainActivity().getListings(); //all listings at first
                 //if no listings
                 if (filteredPage.isEmpty()){
                     Snackbar.make(view, "No listings to filter!", Snackbar.LENGTH_SHORT).show();
