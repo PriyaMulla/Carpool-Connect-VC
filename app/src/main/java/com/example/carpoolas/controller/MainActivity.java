@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        this.getSupportFragmentManager().setFragmentFactory(new NextGenPosFragFactory(this));
+        this.getSupportFragmentManager().setFragmentFactory(new CarpoolASFragFactory(this));
         super.onCreate(savedInstanceState);
 
 
