@@ -41,6 +41,7 @@ import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity implements ICreateAccountView.Listener, ICreateListingView.Listener, IFilterView.Listener, IDashboardView.Listener, ILogInScreen.Listener {
 
+    public static final String IN_PROGRESS = "inProgress";
     CollectionOfAccounts accounts = new CollectionOfAccounts();
     static PageOfListings listings = new PageOfListings();
     IMainView mainView;
@@ -52,16 +53,25 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        this.getSupportFragmentManager().setFragmentFactory(new NextGenPosFragFactory(this));
         super.onCreate(savedInstanceState);
 
 
         this.mainView = new MainView(this); // create the main screen view
 
-        //to begin with, make the screen display the create account fragment
-        LogInScreen logInScreen = new LogInScreen(this);
-        this.mainView.displayFragment(logInScreen, true, "create account");
+        if (savedInstanceState == null){
+            //to begin with, make the screen display the create account fragment
+            LogInScreen logInScreen = new LogInScreen(this);
+            this.mainView.displayFragment(logInScreen, true, "login screen");
+        }
 
         setContentView(this.mainView.getRootView()); //display fragment
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putBoolean(IN_PROGRESS, true);
     }
 
     public CreateListingFragment getListingFragListener(){
