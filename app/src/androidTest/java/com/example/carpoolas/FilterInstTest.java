@@ -2,6 +2,8 @@ package com.example.carpoolas;
 
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
 
+import android.os.SystemClock;
+
 import androidx.test.espresso.Espresso;
 import androidx.test.espresso.ViewInteraction;
 import androidx.test.espresso.action.ViewActions;
@@ -22,9 +24,9 @@ public class FilterInstTest {
      */
     @Test
     public void testCreateListing(){
-        //create account
-        CreateAccountInstTest createAccountInstTest = new CreateAccountInstTest();
-        createAccountInstTest.testCreateAccount();
+        //create listings
+        CreateListingInstTest createListingInstTest = new CreateListingInstTest();
+        createListingInstTest.testCreateListing();
 
         //click filter listing option
         ViewInteraction filterListingButtonVI = Espresso.onView(ViewMatchers.withId(R.id.searchListingsButton));
@@ -66,6 +68,9 @@ public class FilterInstTest {
         //filter listings
         ViewInteraction createButtonVI = Espresso.onView(ViewMatchers.withId(R.id.filterButton));
         createButtonVI.perform(ViewActions.click());
+
+        //check screen
+        SystemClock.sleep(3000);
 
     }
 }

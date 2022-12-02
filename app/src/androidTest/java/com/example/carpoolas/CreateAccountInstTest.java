@@ -1,5 +1,7 @@
 package com.example.carpoolas;
 
+import android.os.SystemClock;
+
 import androidx.test.espresso.Espresso;
 import androidx.test.espresso.ViewInteraction;
 import androidx.test.espresso.action.ViewActions;
@@ -53,7 +55,8 @@ public class CreateAccountInstTest {
         ViewInteraction createButtonVI = Espresso.onView(ViewMatchers.withId(R.id.createButton));
         createButtonVI.perform(ViewActions.click());
 
-
+        //check screen
+        SystemClock.sleep(3000);
 
     }
 
