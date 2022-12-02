@@ -3,6 +3,7 @@ import static androidx.test.espresso.assertion.ViewAssertions.matches;
 
 import static org.hamcrest.Matchers.allOf;
 
+import android.os.SystemClock;
 import android.widget.ArrayAdapter;
 
 import androidx.test.espresso.DataInteraction;
@@ -30,8 +31,8 @@ public class CreateListingInstTest {
     @Test
     public void testCreateListing(){
         //create account
-        CreateAccountInstTest createAccountInstTest = new CreateAccountInstTest();
-        createAccountInstTest.testCreateAccount();
+        LogInInstTest logInInstTest = new LogInInstTest();
+        logInInstTest.testLogIn();
 
         //click create listing option
         ViewInteraction createListingButtonVI = Espresso.onView(ViewMatchers.withId(R.id.createListingButton));
@@ -75,9 +76,50 @@ public class CreateListingInstTest {
         createButtonVI.perform(ViewActions.click());
 
         //check that it added
-
         DataInteraction pageListing = Espresso.onData(Matchers.anything()).inAdapterView(ViewMatchers.withId(R.id.listview)).atPosition(0);
-        pageListing.check(ViewAssertions.matches(ViewMatchers.withSubstring("Passenger")));
+        pageListing.check(ViewAssertions.matches(ViewMatchers.withSubstring("Role: Passenger")));
+
+        //add another listing
+        //click create listing option
+        createListingButtonVI.perform(ViewActions.click());
+
+        //select driver
+        ViewInteraction driveButtonVI = Espresso.onView(ViewMatchers.withId(R.id.driverRadioButton));
+        driveButtonVI.perform(ViewActions.click());
+        driveButtonVI.check(matches((ViewMatchers.isChecked())));
+
+        //seats
+        seatsTextVI.perform(ViewActions.typeText("2"));
+
+        Espresso.closeSoftKeyboard();
+
+        //date
+        dateTextVI.perform(ViewActions.typeText("12/15/2022"));
+
+        Espresso.closeSoftKeyboard();
+
+        //time
+        timeTextVI.perform(ViewActions.typeText("9:30"));
+
+        Espresso.closeSoftKeyboard();
+
+        startTextVI.perform(ViewActions.typeText("13 Hi St, Waun, CO 53598"));
+
+        Espresso.closeSoftKeyboard();
+
+        endTextVI.perform(ViewActions.typeText("15 Hello Ave, Drop, CO 53597"));
+
+        Espresso.closeSoftKeyboard();
+
+        //add listing
+        createButtonVI.perform(ViewActions.click());
+
+        //check that it added
+        pageListing = Espresso.onData(Matchers.anything()).inAdapterView(ViewMatchers.withId(R.id.listview)).atPosition(1);
+        pageListing.check(ViewAssertions.matches(ViewMatchers.withSubstring("Role: Driver")));
+
+        //check screen
+        SystemClock.sleep(3000);
 
     }
 }
