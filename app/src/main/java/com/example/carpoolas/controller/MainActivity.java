@@ -2,6 +2,7 @@ package com.example.carpoolas.controller;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
 
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
     CollectionOfAccounts accounts = new CollectionOfAccounts();
     static CollectionOfListings listings = new CollectionOfListings();
     IMainView mainView;
+    String curState = "";
 
     /**
      * Called whenever the activity is (re)created.
@@ -48,6 +50,7 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
         if (savedInstanceState == null){
             //to begin with, make the screen display the create account fragment
             LogInScreen logInScreen = new LogInScreen(this);
+            curState = "logIn";
             this.mainView.displayFragment(logInScreen, true, "login screen");
         }
 
@@ -73,7 +76,30 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
         return filterFragment;
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        //keep track of states
+        //Fragment currentFragment = getCurrentFragment();
+        //show the controls
+        areControlsShown(curState);
 
+        //mainView.showControls();
+    }
+    public void areControlsShown(String curState){
+        switch (curState){
+            case "dashboard":
+                mainView.showControls();
+                break;
+            default:
+                mainView.hideControls();
+                break;
+        }
+    }
+    //first put into bundle and save state string
+    //then inspect string
+    ///if its necessary then show controls
+    //else keep controls hidden
     public CollectionOfListings getListing() {
         return listings;
     }
@@ -91,6 +117,7 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
     @Override //addAccount be on collection of Accounts
     public void onCreateAccount(@NonNull String username, String password, String name, String email, @NonNull ICreateAccountView view) {
         this.accounts.addAccount(username,password,name,email);
+        curState = "dashboard";
         this.mainView.displayFragment(dashboardFragment,true,"dashboard");
 
         //switch to welcome user fragment with buttons
@@ -99,6 +126,7 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
     @Override
     public void onCreateListing(@NonNull Date created, String role, Date dateTime, String start, String end, int seats, @NonNull ICreateListingView view){
         this.listings.addListing(created, role, dateTime, start, end, seats);
+        curState = "dashboard";
         this.mainView.displayFragment(dashboardFragment,true,"dashboard");
 
     }
@@ -122,11 +150,13 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
     }
     @Override
     public void goToCreateAccount(@NonNull ILogInScreen view) {
+        curState = "account";
         this.mainView.displayFragment(new CreateAccountFragment(this),true,"create an account");
     }
 
     @Override
     public void goToDashboard(@NonNull ILogInScreen view) {
+        curState = "dashboard";
         this.mainView.displayFragment(dashboardFragment,true,"go to dashboard");
     }
 }

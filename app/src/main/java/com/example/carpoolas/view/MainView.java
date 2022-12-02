@@ -1,6 +1,7 @@
 package com.example.carpoolas.view;
 
 import static android.view.View.INVISIBLE;
+import static android.view.View.VISIBLE;
 
 import android.view.View;
 import android.widget.LinearLayout;
@@ -20,6 +21,7 @@ import com.example.carpoolas.databinding.ActivityMainBinding;
 public class MainView implements IMainView{
     FragmentManager fmanager; // lets us perform fragment transactions
     ActivityMainBinding binding;     // gives us access to all the graphical components in main.xml
+    boolean isShown = true;
 //set visibility
     /**
      *
@@ -33,9 +35,9 @@ public class MainView implements IMainView{
 
             @Override
             public void onClick(View view) {
-                LinearLayout layout = (LinearLayout) getRootView().findViewById(R.id.mainLayout);
+                LinearLayout layout = binding.mainLayout;
                 layout.setVisibility(INVISIBLE);
-
+                isShown = false;
                 displayFragment(activity.getSearchFragListener(),true,"search listings");
             }
         });
@@ -43,12 +45,23 @@ public class MainView implements IMainView{
 
             @Override
             public void onClick(View view) {
-                LinearLayout layout = (LinearLayout) getRootView().findViewById(R.id.mainLayout);
+                LinearLayout layout = binding.mainLayout;
                 layout.setVisibility(INVISIBLE);
+                isShown = false;
                 //CreateListingFragment createListingFragment =  new MainActivity().getAccountFragListener();
                 displayFragment(activity.getListingFragListener(),true,"create a listing");
             }
         });
+    }
+//showControls method
+    public void showControls(){
+        LinearLayout layout = binding.mainLayout;
+        layout.setVisibility(VISIBLE);
+    }
+
+    public void hideControls(){
+        LinearLayout layout = binding.mainLayout;
+        layout.setVisibility(INVISIBLE);
     }
 
     /**
@@ -78,5 +91,9 @@ public class MainView implements IMainView{
 
         ft.commit(); // executes the transaction
     }
+    public Fragment getCurFragment(){
+        return this.binding.fragmentContainerView.getFragment();
+    }
+
 
 }

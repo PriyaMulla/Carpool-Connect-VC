@@ -23,5 +23,9 @@ public interface IMainView {
      * @param name the name of the fragment to be displayed (can be used to backtrack to a particular fragment by name).
      */
     void displayFragment(Fragment fragment, boolean allowBack, String name);
+
+    void showControls();
+
+    void hideControls();
 }
 
