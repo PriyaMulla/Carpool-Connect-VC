@@ -41,8 +41,6 @@ public class FilterFragment extends Fragment implements IFilterView{
     private FragmentFilterBinding binding;
     private Listener listener;
 
-    public FilterFragment( ) {
-    }
 
     public FilterFragment(Listener listener) {
         this.listener = listener;
@@ -65,7 +63,7 @@ public class FilterFragment extends Fragment implements IFilterView{
         this.binding.filterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                CollectionOfListings filteredPage = new MainActivity().getListings(); //all listings at first
+                CollectionOfListings filteredPage = ((MainActivity)getActivity()).getListings(); //all listings at first
                 //if no listings
                 if (filteredPage.isEmpty()){
                     Snackbar.make(view, "No listings to filter!", Snackbar.LENGTH_SHORT).show();

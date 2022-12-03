@@ -36,7 +36,7 @@ public class CarpoolASFragFactory extends FragmentFactory {
         Class<? extends Fragment> fragClass = loadFragmentClass(classLoader, className);
 
         // is this fragment in our view package? if so, it must be one of ours!
-        if (fragClass.getPackage().getName().equals(VIEW_PACKAGE)) {
+        if (fragClass.getPackage().getName().equals("com.example.carpoolas.view")) {
             try {
                 Constructor<?>[] fcons = fragClass.getConstructors(); // get all the constructors
                 assert fcons.length > 0 : "Fragment class does not have a constructor";
@@ -44,7 +44,7 @@ public class CarpoolASFragFactory extends FragmentFactory {
             } catch (IllegalAccessException | InstantiationException | InvocationTargetException e) {
                 final String emsg = String.format("Can't instantiate %s: ensure it's concrete and " +
                         "has a public constructor with a MainActivity parameter", fragClass);
-                Log.e("NextGenPos", emsg);
+                Log.e("CarpoolAS", emsg);
                 e.printStackTrace();
             }
         }
