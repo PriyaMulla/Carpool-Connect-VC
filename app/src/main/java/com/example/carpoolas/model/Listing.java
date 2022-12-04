@@ -15,11 +15,16 @@ public class Listing {
     String role;
     Date dateTimeOfTrip;
     String startLocation;
-    String endLocation;
-    int seats;
 
+    String endLocation;
+
+    int seats;
     public String getRole() {
         return role;
+    }
+
+    public String getEndLocation() {
+        return endLocation;
     }
 
 

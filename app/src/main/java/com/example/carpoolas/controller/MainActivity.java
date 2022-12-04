@@ -30,6 +30,7 @@ import java.util.Set;
 public class MainActivity extends AppCompatActivity implements ICreateAccountView.Listener, ICreateListingView.Listener, IFilterView.Listener, IDashboardView.Listener, ILogInScreen.Listener {
 
     public static final String IN_PROGRESS = "inProgress";
+    public static final String IS_SHOWN = "isShown";
     CollectionOfAccounts accounts = new CollectionOfAccounts();
     static CollectionOfListings listings = new CollectionOfListings();
     IMainView mainView;
@@ -61,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putBoolean(IN_PROGRESS, true);
+        outState.putString(IS_SHOWN, curState);
     }
 
     public CreateListingFragment getListingFragListener(){
@@ -98,15 +99,16 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
         //mainView.showControls();
 
     public void areControlsShown(String curState){
-        switch (curState){
-            //case "dashboard":
-            case "logIn":
-                mainView.hideControls();
-                break;
-            default:
-                mainView.showControls();
-                break;
-        }
+//        switch (curState){
+//            //case "dashboard":
+//            case "dashboard":
+//                mainView.showControls();
+//                break;
+//            default:
+//                mainView.hideControls();
+//                break;
+//        }
+        mainView.showControls();
     }
     //first put into bundle and save state string
     //then inspect string
@@ -132,7 +134,6 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
         curState = "dashboard";
         this.mainView.displayFragment(dashboardFragment,true,"dashboard");
 
-        //switch to welcome user fragment with buttons
     }
 
     @Override

@@ -1,5 +1,8 @@
 package com.example.carpoolas.view;
 
+import static com.example.carpoolas.controller.MainActivity.IS_SHOWN;
+import static com.example.carpoolas.controller.MainActivity.curState;
+
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -30,6 +33,8 @@ public class DashboardFragment extends Fragment implements IDashboardView {
     Listener listener;
     FragmentManager fmanager;
     static String curRole;
+    static String curEnd;
+    String brief;
     ArrayList<Listing> listy = new ArrayList<>();
 
 
@@ -56,7 +61,15 @@ public class DashboardFragment extends Fragment implements IDashboardView {
         while (listingsIterator.hasNext()){
             Listing listing = listingsIterator.next();
             listy.add(listing);
-            dash.add(listing.toString());
+            curRole = listing.getRole();
+            curEnd = listing.getEndLocation();
+            if (curRole.equals("Driver")) {
+                brief = "Listing: \nA " + curRole + " is going to " + curEnd + "";
+            }
+            if (curRole.equals("Passenger")){
+                brief = "Listing: \nA " + curRole + " wants to go to " + curEnd + "";
+            }
+            dash.add(brief);
             }
         if(((MainActivity)getActivity()).getListings().isEmpty()){
             //dash.add("yes");
@@ -91,4 +104,15 @@ public class DashboardFragment extends Fragment implements IDashboardView {
 //        });
     }
 
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString(IS_SHOWN, curState);
+    }
+
+    @Override
+    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
+        ((MainActivity)getActivity()).areControlsShown(curState);
+    }
 }
