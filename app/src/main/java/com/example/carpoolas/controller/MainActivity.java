@@ -12,6 +12,7 @@ import com.example.carpoolas.model.IFilter;
 import com.example.carpoolas.view.CreateAccountFragment;
 import com.example.carpoolas.view.CreateListingFragment;
 import com.example.carpoolas.view.DashboardFragment;
+import com.example.carpoolas.view.DetailedListingFragment;
 import com.example.carpoolas.view.FilterFragment;
 import com.example.carpoolas.view.ICreateListingView;
 import com.example.carpoolas.view.IDashboardView;
@@ -142,10 +143,10 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
 
     }
 
-
     public CollectionOfListings getListings() {
         return listings;
     }
+
     @Override
     public void onFilter(@NonNull CollectionOfListings lst, Set<IFilter> filterSet, @NonNull IFilterView view) {
         //TODO:call generic filter method here, for every member of the set filter
@@ -164,10 +165,13 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
         curState = "logIn";
         this.mainView.displayFragment(new CreateAccountFragment(this),true,"create an account");
     }
-
     @Override
     public void goToDashboard(@NonNull ILogInScreen view) {
         curState = "logIn";
         this.mainView.displayFragment(dashboardFragment,true,"go to dashboard");
+    }
+
+    public void goToDetailedPost(@NonNull IDashboardView view, String role) {
+        this.mainView.displayFragment(new DetailedListingFragment(role),true,"go to detailed");
     }
 }

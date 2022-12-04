@@ -5,20 +5,18 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.example.carpoolas.R;
 import com.example.carpoolas.controller.MainActivity;
 import com.example.carpoolas.databinding.FragmentDashboardBinding;
-import com.example.carpoolas.model.CustomAdapter;
 import com.example.carpoolas.model.Listing;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -30,6 +28,9 @@ public class DashboardFragment extends Fragment implements IDashboardView {
 
     FragmentDashboardBinding binding;
     Listener listener;
+    FragmentManager fmanager;
+    static String curRole;
+    ArrayList<Listing> listy = new ArrayList<>();
 
 
     public DashboardFragment(Listener listener) {
@@ -54,6 +55,7 @@ public class DashboardFragment extends Fragment implements IDashboardView {
         Iterator<Listing> listingsIterator = ((MainActivity)getActivity()).getListings().listings.iterator();
         while (listingsIterator.hasNext()){
             Listing listing = listingsIterator.next();
+            listy.add(listing);
             dash.add(listing.toString());
             }
         if(((MainActivity)getActivity()).getListings().isEmpty()){
@@ -67,8 +69,17 @@ public class DashboardFragment extends Fragment implements IDashboardView {
         listView.setOnItemClickListener(new android.widget.AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
-                String item = (String) listView.getItemAtPosition(position);
-                Snackbar.make(view,"You selected : " + item,Snackbar.LENGTH_SHORT).show();
+                String selectedPost = (String) listView.getItemAtPosition(position);
+                Snackbar.make(view,"You selected : " + selectedPost,Snackbar.LENGTH_SHORT).show();
+                //DetailedListingFragment detailedFragment = new DetailedListingFragment(curRole);
+
+                //TODO send info to DetailedListingFragment
+                //Listing listy= dash.get(position);
+                if (!(((MainActivity)getActivity()).getListings().isEmpty())) {
+                    curRole = listy.get(position++).getRole();
+
+                    DashboardFragment.this.listener.goToDetailedPost(DashboardFragment.this, curRole);
+                }
             }
         });
         //listView.setOnItemClickListener();

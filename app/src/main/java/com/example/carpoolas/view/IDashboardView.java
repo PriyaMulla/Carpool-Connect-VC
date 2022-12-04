@@ -7,6 +7,7 @@ public interface IDashboardView {
      * to the view should implement.
      */
     interface Listener{
+        void goToDetailedPost(IDashboardView view, String s);
         /**
          * called when an account is created
          */

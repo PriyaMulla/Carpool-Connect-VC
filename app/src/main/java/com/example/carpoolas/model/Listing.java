@@ -18,6 +18,9 @@ public class Listing {
     String endLocation;
     int seats;
 
+    public String getRole() {
+        return role;
+    }
 
 
 
