@@ -27,5 +27,7 @@ public interface IMainView {
     void showControls();
 
     void hideControls();
+
+    Fragment getCurFragment();
 }
 

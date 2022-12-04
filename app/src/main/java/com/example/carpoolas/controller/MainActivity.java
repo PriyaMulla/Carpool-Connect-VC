@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
     CollectionOfAccounts accounts = new CollectionOfAccounts();
     static CollectionOfListings listings = new CollectionOfListings();
     IMainView mainView;
-    String curState = "";
+    public static String curState = "";
 
     /**
      * Called whenever the activity is (re)created.
@@ -82,17 +82,28 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
         //keep track of states
         //Fragment currentFragment = getCurrentFragment();
         //show the controls
-        areControlsShown(curState);
+        Fragment curFrag = MainActivity.this.mainView.getCurFragment();
+        if (curFrag instanceof ILogInScreen) mainView.hideControls();
+        if (curFrag instanceof IDashboardView) mainView.showControls();
+        if (curFrag instanceof ICreateAccountView) {
+            LogInScreen logInScreen = new LogInScreen(this);
+            this.mainView.displayFragment(logInScreen, true, "'login screen");
+            mainView.hideControls();
+        }
+
+    }
+        //areControlsShown(curState);
 
         //mainView.showControls();
-    }
+
     public void areControlsShown(String curState){
         switch (curState){
-            case "dashboard":
-                mainView.showControls();
+            //case "dashboard":
+            case "logIn":
+                mainView.hideControls();
                 break;
             default:
-                mainView.hideControls();
+                mainView.showControls();
                 break;
         }
     }
@@ -150,13 +161,13 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
     }
     @Override
     public void goToCreateAccount(@NonNull ILogInScreen view) {
-        curState = "account";
+        curState = "logIn";
         this.mainView.displayFragment(new CreateAccountFragment(this),true,"create an account");
     }
 
     @Override
     public void goToDashboard(@NonNull ILogInScreen view) {
-        curState = "dashboard";
+        curState = "logIn";
         this.mainView.displayFragment(dashboardFragment,true,"go to dashboard");
     }
 }

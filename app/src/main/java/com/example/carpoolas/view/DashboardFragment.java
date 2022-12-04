@@ -62,7 +62,7 @@ public class DashboardFragment extends Fragment implements IDashboardView {
         }
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1,dash);
 
-        ListView listView = (ListView) view.findViewById(R.id.listview);
+        ListView listView = binding.listview;
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new android.widget.AdapterView.OnItemClickListener() {
             @Override

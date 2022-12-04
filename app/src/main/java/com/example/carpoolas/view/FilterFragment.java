@@ -143,8 +143,8 @@ public class FilterFragment extends Fragment implements IFilterView{
                      LinearLayout layout = (LinearLayout) view.getRootView().findViewById(R.id.mainLayout);
                      layout.setVisibility(View.VISIBLE);
                      //TODO: dateCreated = formatter.format(dateCreated);
-                     RadioButton driverButton = (RadioButton) view.getRootView().findViewById(R.id.driverRadioButton);
-                     RadioButton PassengerButton = (RadioButton) view.getRootView().findViewById(R.id.passengerRadioButton);
+                     RadioButton driverButton = binding.driverRadioButton;
+                     RadioButton PassengerButton = binding.passengerRadioButton;
 
                      if (driverButton.isChecked()) {
                          RoleFilter roleFilter = new RoleFilter();

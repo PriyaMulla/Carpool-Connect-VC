@@ -3,6 +3,8 @@ package com.example.carpoolas.view;
 import static android.view.View.INVISIBLE;
 import static android.view.View.VISIBLE;
 
+import static com.example.carpoolas.controller.MainActivity.curState;
+
 import android.view.View;
 import android.widget.LinearLayout;
 
@@ -38,6 +40,7 @@ public class MainView implements IMainView{
                 LinearLayout layout = binding.mainLayout;
                 layout.setVisibility(INVISIBLE);
                 isShown = false;
+                curState = "logIn";
                 displayFragment(activity.getSearchFragListener(),true,"search listings");
             }
         });
@@ -48,6 +51,7 @@ public class MainView implements IMainView{
                 LinearLayout layout = binding.mainLayout;
                 layout.setVisibility(INVISIBLE);
                 isShown = false;
+                curState = "logIn";
                 //CreateListingFragment createListingFragment =  new MainActivity().getAccountFragListener();
                 displayFragment(activity.getListingFragListener(),true,"create a listing");
             }

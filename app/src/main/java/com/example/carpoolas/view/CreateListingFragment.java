@@ -106,8 +106,8 @@ public class CreateListingFragment extends Fragment implements ICreateListingVie
                     layout.setVisibility(View.VISIBLE);
                     //TODO: dateCreated = formatter.format(dateCreated);
                     Date dateCreated = new Date();
-                    RadioButton driverButton = (RadioButton) view.getRootView().findViewById(R.id.driverRadioButton);
-                    RadioButton PassengerButton = (RadioButton) view.getRootView().findViewById(R.id.passengerRadioButton);
+                    RadioButton driverButton = binding.driverRadioButton;
+                    RadioButton PassengerButton = binding.passengerRadioButton;
 
                     if (driverButton.isChecked()){
                         CreateListingFragment.this.listener.onCreateListing(dateCreated, "Driver", date, start, end, seats, CreateListingFragment.this);

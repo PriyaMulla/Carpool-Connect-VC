@@ -36,7 +36,7 @@ public class CarpoolASFragFactory extends FragmentFactory {
         Class<? extends Fragment> fragClass = loadFragmentClass(classLoader, className);
 
         // is this fragment in our view package? if so, it must be one of ours!
-        if (fragClass.getPackage().getName().equals("com.example.carpoolas.view")) {
+        if (fragClass.getPackage().getName().equals(VIEW_PACKAGE)) {
             try {
                 Constructor<?>[] fcons = fragClass.getConstructors(); // get all the constructors
                 assert fcons.length > 0 : "Fragment class does not have a constructor";
