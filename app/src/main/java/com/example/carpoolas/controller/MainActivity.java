@@ -9,6 +9,7 @@ import android.os.Bundle;
 import com.example.carpoolas.model.CollectionOfAccounts;
 import com.example.carpoolas.model.CollectionOfListings;
 import com.example.carpoolas.model.IFilter;
+import com.example.carpoolas.model.Listing;
 import com.example.carpoolas.view.CreateAccountFragment;
 import com.example.carpoolas.view.CreateListingFragment;
 import com.example.carpoolas.view.DashboardFragment;
@@ -87,6 +88,7 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
         Fragment curFrag = MainActivity.this.mainView.getCurFragment();
         if (curFrag instanceof ILogInScreen) mainView.hideControls();
         if (curFrag instanceof IDashboardView) mainView.showControls();
+        if (curFrag instanceof ICreateListingView) mainView.hideControls();
         if (curFrag instanceof ICreateAccountView) {
             LogInScreen logInScreen = new LogInScreen(this);
             this.mainView.displayFragment(logInScreen, true, "'login screen");
@@ -172,7 +174,7 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
         this.mainView.displayFragment(dashboardFragment,true,"go to dashboard");
     }
 
-    public void goToDetailedPost(@NonNull IDashboardView view, String role) {
-        this.mainView.displayFragment(new DetailedListingFragment(role),true,"go to detailed");
+    public void goToDetailedPost(@NonNull IDashboardView view, Listing curListing) {
+        this.mainView.displayFragment(new DetailedListingFragment(curListing),true,"go to detailed");
     }
 }

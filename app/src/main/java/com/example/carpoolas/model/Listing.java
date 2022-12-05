@@ -14,17 +14,33 @@ public class Listing {
     Date dateCreated;
     String role;
     Date dateTimeOfTrip;
+
     String startLocation;
 
     String endLocation;
-
     int seats;
+
+    public Date getDateCreated() {
+        return dateCreated;
+    }
+
     public String getRole() {
         return role;
     }
-
     public String getEndLocation() {
         return endLocation;
+    }
+
+    public Date getDateTimeOfTrip() {
+        return dateTimeOfTrip;
+    }
+
+    public String getStartLocation() {
+        return startLocation;
+    }
+
+    public int getSeats() {
+        return seats;
     }
 
 

@@ -1,5 +1,7 @@
 package com.example.carpoolas.view;
 
+import com.example.carpoolas.model.Listing;
+
 public interface IDashboardView {
 
     /**
@@ -7,7 +9,7 @@ public interface IDashboardView {
      * to the view should implement.
      */
     interface Listener{
-        void goToDetailedPost(IDashboardView view, String s);
+        void goToDetailedPost(IDashboardView view, Listing curListing);
         /**
          * called when an account is created
          */

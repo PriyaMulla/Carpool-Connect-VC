@@ -13,7 +13,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.carpoolas.databinding.FragmentDetailedListingBinding;
+import com.example.carpoolas.model.Listing;
 import com.example.carpoolas.view.IDetailedListingFragment;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 
 public class DetailedListingFragment extends Fragment implements IDetailedListingFragment {
@@ -22,8 +26,9 @@ public class DetailedListingFragment extends Fragment implements IDetailedListin
     Listener listener;
     FragmentManager fmanager;
     String curRRole = "";
+    Listing currListing;
 
-    public DetailedListingFragment(String s) {curRRole = s;
+    public DetailedListingFragment(Listing currListing) {this.currListing = currListing;
 
     }
 
@@ -36,11 +41,30 @@ public class DetailedListingFragment extends Fragment implements IDetailedListin
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy HH:mm");
+        String strDateTimeCreated = formatter.format(currListing.getDateCreated());
+        String strDateTime = formatter.format(currListing.getDateTimeOfTrip());
         //TODO Onclick close -goes back?
         //TODO Onclick either accept or message
-        TextView exampleText = binding.exampleText;
+        TextView roleText = binding.rolePlaceholder;
+        TextView dateTimeCreated = binding.dateTimePlaceholder;
+        TextView destination = binding.destPlaceholder;
+        TextView startLocation = binding.startPlaceholder;
+        TextView dateTime4Trip = binding.dateTime4Trip;
+        TextView seatPhrase = binding.seatPhrase;
+        TextView seats = binding.seatsPlaceholder;
 
-                exampleText.setText(curRRole);
+        dateTimeCreated.setText(strDateTimeCreated);
+        destination.setText(currListing.getEndLocation());
+        roleText.setText(currListing.getRole() + " is offering");
+        startLocation.setText(currListing.getStartLocation());
+        dateTime4Trip.setText(strDateTime);
+        if (currListing.getRole().equals("Driver")) {
+            seatPhrase.setText("Seats Available:");
+        } else{
+            seatPhrase.setText("Seats needed");
+        }
+        seats.setText(String.valueOf(currListing.getSeats()));
 
 
     }

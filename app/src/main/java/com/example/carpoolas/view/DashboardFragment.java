@@ -16,8 +16,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
+import com.example.carpoolas.R;
 import com.example.carpoolas.controller.MainActivity;
 import com.example.carpoolas.databinding.FragmentDashboardBinding;
 import com.example.carpoolas.model.Listing;
@@ -31,9 +33,9 @@ public class DashboardFragment extends Fragment implements IDashboardView {
 
     FragmentDashboardBinding binding;
     Listener listener;
-    FragmentManager fmanager;
     static String curRole;
     static String curEnd;
+    static Listing curListing;
     String brief;
     ArrayList<Listing> listy = new ArrayList<>();
 
@@ -54,7 +56,6 @@ public class DashboardFragment extends Fragment implements IDashboardView {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
         ArrayList<String> dash = new ArrayList<>();
-        //dash.add("No listings available :'(");
 
         //Import listings into an arrayList
         Iterator<Listing> listingsIterator = ((MainActivity)getActivity()).getListings().listings.iterator();
@@ -72,7 +73,6 @@ public class DashboardFragment extends Fragment implements IDashboardView {
             dash.add(brief);
             }
         if(((MainActivity)getActivity()).getListings().isEmpty()){
-            //dash.add("yes");
             dash.add("No listings available :'(");
         }
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1,dash);
@@ -84,24 +84,15 @@ public class DashboardFragment extends Fragment implements IDashboardView {
             public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
                 String selectedPost = (String) listView.getItemAtPosition(position);
                 Snackbar.make(view,"You selected : " + selectedPost,Snackbar.LENGTH_SHORT).show();
-                //DetailedListingFragment detailedFragment = new DetailedListingFragment(curRole);
 
-                //TODO send info to DetailedListingFragment
-                //Listing listy= dash.get(position);
                 if (!(((MainActivity)getActivity()).getListings().isEmpty())) {
-                    curRole = listy.get(position++).getRole();
-
-                    DashboardFragment.this.listener.goToDetailedPost(DashboardFragment.this, curRole);
+                    curListing = listy.get(position++);
+                    LinearLayout layout = (LinearLayout) view.getRootView().findViewById(R.id.mainLayout);
+                    layout.setVisibility(View.INVISIBLE);
+                    DashboardFragment.this.listener.goToDetailedPost(DashboardFragment.this, curListing);
                 }
             }
         });
-        //listView.setOnItemClickListener();
-//        listView.setOnClickListener(new AdapterView.OnItemClickListener(){
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                Toast.makeText(getContext(), "Click ListItem Number " + position, Toast.LENGTH_LONG).show();
-//            }
-//        });
     }
 
     @Override
