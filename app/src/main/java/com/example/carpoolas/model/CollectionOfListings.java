@@ -2,6 +2,7 @@ package com.example.carpoolas.model;
 
 import androidx.annotation.NonNull;
 
+import java.util.Collection;
 import java.util.Date;
 import java.util.LinkedList;
         import java.util.List;
@@ -11,7 +12,7 @@ import java.util.LinkedList;
  */
 public class CollectionOfListings {
 
-    public List<Listing> listings;
+    public final Collection<Listing> listings;
 
     public CollectionOfListings() {
         this.listings = new LinkedList<Listing>();
