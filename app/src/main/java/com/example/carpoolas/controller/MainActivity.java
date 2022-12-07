@@ -10,6 +10,8 @@ import com.example.carpoolas.model.CollectionOfAccounts;
 import com.example.carpoolas.model.CollectionOfListings;
 import com.example.carpoolas.model.IFilter;
 import com.example.carpoolas.model.Listing;
+import com.example.carpoolas.persistance.FirestoreFacade;
+import com.example.carpoolas.persistance.IPersistenceFacade;
 import com.example.carpoolas.view.CreateAccountFragment;
 import com.example.carpoolas.view.CreateListingFragment;
 import com.example.carpoolas.view.DashboardFragment;
@@ -33,10 +35,14 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
 
     public static final String IN_PROGRESS = "inProgress";
     public static final String IS_SHOWN = "isShown";
+    private static final String CUR_LISTING = "curListing";
     CollectionOfAccounts accounts = new CollectionOfAccounts();
     CollectionOfListings listings = new CollectionOfListings();
     IMainView mainView;
     public static String curState = "";
+    Listing curListing; //listing currently working on
+    IPersistenceFacade persistenceFacade = new FirestoreFacade();
+
 
 
     /**
@@ -57,6 +63,8 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
             LogInScreen logInScreen = new LogInScreen(this);
             curState = "logIn";
             this.mainView.displayFragment(logInScreen, true, "login screen");
+        } else {
+            this.curListing = (Listing) savedInstanceState.getSerializable(CUR_LISTING);
         }
 
         setContentView(this.mainView.getRootView()); //display fragment
@@ -66,6 +74,7 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putString(IS_SHOWN, curState);
+        outState.putSerializable(CUR_LISTING, this.curListing);
     }
 
     public CreateListingFragment getListingFragListener(){
@@ -142,7 +151,11 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
 
     @Override
     public void onCreateListing(@NonNull Date created, String role, Date dateTime, String start, String end, int seats, @NonNull ICreateListingView view){
-        this.listings.addListing(created, role, dateTime, start, end, seats);
+        curListing = new Listing(created, role, dateTime, start, end, seats);
+        this.listings.addCreatedListing(curListing);
+
+        this.persistenceFacade.saveListing(this.curListing);
+
         curState = "dashboard";
         this.mainView.displayFragment(dashboardFragment,true,"dashboard");
 

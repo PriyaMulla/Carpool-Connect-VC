@@ -9,6 +9,8 @@ import java.io.Serializable;
 import java.text.ParseException;
 import java.util.Date;
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Pattern;
 
 public class Listing implements Serializable {
@@ -23,27 +25,22 @@ public class Listing implements Serializable {
     public Date getDateCreated() {
         return dateCreated;
     }
-
     public String getRole() {
         return role;
     }
     public String getEndLocation() {return endLocation;}
-
     public Date getDateTimeOfTrip() {
         return dateTimeOfTrip;
     }
-
     public String getStartLocation() {
         return startLocation;
     }
-
     public int getSeats() {
         return seats;
     }
 
-    public Listing() throws ParseException {};
 
-    public Listing(Date created, String role, Date dateTime, String start, String end,  int seats) throws ParseException {
+    public Listing(Date created, String role, Date dateTime, String start, String end,  int seats){
         this.dateCreated = created;
         this.role = role;
         this.dateTimeOfTrip = dateTime;
@@ -82,9 +79,7 @@ public class Listing implements Serializable {
                 "\n Seats: " + seats;
     }
 
-    //convert Date to string
-    String strDateCreated = formatter.format(dateCreated);
-    String strDateTrip = formatter.format(dateTimeOfTrip);
+
 
     //constants for (de) serialization
     private static final String DATE_CREATED = "dateCreated";
@@ -94,37 +89,41 @@ public class Listing implements Serializable {
     private static final String END_LOCATION = "endLocation";
     private static final String SEATS = "seats";
 
-    /**
-     * Converts the Listing the method is called on into a Bundle.
-     *
-     * @return A Bundle with the listing's contents
-     */
-    Bundle b = new Bundle();
-    @NonNull
-    public Bundle toBundle(){
-        b.putString(DATE_CREATED, this.strDateCreated);
-        b.putString(ROLE, this.role);
-        b.putString(DATE_TIME, this.strDateTrip);
-        b.putString(START_LOCATION, this.startLocation);
-        b.putString(END_LOCATION, this.endLocation);
-        b.putInt(SEATS, this.seats);
-        return b;
-    }
-
-
 
     /**
-     * Creates and returns a Listing from a previously created Bundle.
+     * Converts the Listing the method is called on into a String to Object Map.
      *
-     * @param b the Bundle to convert to a Listing
-     * @return the Listing representation of the input Bundle
+     * @return A map with the listing's contents
      */
     @NonNull
-    public static Listing fromBundle(@NonNull Bundle b) throws ParseException {
-        //switch dates back to date type
-        Date bDateCreated = formatter.parse(b.getString(DATE_CREATED));
-        Date bDateTrip = formatter.parse(b.getString(DATE_TIME));
-        return new Listing(bDateCreated, b.getString(ROLE), bDateTrip, b.getString(START_LOCATION), b.getString(END_LOCATION), b.getInt(SEATS));
+    public Map<String,Object> toMap() {
+        Map<String,Object> map = new HashMap<>();
+        map.put(DATE_CREATED, dateCreated);
+        map.put(ROLE, role);
+        map.put(DATE_TIME, dateTimeOfTrip);
+        map.put(START_LOCATION, startLocation);
+        map.put(END_LOCATION, endLocation);
+        map.put(SEATS, seats);
+
+        return map;
     }
+
+    /**
+     * Creates and returns a SalesLineItem from a previously created String to Object Map.
+     *
+     * @param map the Map to convert to a SalesLineItem
+     * @return the SalesLineItem representation of the input map
+     */
+    @NonNull
+    public static Listing fromMap(@NonNull Map<String, Object> map){
+        Date dateCreated = (Date) map.get(DATE_CREATED);
+        String role = (String) map.get(ROLE);
+        Date dateTimeOfTrip = (Date) map.get(DATE_TIME);
+        String startLocation = (String) map.get(START_LOCATION);
+        String endLocation = (String) map.get(END_LOCATION);
+        int seats = (int)(long) map.get(SEATS); // Firestore saves integers as longs
+        return new Listing(dateCreated, role, dateTimeOfTrip, startLocation, endLocation, seats);
+    }
+
 
 }

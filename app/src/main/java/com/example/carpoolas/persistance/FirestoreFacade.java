@@ -25,8 +25,7 @@ public class FirestoreFacade implements IPersistenceFacade{
      * @param listing the listing to be saved
      */
     public void saveListing(Listing listing){
-        this.db.collection(LISTINGS_COLLECTION)
-                .add(listing); // creates new document with pseudorandom id, uses firestore's built-in serialization
+        this.db.collection(LISTINGS_COLLECTION).add(listing); // creates new document with pseudorandom id, uses firestore's built-in serialization
     }
 
     /**
