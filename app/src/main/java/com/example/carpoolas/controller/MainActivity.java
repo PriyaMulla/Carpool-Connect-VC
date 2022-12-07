@@ -17,6 +17,7 @@ import com.example.carpoolas.view.DetailedListingFragment;
 import com.example.carpoolas.view.FilterFragment;
 import com.example.carpoolas.view.ICreateListingView;
 import com.example.carpoolas.view.IDashboardView;
+import com.example.carpoolas.view.IDetailedListingView;
 import com.example.carpoolas.view.IFilterView;
 import com.example.carpoolas.view.ILogInScreen;
 import com.example.carpoolas.view.IMainView;
@@ -28,7 +29,7 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.Set;
 
-public class MainActivity extends AppCompatActivity implements ICreateAccountView.Listener, ICreateListingView.Listener, IFilterView.Listener, IDashboardView.Listener, ILogInScreen.Listener {
+public class MainActivity extends AppCompatActivity implements ICreateAccountView.Listener, ICreateListingView.Listener, IFilterView.Listener, IDashboardView.Listener, ILogInScreen.Listener, IDetailedListingView.Listener {
 
     public static final String IN_PROGRESS = "inProgress";
     public static final String IS_SHOWN = "isShown";
@@ -176,6 +177,10 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
     }
 
     public void goToDetailedPost(@NonNull IDashboardView view, Listing curListing) {
-        this.mainView.displayFragment(new DetailedListingFragment(curListing),true,"go to detailed");
+        this.mainView.displayFragment(new DetailedListingFragment(this),true,"go to detailed");
+    }
+
+    public Listing getCurListing() {
+        return DashboardFragment.curListing;
     }
 }

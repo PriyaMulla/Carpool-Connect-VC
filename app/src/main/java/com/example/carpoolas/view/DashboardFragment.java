@@ -35,7 +35,7 @@ public class DashboardFragment extends Fragment implements IDashboardView {
     Listener listener;
     static String curRole;
     static String curEnd;
-    static Listing curListing;
+    public static Listing curListing;
     String brief;
     ArrayList<Listing> listy = new ArrayList<>();
 

@@ -12,24 +12,37 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.carpoolas.controller.MainActivity;
 import com.example.carpoolas.databinding.FragmentDetailedListingBinding;
 import com.example.carpoolas.model.Listing;
-import com.example.carpoolas.view.IDetailedListingFragment;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
 
-public class DetailedListingFragment extends Fragment implements IDetailedListingFragment {
+public class DetailedListingFragment extends Fragment implements IDetailedListingView {
 
     FragmentDetailedListingBinding binding;
     Listener listener;
-    FragmentManager fmanager;
-    String curRRole = "";
     Listing currListing;
-
-    public DetailedListingFragment(Listing currListing) {this.currListing = currListing;
-
+    String curRRole;
+    String endLocation;
+    String strDateTimeCreated;
+    String strDateTime;
+    String startLoc;
+    String seatNum;
+//TODO Create a method in MainActivity that gets the current post for here
+    public DetailedListingFragment(Listener listener) {
+        currListing =((MainActivity)getActivity()).getCurListing();
+        DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy HH:mm");
+        strDateTimeCreated = formatter.format(currListing.getDateCreated());
+        strDateTime = formatter.format(currListing.getDateTimeOfTrip());
+        this.currListing = currListing;
+        this.listener = listener;
+        curRRole = currListing.getRole();
+        endLocation = currListing.getEndLocation();
+        startLoc = currListing.getStartLocation();
+        seatNum = String.valueOf(currListing.getSeats());
     }
 
     @Override
@@ -41,9 +54,10 @@ public class DetailedListingFragment extends Fragment implements IDetailedListin
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy HH:mm");
-        String strDateTimeCreated = formatter.format(currListing.getDateCreated());
-        String strDateTime = formatter.format(currListing.getDateTimeOfTrip());
+        strDateTimeCreated = formatter.format(currListing.getDateCreated());
+        strDateTime = formatter.format(currListing.getDateTimeOfTrip());
         //TODO Onclick close -goes back?
         //TODO Onclick either accept or message
         TextView roleText = binding.rolePlaceholder;
@@ -55,17 +69,33 @@ public class DetailedListingFragment extends Fragment implements IDetailedListin
         TextView seats = binding.seatsPlaceholder;
 
         dateTimeCreated.setText(strDateTimeCreated);
-        destination.setText(currListing.getEndLocation());
-        roleText.setText(currListing.getRole() + " is offering");
-        startLocation.setText(currListing.getStartLocation());
+        destination.setText(endLocation);
+        roleText.setText(curRRole + " is offering");
+        startLocation.setText(startLoc);
         dateTime4Trip.setText(strDateTime);
-        if (currListing.getRole().equals("Driver")) {
+        if (curRRole.equals("Driver")) {
             seatPhrase.setText("Seats Available:");
         } else{
             seatPhrase.setText("Seats needed");
         }
-        seats.setText(String.valueOf(currListing.getSeats()));
+        seats.setText(seatNum);
 
 
     }
+
+//    @Override
+//    public void onSaveInstanceState(@NonNull Bundle outState) {
+//        super.onSaveInstanceState(outState);
+//        outState.putString("Role", curRRole);
+//        outState.putString("Start Location", startLoc);
+//        outState.putString("End Location", endLocation);
+//        outState.putString("Seats", seatNum);
+//        outState.putString("Time Created", strDateTimeCreated);
+//        outState.putString("Date Time", strDateTime);
+//    }
+//
+//    @Override
+//    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+//        super.onViewStateRestored(savedInstanceState);
+//    }
 }
