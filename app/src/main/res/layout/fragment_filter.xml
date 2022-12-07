@@ -35,6 +35,7 @@ tools:context=".view.FilterFragment">
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/role_wanted_label"
+            android:textColor="@color/black"
             android:textSize="16sp" />
 
         <LinearLayout
@@ -71,7 +72,7 @@ tools:context=".view.FilterFragment">
                 android:id="@+id/textView16"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="0"
+                android:textColor="@color/black"
                 android:text="@string/seats_wanted_label"
                 android:textSize="16sp" />
 
@@ -85,7 +86,7 @@ tools:context=".view.FilterFragment">
                 android:hint="@string/seats_wanted_hint_label"
                 android:inputType="textPersonName"
                 android:minHeight="50dp"
-                android:textColorHint="#757575" />
+                android:textColorHint="@color/black" />
         </LinearLayout>
 
         <Space
@@ -100,6 +101,7 @@ tools:context=".view.FilterFragment">
                 android:id="@+id/textView6"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
+                android:textColor="@color/black"
                 android:text="@string/date_wanted_label"
                 android:textSize="16sp" />
 
@@ -112,7 +114,7 @@ tools:context=".view.FilterFragment">
                 android:hint="@string/date_wanted_hint_label"
                 android:inputType="date"
                 android:minHeight="50dp"
-                android:textColorHint="#757575" />
+                android:textColorHint="@color/black" />
         </LinearLayout>
 
         <Space
@@ -129,6 +131,7 @@ tools:context=".view.FilterFragment">
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:text="@string/time_wanted_label"
+                android:textColor="@color/black"
                 android:textSize="16sp" />
 
             <EditText
@@ -140,7 +143,7 @@ tools:context=".view.FilterFragment">
                 android:hint="@string/time_wanted_hint_label"
                 android:inputType="time"
                 android:minHeight="50dp"
-                android:textColorHint="#757575" />
+                android:textColorHint="@color/black" />
 
         </LinearLayout>
 
@@ -157,7 +160,7 @@ tools:context=".view.FilterFragment">
                 android:id="@+id/textView13"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="0"
+                android:textColor="@color/black"
                 android:text="@string/start_location_wanted_label"
                 android:textSize="16sp" />
 
@@ -165,13 +168,12 @@ tools:context=".view.FilterFragment">
                 android:id="@+id/enterStartLocation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="0"
                 android:autofillHints="@string/start_wanted_location_hint_label"
                 android:ems="10"
                 android:hint="@string/start_wanted_location_hint_label"
                 android:inputType="textPersonName"
                 android:minHeight="50dp"
-                android:textColorHint="#757575"
+                android:textColorHint="@color/black"
                 android:textSize="12sp" />
         </LinearLayout>
 

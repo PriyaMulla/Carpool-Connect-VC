@@ -1,6 +1,6 @@
 package com.example.carpoolas.view;
 
-public interface IDetailedListingFragment {
+public interface IDetailedListingView {
 
     /**
      * Interface that classes interested in being notified of events happening

@@ -63,7 +63,7 @@
     <string name="destination_holder">Destination Placeholder</string>
     <string name="destination">Destination:</string>
     <string name="type">Type:</string>
-    <string name="meeting_point">Meet Point:</string>
+    <string name="meeting_point">Meet Point: </string>
     <string name="start_placeholder">Start       Placeholder</string>
     <string name="posted_on">Posted on:</string>
     <string name="trip_date_time_placeholder">Date/Time Placeholder</string>

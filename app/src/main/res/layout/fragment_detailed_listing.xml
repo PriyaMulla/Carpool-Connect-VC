@@ -41,7 +41,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/posted_on"
-                android:textColor="#141414"
+                android:textColor="@color/black"
                 android:textSize="24sp" />
 
             <Space
@@ -53,7 +53,7 @@
                 android:layout_width="174dp"
                 android:layout_height="wrap_content"
                 android:text="@string/date_time_placeholder"
-                android:textColor="#141414"
+                android:textColor="@color/black"
                 android:textSize="22sp" />
         </LinearLayout>
 
@@ -71,7 +71,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/destination"
-                android:textColor="#141414"
+                android:textColor="@color/black"
                 android:textSize="24sp" />
 
             <Space
@@ -83,7 +83,7 @@
                 android:layout_width="167dp"
                 android:layout_height="wrap_content"
                 android:text="@string/destination_holder"
-                android:textColor="#141414"
+                android:textColor="@color/black"
                 android:textSize="22sp" />
         </LinearLayout>
 
@@ -101,7 +101,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/type"
-                android:textColor="#141414"
+                android:textColor="@color/black"
                 android:textSize="24sp" />
 
             <Space
@@ -113,7 +113,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/role_placeholder"
-                android:textColor="#141414"
+                android:textColor="@color/black"
                 android:textSize="22sp" />
 
         </LinearLayout>
@@ -132,7 +132,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/meeting_point"
-                android:textColor="#141414"
+                android:textColor="@color/black"
                 android:textSize="24sp"
                 tools:layout_editor_absoluteX="107dp"
                 tools:layout_editor_absoluteY="516dp" />
@@ -146,7 +146,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/start_placeholder"
-                android:textColor="#141414"
+                android:textColor="@color/black"
                 android:textSize="22sp" />
         </LinearLayout>
 
@@ -164,7 +164,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/when"
-                android:textColor="#141414"
+                android:textColor="@color/black"
                 android:textSize="24sp" />
 
             <Space
@@ -176,7 +176,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/trip_date_time_placeholder"
-                android:textColor="#141414"
+                android:textColor="@color/black"
                 android:textSize="22sp" />
         </LinearLayout>
 
@@ -194,7 +194,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/seats_phrase"
-                android:textColor="#141414"
+                android:textColor="@color/black"
                 android:textSize="24sp" />
 
             <Space
@@ -206,7 +206,7 @@
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:text="@string/seats_placeholder"
-                android:textColor="#141414"
+                android:textColor="@color/black"
                 android:textSize="22sp" />
         </LinearLayout>
 
