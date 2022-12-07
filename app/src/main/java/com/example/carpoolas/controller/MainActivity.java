@@ -33,9 +33,10 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
     public static final String IN_PROGRESS = "inProgress";
     public static final String IS_SHOWN = "isShown";
     CollectionOfAccounts accounts = new CollectionOfAccounts();
-    static CollectionOfListings listings = new CollectionOfListings();
+    CollectionOfListings listings = new CollectionOfListings();
     IMainView mainView;
     public static String curState = "";
+
 
     /**
      * Called whenever the activity is (re)created.
