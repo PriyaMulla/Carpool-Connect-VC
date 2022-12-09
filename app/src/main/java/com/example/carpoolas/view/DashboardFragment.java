@@ -89,7 +89,7 @@ public class DashboardFragment extends Fragment implements IDashboardView {
                     curListing = listy.get(position++);
                     LinearLayout layout = (LinearLayout) view.getRootView().findViewById(R.id.mainLayout);
                     layout.setVisibility(View.INVISIBLE);
-                    DashboardFragment.this.listener.goToDetailedPost(DashboardFragment.this, curListing);
+                    DashboardFragment.this.listener.goToDetailedPost(DashboardFragment.this);
                 }
             }
         });

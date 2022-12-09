@@ -9,7 +9,7 @@ public interface IDashboardView {
      * to the view should implement.
      */
     interface Listener{
-        void goToDetailedPost(IDashboardView view, Listing curListing);
+        void goToDetailedPost(IDashboardView view);
         /**
          * called when an account is created
          */

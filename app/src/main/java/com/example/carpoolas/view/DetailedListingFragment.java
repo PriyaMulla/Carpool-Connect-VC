@@ -37,7 +37,7 @@ public class DetailedListingFragment extends Fragment implements IDetailedListin
         DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy HH:mm");
         strDateTimeCreated = formatter.format(currListing.getDateCreated());
         strDateTime = formatter.format(currListing.getDateTimeOfTrip());
-        this.currListing = currListing;
+        //this.currListing = currListing;
         this.listener = listener;
         curRRole = currListing.getRole();
         endLocation = currListing.getEndLocation();

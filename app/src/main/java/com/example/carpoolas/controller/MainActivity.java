@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
             LogInScreen logInScreen = new LogInScreen(this);
             curState = "logIn";
             this.mainView.displayFragment(logInScreen, true, "login screen");
-        } else {
+        }  else {
             this.curListing = (Listing) savedInstanceState.getSerializable(CUR_LISTING);
         }
 
@@ -189,7 +189,7 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
         this.mainView.displayFragment(dashboardFragment,true,"go to dashboard");
     }
 
-    public void goToDetailedPost(@NonNull IDashboardView view, Listing curListing) {
+    public void goToDetailedPost(@NonNull IDashboardView view) {
         this.mainView.displayFragment(new DetailedListingFragment(this),true,"go to detailed");
     }
 
