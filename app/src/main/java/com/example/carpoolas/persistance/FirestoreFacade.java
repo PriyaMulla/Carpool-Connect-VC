@@ -19,7 +19,7 @@ public class FirestoreFacade implements IPersistenceFacade{
     private static final String ACCOUNTS_COLLECTION = "USERS_COLLECTION"; // acc collection name
 
 
-    /* ledger-related methods start */
+    /* dash-related methods start */
 
     /**
      * Saves the sale passed in as input to the underlying persistence solution.
@@ -42,6 +42,7 @@ public class FirestoreFacade implements IPersistenceFacade{
                         CollectionOfListings collectionOfListings = new CollectionOfListings();
                         for (DocumentSnapshot dsnap : qsnap){
                             Listing listing = dsnap.toObject(Listing.class);
+
                             collectionOfListings.addCreatedListing(listing);
                         }
                         listener.onDataReceived(collectionOfListings); // let the listener know we have a COL now

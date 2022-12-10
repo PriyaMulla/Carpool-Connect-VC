@@ -2,6 +2,7 @@ package com.example.carpoolas.model;
 
 import androidx.annotation.NonNull;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 import java.util.LinkedList;
@@ -10,7 +11,7 @@ import java.util.LinkedList;
 /**
  * Represents a Page, which is composed of listings.
  */
-public class CollectionOfListings {
+public class CollectionOfListings implements Serializable {
 
     public final Collection<Listing> listings;
 

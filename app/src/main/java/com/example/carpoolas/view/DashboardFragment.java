@@ -38,6 +38,7 @@ public class DashboardFragment extends Fragment implements IDashboardView {
     public Listing curListing;
     String brief;
     ArrayList<Listing> listy = new ArrayList<>();
+    ArrayList<String> dash = new ArrayList<>();
 
 
     public DashboardFragment(Listener listener) {
@@ -55,26 +56,12 @@ public class DashboardFragment extends Fragment implements IDashboardView {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
-        ArrayList<String> dash = new ArrayList<>();
 
-        //Import listings into an arrayList
-        Iterator<Listing> listingsIterator = ((MainActivity)getActivity()).getListings().listings.iterator();
-        while (listingsIterator.hasNext()){
-            Listing listing = listingsIterator.next();
-            listy.add(listing);
-            curRole = listing.getRole();
-            curEnd = listing.getEndLocation();
-            if (curRole.equals("Driver")) {
-                brief = "Listing: \nA " + curRole + " is going to " + curEnd + "";
-            }
-            if (curRole.equals("Passenger")){
-                brief = "Listing: \nA " + curRole + " wants to go to " + curEnd + "";
-            }
-            dash.add(brief);
-            }
-        if(((MainActivity)getActivity()).getListings().isEmpty()){
+        this.updateDashboardDisplay(this.listener.getListings());
+
+        /*if(this.listener.getListings().isEmpty()){
             dash.add("No listings available :'(");
-        }
+        }*/
 
         //go into detailed frag
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1,dash);
@@ -109,5 +96,29 @@ public class DashboardFragment extends Fragment implements IDashboardView {
     public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
         super.onViewStateRestored(savedInstanceState);
         ((MainActivity)getActivity()).areControlsShown(curState);
+    }
+
+    /**
+     * Method to be called whenever the dash display needs to be updated.
+     * @param listings the dash to be displayed
+     */
+    @Override
+    public void updateDashboardDisplay(CollectionOfListings listings) {
+
+
+        //Import listings into an arrayList
+        for (Listing listing : MainActivity.listings.listings) {
+            listy.add(listing);
+            curRole = listing.getRole();
+            curEnd = listing.getEndLocation();
+            if (curRole.equals("Driver")) {
+                brief = "Listing: \nA " + curRole + " is going to " + curEnd + "";
+            }
+            if (curRole.equals("Passenger")) {
+                brief = "Listing: \nA " + curRole + " wants to go to " + curEnd + "";
+            }
+            dash.add(brief);
+        }
+
     }
 }

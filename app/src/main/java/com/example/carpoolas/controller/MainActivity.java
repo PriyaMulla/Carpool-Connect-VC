@@ -37,26 +37,12 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
     public static final String IS_SHOWN = "isShown";
     private static final String CUR_LISTING = "curListing";
     CollectionOfAccounts accounts = new CollectionOfAccounts();
-    CollectionOfListings listings = new CollectionOfListings();
+    public static CollectionOfListings listings = new CollectionOfListings();
     IMainView mainView;
     public static String curState = "";
     public static Listing curListing; //listing currently working on
     IPersistenceFacade persistenceFacade = new FirestoreFacade();
 
-
-    //TODO: where the f do i put this
-    //load collectionOfListings
-        /*this.persistenceFacade.retrieveCollectionOfListings(new IPersistenceFacade.DataListener<CollectionOfListings>() {
-        @Override
-        public void onDataReceived(@NonNull CollectionOfListings listings) {
-            MainActivity.this.listings = listings;
-        }
-
-        @Override
-        public void onNoDataFound() {
-
-        }
-    });*/
 
 
     /**
@@ -167,7 +153,7 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
 
     @Override
     public void onCreateListing(@NonNull Date created, String role, Date dateTime, String start, String end, int seats, @NonNull ICreateListingView view){
-        curListing = new Listing(created, role, dateTime, start, end, seats);
+        this.curListing = new Listing(created, role, dateTime, start, end, seats);
         this.listings.addCreatedListing(curListing);
 
         this.persistenceFacade.saveListing(this.curListing);
@@ -178,7 +164,7 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
     }
 
     public CollectionOfListings getListings() {
-        return listings;
+        return this.listings;
     }
 
     @Override
@@ -202,6 +188,22 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
     @Override
     public void goToDashboard(@NonNull ILogInScreen view) {
         curState = "logIn";
+
+        //load listings
+        this.persistenceFacade.retrieveCollectionOfListings(new IPersistenceFacade.DataListener<CollectionOfListings>() {
+            @Override
+            public void onDataReceived(@NonNull CollectionOfListings listings) {
+                MainActivity.this.listings = listings;
+                Fragment curFrag = MainActivity.this.mainView.getCurFragment();
+                if (curFrag instanceof IDashboardView) // update ledger display if ledger fragment being displayed
+                    ((IDashboardView)curFrag).updateDashboardDisplay(listings);
+            }
+
+            @Override
+            public void onNoDataFound() {
+            }
+        });
+
         this.mainView.displayFragment(dashboardFragment,true,"go to dashboard");
 
     }
@@ -211,4 +213,8 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
         this.mainView.displayFragment(detailedListingFragment, true,"go to detailed");
     }
 
+    @Override
+    public void goToChatActivity() {
+
+    }
 }

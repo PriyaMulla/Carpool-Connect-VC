@@ -117,11 +117,6 @@ public class CreateListingFragment extends Fragment implements ICreateListingVie
                         CreateListingFragment.this.listener.onCreateListing(dateCreated, "Passenger", date, start, end, seats, CreateListingFragment.this);
                     }
                 }
-                enterDate.clear();
-                enterSeats.clear();
-                enterStart.clear();
-                enterEnd.clear();
-                enterTime.clear();
 
 
             }

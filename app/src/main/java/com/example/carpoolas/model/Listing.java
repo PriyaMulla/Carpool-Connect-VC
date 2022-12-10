@@ -22,6 +22,19 @@ public class Listing implements Serializable {
     String endLocation;
     int seats;
 
+
+
+    public Listing(){}
+
+    public Listing(Date created, String role, Date dateTime, String start, String end,  int seats){
+        this.dateCreated = created;
+        this.role = role;
+        this.dateTimeOfTrip = dateTime;
+        this.startLocation = start;
+        this.endLocation = end;
+        this.seats = seats;
+    }
+
     public Date getDateCreated() {
         return dateCreated;
     }
@@ -38,17 +51,6 @@ public class Listing implements Serializable {
     public int getSeats() {
         return seats;
     }
-
-
-    public Listing(Date created, String role, Date dateTime, String start, String end,  int seats){
-        this.dateCreated = created;
-        this.role = role;
-        this.dateTimeOfTrip = dateTime;
-        this.startLocation = start;
-        this.endLocation = end;
-        this.seats = seats;
-    }
-
 
     public static boolean isValidStart(String start){
         return Pattern.compile("^(\\d{1,}) [a-zA-Z0-9\\s]+(\\,)? [a-zA-Z]+(\\,)? [A-Z]{2} [0-9]{5,6}$")
