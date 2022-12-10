@@ -1,6 +1,7 @@
 package com.example.carpoolas.persistance;
 import androidx.annotation.NonNull;
 
+import com.example.carpoolas.model.Account;
 import com.example.carpoolas.model.CollectionOfListings;
 import com.example.carpoolas.model.Listing;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -15,7 +16,7 @@ public class FirestoreFacade implements IPersistenceFacade{
     private final FirebaseFirestore db = FirebaseFirestore.getInstance(); // database connection
 
     private static final String LISTINGS_COLLECTION = "LISTINGS_COLLECTION"; // listings collection name
-    //private static final String USERS_COLLECTION = "USERS_COLLECTION"; // users collection name
+    private static final String ACCOUNTS_COLLECTION = "USERS_COLLECTION"; // acc collection name
 
 
     /* ledger-related methods start */
@@ -50,31 +51,31 @@ public class FirestoreFacade implements IPersistenceFacade{
 
     /* ledger-related methods end */
 
-   /* *//* authentication-related methods start *//*
+   /* authentication-related methods start */
 
-    *//**
+    /**
      *  Creates an entry for the specified User in the underlying persistence subsystem.
      *
-     * @param user the user to be created
+     * @param acc the user to be created
      * @param listener the observer to be notified of the query result. OnYesResult() is called if
      *                 a new user was created. Conversely, OnNoResult() is called if a user with
      *                 the specified username already existed.
-     *//*
+     */
     @Override
-    public void createUserIfNotExists(@NonNull User user, @NonNull BinaryResultListener listener) {
+    public void createAccountIfNotExists(@NonNull Account acc, @NonNull BinaryResultListener listener) {
 
-        String username = user.getUsername();
+        String username = acc.getUsername();
 
-        this.retrieveUser(username, new DataListener<User>() {
+        this.retrieveAccount(username, new DataListener<Account>() {
             @Override
-            public void onDataReceived(@NonNull User data) {
+            public void onDataReceived(@NonNull Account data) {
                 listener.onNoResult();
             }
 
             @Override
             public void onNoDataFound() {
-                db.collection(USERS_COLLECTION).document(username).
-                        set(user).
+                db.collection(ACCOUNTS_COLLECTION).document(username).
+                        set(acc).
                         addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void unused) {
@@ -91,24 +92,24 @@ public class FirestoreFacade implements IPersistenceFacade{
         });
     }
 
-    *//**
+    /**
      * Retrieves the User with the specified username from the underlying persistence subsystem.
      *
      * @param username the username of the user to be retrieved.
      * @param listener observer to be notified of query result. onDataReceived() is called if a
      *                 user with the specified username was found. Otherwise, onNoDataFound() is
      *                 called.
-     *//*
+     */
     @Override
-    public void retrieveUser(@NonNull String username, @NonNull DataListener<User> listener) {
+    public void retrieveAccount(@NonNull String username, @NonNull DataListener<Account> listener) {
 
-        db.collection(USERS_COLLECTION).document(username).get().
+        db.collection(ACCOUNTS_COLLECTION).document(username).get().
                 addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                                          @Override
                                          public void onSuccess(DocumentSnapshot dsnap) {
                                              if (dsnap.exists()){
-                                                 User user = dsnap.toObject(User.class);
-                                                 listener.onDataReceived(user);
+                                                 Account acc = dsnap.toObject(Account.class);
+                                                 listener.onDataReceived(acc);
                                              } else // no user found
                                                  listener.onNoDataFound();
                                          }
@@ -117,5 +118,5 @@ public class FirestoreFacade implements IPersistenceFacade{
 
     }
 
-    *//* authentication-related methods end */
+    /* authentication-related methods end */
 }

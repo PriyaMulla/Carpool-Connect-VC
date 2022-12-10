@@ -40,9 +40,23 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
     CollectionOfListings listings = new CollectionOfListings();
     IMainView mainView;
     public static String curState = "";
-    Listing curListing; //listing currently working on
+    public static Listing curListing; //listing currently working on
     IPersistenceFacade persistenceFacade = new FirestoreFacade();
 
+
+    //TODO: where the f do i put this
+    //load collectionOfListings
+        /*this.persistenceFacade.retrieveCollectionOfListings(new IPersistenceFacade.DataListener<CollectionOfListings>() {
+        @Override
+        public void onDataReceived(@NonNull CollectionOfListings listings) {
+            MainActivity.this.listings = listings;
+        }
+
+        @Override
+        public void onNoDataFound() {
+
+        }
+    });*/
 
 
     /**
@@ -58,6 +72,7 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
 
         this.mainView = new MainView(this); // create the main screen view
 
+
         if (savedInstanceState == null){
             //to begin with, make the screen display the create account fragment
             LogInScreen logInScreen = new LogInScreen(this);
@@ -66,6 +81,7 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
         }  else {
             this.curListing = (Listing) savedInstanceState.getSerializable(CUR_LISTING);
         }
+
 
         setContentView(this.mainView.getRootView()); //display fragment
     }
@@ -187,13 +203,12 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
     public void goToDashboard(@NonNull ILogInScreen view) {
         curState = "logIn";
         this.mainView.displayFragment(dashboardFragment,true,"go to dashboard");
+
     }
 
     public void goToDetailedPost(@NonNull IDashboardView view) {
-        this.mainView.displayFragment(new DetailedListingFragment(this),true,"go to detailed");
+        DetailedListingFragment detailedListingFragment = new DetailedListingFragment(this);
+        this.mainView.displayFragment(detailedListingFragment, true,"go to detailed");
     }
 
-    public Listing getCurListing() {
-        return DashboardFragment.curListing;
-    }
 }

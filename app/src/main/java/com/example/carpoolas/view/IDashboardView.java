@@ -1,8 +1,10 @@
 package com.example.carpoolas.view;
 
+import com.example.carpoolas.model.CollectionOfListings;
 import com.example.carpoolas.model.Listing;
 
 public interface IDashboardView {
+
 
     /**
      * Interface that classes interested in being notified of events happening

@@ -8,7 +8,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
 
 import android.view.LayoutInflater;
@@ -22,6 +21,7 @@ import android.widget.ListView;
 import com.example.carpoolas.R;
 import com.example.carpoolas.controller.MainActivity;
 import com.example.carpoolas.databinding.FragmentDashboardBinding;
+import com.example.carpoolas.model.CollectionOfListings;
 import com.example.carpoolas.model.Listing;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -35,7 +35,7 @@ public class DashboardFragment extends Fragment implements IDashboardView {
     Listener listener;
     static String curRole;
     static String curEnd;
-    public static Listing curListing;
+    public Listing curListing;
     String brief;
     ArrayList<Listing> listy = new ArrayList<>();
 
@@ -75,6 +75,8 @@ public class DashboardFragment extends Fragment implements IDashboardView {
         if(((MainActivity)getActivity()).getListings().isEmpty()){
             dash.add("No listings available :'(");
         }
+
+        //go into detailed frag
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1,dash);
 
         ListView listView = binding.listview;
@@ -93,7 +95,9 @@ public class DashboardFragment extends Fragment implements IDashboardView {
                 }
             }
         });
+
     }
+
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {

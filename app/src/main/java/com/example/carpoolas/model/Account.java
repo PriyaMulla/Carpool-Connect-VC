@@ -4,21 +4,27 @@ import android.annotation.SuppressLint;
 
 import androidx.annotation.NonNull;
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
-public class Account {
+public class Account implements Serializable {
     //TODO: account's listings
+
+    private String username; // the user's unique name
+    private AuthKey authKey; // the authentication key associated with the user
+
     //fields
     private String name = "";
-    private String username = "";
     private String email = "";
     private String password = "";
-    
+
+    public Account(){}
+
     //constructor
     public Account(String username, String password, String name, String email){
         this.username = username;
-        this.password = password;
+        this.authKey = new AuthKey(password);
         this.name = name;
         this.email = email;
     }
@@ -70,12 +76,24 @@ public class Account {
         return name;
     }
 
+    public AuthKey getAuthKey() {return this.authKey;}
+
     public String getUsername() {
         return username;
     }
 
     public String getEmail() {
         return email;
+    }
+
+    /**
+     * Tests whether ths provided password matches the one provided when the user
+     * was created.
+     * @param password the plaintext password to test
+     * @return true if the password matches, false otherwise.
+     */
+    public boolean validatePassword(String password){
+        return this.authKey.validatePassword(password);
     }
 
     @NonNull
