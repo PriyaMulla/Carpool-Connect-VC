@@ -33,12 +33,12 @@ public class DetailedListingFragment extends Fragment implements IDetailedListin
     String seatNum;
 //TODO Create a method in MainActivity that gets the current post for here
     public DetailedListingFragment(Listener listener) {
-        currListing =((MainActivity)getActivity()).getCurListing();
+        this.listener = listener;
+        currListing = MainActivity.curListing;
         DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy HH:mm");
         strDateTimeCreated = formatter.format(currListing.getDateCreated());
         strDateTime = formatter.format(currListing.getDateTimeOfTrip());
         //this.currListing = currListing;
-        this.listener = listener;
         curRRole = currListing.getRole();
         endLocation = currListing.getEndLocation();
         startLoc = currListing.getStartLocation();
@@ -80,7 +80,13 @@ public class DetailedListingFragment extends Fragment implements IDetailedListin
         }
         seats.setText(seatNum);
 
+        this.binding.message.setOnClickListener(new View.OnClickListener() {
 
+            @Override
+            public void onClick(View v) {
+                DetailedListingFragment.this.listener.goToChatActivity();
+            }
+        });
     }
 
 //    @Override
