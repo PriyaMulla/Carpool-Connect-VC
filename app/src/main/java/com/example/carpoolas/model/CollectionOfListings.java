@@ -24,8 +24,8 @@ public class CollectionOfListings implements Serializable {
     /**
      * Creates listing and associates it with the Page of Listings.
      */
-    public void addListing(Date created, String role, Date dateTime, String start, String end, int seats) {
-        Listing lst = new Listing(created, role, dateTime, start, end, seats);
+    public void addListing(Date created, String role, Date dateTime, String start, String end, int seats, Account curAccount) {
+        Listing lst = new Listing(created, role, dateTime, start, end, seats, curAccount);
         this.listings.add(lst);
     }
 

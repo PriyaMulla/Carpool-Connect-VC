@@ -6,6 +6,7 @@ import static com.example.carpoolas.model.Account.isValidName;
 import static com.example.carpoolas.model.Account.isValidPassword;
 import static com.example.carpoolas.model.Account.isValidUsername;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -64,42 +65,51 @@ public class CreateAccountFragment extends Fragment implements ICreateAccountVie
                     name = enterName.toString();
                     if (!isValidName(name)){
                         Snackbar.make(view, "Please provide your name!",Snackbar.LENGTH_SHORT).show();
+                        binding.enterName.setHintTextColor(Color.RED);
+                        binding.enterName.setTextColor(Color.RED);
                         isValid = isValidName(name);
                     }
+                binding.enterName.setTextColor(Color.BLACK);
+                //extract user's username
+                enterUsername = CreateAccountFragment.this.binding.enterUsername.getText();
+                username = enterUsername.toString();
+                if (!isValidUsername(username)){
+                    Snackbar.make(view, "Please provide a valid username!", Snackbar.LENGTH_SHORT).show();
+                    binding.enterUsername.setHintTextColor(Color.RED);
+                    binding.enterUsername.setTextColor(Color.RED);
+                    isValid = isValid && isValidUsername(name);
+                }
 
-                    //extract user's username
-                    enterUsername = CreateAccountFragment.this.binding.enterUsername.getText();
-                    username = enterUsername.toString();
-                    if (!isValidUsername(username)){
-                        Snackbar.make(view, "Please provide a valid username!", Snackbar.LENGTH_SHORT).show();
-                        isValid = isValid && isValidUsername(name);
-                    }
+                binding.enterUsername.setTextColor(Color.BLACK);
+                //extract user's password
+                enterPassword = CreateAccountFragment.this.binding.enterPassword.getText();
+                password = enterPassword.toString();
+                if (!isValidPassword(password)){
+                    Snackbar.make(view, "Please provide your password!",Snackbar.LENGTH_SHORT).show();
+                    binding.enterPassword.setHintTextColor(Color.RED);
+                    binding.enterPassword.setTextColor(Color.RED);
+                    isValid = isValid && isValidPassword(password);
+                }
 
-                    //extract user's password
-                    enterPassword = CreateAccountFragment.this.binding.enterPassword.getText();
-                    password = enterPassword.toString();
-                    if (!isValidPassword(password)){
-                        Snackbar.make(view, "Please provide your password!",Snackbar.LENGTH_SHORT).show();
-                        isValid = isValid && isValidPassword(password);
-                    }
-
-                    //extract user's email
-                    enterEmail = CreateAccountFragment.this.binding.enterEmailAddress.getText();
-                    email = enterEmail.toString();
-                    if (!isValidEmail(email)){
-                        Snackbar.make(view, "Please provide your email!",Snackbar.LENGTH_SHORT).show();
-                        isValid = isValid && isValidEmail(name);
-                    }
+                binding.enterPassword.setTextColor(Color.BLACK);
+                //extract user's email
+                enterEmail = CreateAccountFragment.this.binding.enterEmailAddress.getText();
+                email = enterEmail.toString();
+                if (!isValidEmail(email)){
+                    Snackbar.make(view, "Please provide your email!",Snackbar.LENGTH_SHORT).show();
+                    binding.enterEmailAddress.setHintTextColor(Color.RED);
+                    binding.enterEmailAddress.setTextColor(Color.RED);
+                    isValid = isValid && isValidEmail(name);
+                }
+                binding.enterEmailAddress.setTextColor(Color.BLACK);
                 if(isValid) {
-                        Snackbar.make(view, "Account created!",Snackbar.LENGTH_SHORT).show();
+
+                    Snackbar.make(view, "Account created!",Snackbar.LENGTH_SHORT).show();
                     LinearLayout layout = (LinearLayout) view.getRootView().findViewById(R.id.mainLayout);
                     layout.setVisibility(View.VISIBLE);
-                    CreateAccountFragment.this.listener.onCreateAccount(name, password, username, email, CreateAccountFragment.this);
+                    CreateAccountFragment.this.listener.onCreateAccount(username, password, name, email, CreateAccountFragment.this);
                 }
-                enterEmail.clear();
-                enterUsername.clear();
-                enterPassword.clear();
-                enterName.clear();
+
             }
             }
 

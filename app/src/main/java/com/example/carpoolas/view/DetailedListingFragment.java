@@ -69,7 +69,9 @@ public class DetailedListingFragment extends Fragment implements IDetailedListin
         TextView dateTime4Trip = binding.dateTime4Trip;
         TextView seatPhrase = binding.seatPhrase;
         TextView seats = binding.seatsPlaceholder;
-
+        TextView acc = binding.postedBy;
+        //TODO fix this implementation
+        //acc.setText(((MainActivity)getActivity()).getCurAccount().getName());
         dateTimeCreated.setText(strDateTimeCreated);
         destination.setText(endLocation);
         roleText.setText(curRRole + " is offering");
@@ -87,6 +89,12 @@ public class DetailedListingFragment extends Fragment implements IDetailedListin
             @Override
             public void onClick(View v) {
                 DetailedListingFragment.this.listener.goToChatActivity();
+            }
+        });
+        this.binding.closeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
     }

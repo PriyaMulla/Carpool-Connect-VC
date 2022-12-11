@@ -22,17 +22,24 @@ public class Listing implements Serializable {
     String endLocation;
     int seats;
 
+    public Account getCurAccount() {
+        return curAccount;
+    }
+
+    Account curAccount;
+
 
 
     public Listing(){}
 
-    public Listing(Date created, String role, Date dateTime, String start, String end,  int seats){
+    public Listing(Date created, String role, Date dateTime, String start, String end,  int seats, Account curAccount){
         this.dateCreated = created;
         this.role = role;
         this.dateTimeOfTrip = dateTime;
         this.startLocation = start;
         this.endLocation = end;
         this.seats = seats;
+        this.curAccount = curAccount;
     }
 
     public Date getDateCreated() {
@@ -90,6 +97,7 @@ public class Listing implements Serializable {
     private static final String START_LOCATION = "startLocation";
     private static final String END_LOCATION = "endLocation";
     private static final String SEATS = "seats";
+    private static final String CURRENT_ACCOUNT = "curAccount";
 
 
     /**
@@ -106,6 +114,7 @@ public class Listing implements Serializable {
         map.put(START_LOCATION, startLocation);
         map.put(END_LOCATION, endLocation);
         map.put(SEATS, seats);
+        map.put(CURRENT_ACCOUNT, curAccount);
 
         return map;
     }
@@ -123,8 +132,9 @@ public class Listing implements Serializable {
         Date dateTimeOfTrip = (Date) map.get(DATE_TIME);
         String startLocation = (String) map.get(START_LOCATION);
         String endLocation = (String) map.get(END_LOCATION);
+        Account curAccount = (Account) map.get(CURRENT_ACCOUNT);
         int seats = (int)(long) map.get(SEATS); // Firestore saves integers as longs
-        return new Listing(dateCreated, role, dateTimeOfTrip, startLocation, endLocation, seats);
+        return new Listing(dateCreated, role, dateTimeOfTrip, startLocation, endLocation, seats, curAccount);
     }
 
 

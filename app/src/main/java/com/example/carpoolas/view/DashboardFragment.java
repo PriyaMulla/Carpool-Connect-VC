@@ -17,9 +17,11 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.carpoolas.R;
 import com.example.carpoolas.controller.MainActivity;
+import com.example.carpoolas.databinding.ActivityMainBinding;
 import com.example.carpoolas.databinding.FragmentDashboardBinding;
 import com.example.carpoolas.model.CollectionOfListings;
 import com.example.carpoolas.model.Listing;
@@ -32,13 +34,14 @@ import java.util.Iterator;
 public class DashboardFragment extends Fragment implements IDashboardView {
 
     FragmentDashboardBinding binding;
+    ActivityMainBinding nbinding;
     Listener listener;
     static String curRole;
     static String curEnd;
     public static Listing curListing;
     String brief;
     ArrayList<Listing> listy = new ArrayList<>();
-    ArrayList<String> dash = new ArrayList<>();
+    ArrayList<String> dash;
     public ArrayAdapter<String> adapter;
 
 
@@ -57,26 +60,28 @@ public class DashboardFragment extends Fragment implements IDashboardView {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
-
+        dash = new ArrayList<>();
+        //TODO Fully implement curAccount and think about it more
+        //TextView name = nbinding.nameHolder;
+        //name.setVisibility(View.VISIBLE);
+        //name.setText(((MainActivity)getActivity()).getCurAccount().getName());
         this.updateDashboardDisplay(MainActivity.listings);
 
-        /*if(this.listener.getListings().isEmpty()){
-            dash.add("No listings available :'(");
-        }*/
 
         //go into detailed frag
         adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1,dash);
 
         ListView listView = binding.listview;
         listView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
         listView.setOnItemClickListener(new android.widget.AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
                 String selectedPost = (String) listView.getItemAtPosition(position);
                 Snackbar.make(view,"You selected : " + selectedPost,Snackbar.LENGTH_SHORT).show();
 
-                if (!(((MainActivity)getActivity()).getListings().isEmpty())) {
-                    curListing = listy.get(position++);
+                if (!(MainActivity.listings.isEmpty())) {
+                    curListing = listy.get(position);
                     LinearLayout layout = (LinearLayout) view.getRootView().findViewById(R.id.mainLayout);
                     layout.setVisibility(View.INVISIBLE);
                     DashboardFragment.this.listener.goToDetailedPost(DashboardFragment.this);
@@ -105,7 +110,7 @@ public class DashboardFragment extends Fragment implements IDashboardView {
      */
     @Override
     public void updateDashboardDisplay(CollectionOfListings listings) {
-        dash = new ArrayList<>();
+        //dash = new ArrayList<>();
 
         //Import listings into an arrayList
         for (Listing listing : MainActivity.listings.listings) {

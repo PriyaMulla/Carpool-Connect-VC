@@ -16,7 +16,7 @@ public class FirestoreFacade implements IPersistenceFacade{
     private final FirebaseFirestore db = FirebaseFirestore.getInstance(); // database connection
 
     private static final String LISTINGS_COLLECTION = "LISTINGS_COLLECTION"; // listings collection name
-    private static final String ACCOUNTS_COLLECTION = "USERS_COLLECTION"; // acc collection name
+    private static final String ACCOUNTS_COLLECTION = " ACCOUNTS_COLLECTION"; // acc collection name
 
 
     /* dash-related methods start */
@@ -28,7 +28,9 @@ public class FirestoreFacade implements IPersistenceFacade{
     public void saveListing(Listing listing){
         this.db.collection(LISTINGS_COLLECTION).add(listing); // creates new document with pseudorandom id, uses firestore's built-in serialization
     }
-
+    public void saveAccount(Account account){
+        this.db.collection(ACCOUNTS_COLLECTION).add(account);
+    }
     /**
      * Issues a CollectionOfListings retrieval operation.
      * @param listener the listener to be notified when the collectionOfListings becomes available.

@@ -36,5 +36,8 @@ public class CollectionOfAccounts {
         return sb.toString();
     }
 
+    public void addCreatedAccount(Account curAccount) {
+        this.accounts.add(curAccount);
     }
+}
 

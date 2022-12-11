@@ -1,6 +1,5 @@
 package com.example.carpoolas.view;
 
-import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,13 +10,9 @@ import android.text.Editable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.example.carpoolas.R;
-import com.example.carpoolas.databinding.FragmentCreateAccountBinding;
 import com.example.carpoolas.databinding.FragmentLogInScreenBinding;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -27,7 +22,9 @@ import com.google.android.material.snackbar.Snackbar;
  * create an instance of this fragment.
  */
 public class LogInScreen extends Fragment implements ILogInScreen{
+    private static final String IS_REGISTERED = "isRegistered";
     FragmentLogInScreenBinding binding;
+    private boolean isRegistered = false;
     Listener listener;
 
     public LogInScreen(ILogInScreen.Listener listener) {
@@ -46,16 +43,21 @@ public class LogInScreen extends Fragment implements ILogInScreen{
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        if (savedInstanceState != null && savedInstanceState.getBoolean(IS_REGISTERED))
+            activateRegisteredConfig();
 
         this.binding.logInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Editable usernameText = LogInScreen.this.binding.usernameText.getText();
-                String name = usernameText.toString();
+                String username = usernameText.toString();
 
                 Editable passwordTeext = LogInScreen.this.binding.passwordText.getText();
                 String password = passwordTeext.toString();
-                if(name.equals("admin") &&
+                //LogInScreen.this.listener.onSigninAttempt(username, password, LogInScreen.this);
+
+                /////////////////
+                if(username.equals("admin") &&
                         password.equals("admin")) {
                     Snackbar.make(view,
                             "Redirecting...",Snackbar.LENGTH_SHORT).show();
@@ -64,8 +66,10 @@ public class LogInScreen extends Fragment implements ILogInScreen{
                     LogInScreen.this.listener.goToDashboard(LogInScreen.this);
                 }else{
                     Snackbar.make(view, "Wrong Credentials",Snackbar.LENGTH_SHORT).show();
-
+                usernameText.clear();
+                passwordTeext.clear();
                 }
+                ///////////////////
             }
         });
 
@@ -76,4 +80,22 @@ public class LogInScreen extends Fragment implements ILogInScreen{
             }
         });
     }
+    @Override
+    public void onInvalidCredentials() {
+        displayMessage(R.string.invalid_credentials_msg);
+    }
+    private void displayMessage(int msgRid){
+        Snackbar.make(this.binding.getRoot(),
+                        msgRid,
+                        Snackbar.LENGTH_LONG)
+                .show();
+    }
+    // prevent multiple registration attempts
+    private void activateRegisteredConfig(){
+        this.isRegistered = true;
+        this.binding.signUpButton.setEnabled(false);
+    }
+
+
+
 }

@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
 
+import com.example.carpoolas.model.Account;
 import com.example.carpoolas.model.CollectionOfAccounts;
 import com.example.carpoolas.model.CollectionOfListings;
 import com.example.carpoolas.model.IFilter;
@@ -33,13 +34,13 @@ import java.util.Set;
 
 public class MainActivity extends AppCompatActivity implements ICreateAccountView.Listener, ICreateListingView.Listener, IFilterView.Listener, IDashboardView.Listener, ILogInScreen.Listener, IDetailedListingView.Listener {
 
-    public static final String IN_PROGRESS = "inProgress";
     public static final String IS_SHOWN = "isShown";
     private static final String CUR_LISTING = "curListing";
     CollectionOfAccounts accounts = new CollectionOfAccounts();
     public static CollectionOfListings listings = new CollectionOfListings();
     IMainView mainView;
     public static String curState = "";
+    Account curAccount;
     public static Listing curListing; //listing currently working on
     IPersistenceFacade persistenceFacade = new FirestoreFacade();
 
@@ -92,13 +93,14 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        //keep track of states
-        //Fragment currentFragment = getCurrentFragment();
-        //show the controls
         Fragment curFrag = MainActivity.this.mainView.getCurFragment();
-        if (curFrag instanceof ILogInScreen) mainView.hideControls();
+        if (curFrag instanceof ILogInScreen) {
+            mainView.hideControls();
+            new MainActivity();
+        }
         if (curFrag instanceof IDashboardView) mainView.showControls();
         if (curFrag instanceof ICreateListingView) mainView.hideControls();
+        if (curFrag instanceof IFilterView) mainView.hideControls();
         if (curFrag instanceof ICreateAccountView) {
             LogInScreen logInScreen = new LogInScreen(this);
             this.mainView.displayFragment(logInScreen, true, "'login screen");
@@ -106,26 +108,11 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
         }
 
     }
-        //areControlsShown(curState);
 
-        //mainView.showControls();
 
     public void areControlsShown(String curState){
-//        switch (curState){
-//            //case "dashboard":
-//            case "dashboard":
-//                mainView.showControls();
-//                break;
-//            default:
-//                mainView.hideControls();
-//                break;
-//        }
         mainView.showControls();
     }
-    //first put into bundle and save state string
-    //then inspect string
-    ///if its necessary then show controls
-    //else keep controls hidden
     public CollectionOfListings getListing() {
         return listings;
     }
@@ -142,15 +129,32 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
      */
     @Override //addAccount be on collection of Accounts
     public void onCreateAccount(@NonNull String username, String password, String name, String email, @NonNull ICreateAccountView view) {
-        this.accounts.addAccount(username,password,name,email);
+        curAccount = new Account(username,password,name,email);
+        this.accounts.addCreatedAccount(curAccount);
         curState = "dashboard";
+        this.persistenceFacade.retrieveCollectionOfListings(new IPersistenceFacade.DataListener<CollectionOfListings>() {
+            @Override
+            public void onDataReceived(@NonNull CollectionOfListings listings) {
+                MainActivity.listings = listings;
+                Fragment curFrag = MainActivity.this.mainView.getCurFragment();
+                if (curFrag instanceof IDashboardView) // update ledger display if ledger fragment being displayed
+                    ((IDashboardView)curFrag).updateDashboardDisplay(MainActivity.listings);
+                dashboardFragment.adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onNoDataFound() {
+            }
+        });
+        this.persistenceFacade.saveAccount(curAccount);
+
         this.mainView.displayFragment(dashboardFragment,true,"dashboard");
 
     }
 
     @Override
     public void onCreateListing(@NonNull Date created, String role, Date dateTime, String start, String end, int seats, @NonNull ICreateListingView view){
-        Listing listing = new Listing(created, role, dateTime, start, end, seats);
+        Listing listing = new Listing(created, role, dateTime, start, end, seats, curAccount);
         listings.addCreatedListing(listing);
 
         this.persistenceFacade.saveListing(listing);
@@ -191,7 +195,7 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
                 MainActivity.listings = listings;
                 Fragment curFrag = MainActivity.this.mainView.getCurFragment();
                 if (curFrag instanceof IDashboardView) // update ledger display if ledger fragment being displayed
-                    ((IDashboardView)curFrag).updateDashboardDisplay(listings);
+                    ((IDashboardView)curFrag).updateDashboardDisplay(MainActivity.listings);
                 dashboardFragment.adapter.notifyDataSetChanged();
             }
 
@@ -212,5 +216,26 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
     @Override
     public void goToChatActivity() {
 
+    }
+
+    public Account getCurAccount() {return curAccount;
+    }
+
+    @Override
+    public void onSigninAttempt(String username, String password, ILogInScreen view) {
+
+        persistenceFacade.retrieveAccount(username, new IPersistenceFacade.DataListener<Account>() {
+            @Override
+            public void onDataReceived(@NonNull Account account) {
+                if (account.validatePassword(password)){
+                    DashboardFragment dashboardFragment = new DashboardFragment(MainActivity.this);
+                    MainActivity.this.mainView.displayFragment(dashboardFragment, true, "go to Dashboard");
+                } else view.onInvalidCredentials();
+            }
+            @Override
+            public void onNoDataFound() {
+                view.onInvalidCredentials();
+            }
+        });
     }
 }

@@ -7,7 +7,7 @@ import com.example.carpoolas.model.CollectionOfListings;
 import com.example.carpoolas.model.Listing;
 
 public interface IPersistenceFacade {
-   /**
+    /**
      * Interface that classes interested in being notified of data-generating events
      * from the persistence layer should implement.
      */
@@ -23,13 +23,14 @@ public interface IPersistenceFacade {
          * Called when the requested data isn't found in the underlying persistence subsystem.
          */
         void onNoDataFound();
-    }
 
+    }
     /**
      * Interface that classes interested in being notified of binary (i.e., true vs false) events
      * from the persistence layer should implement.
      */
     interface BinaryResultListener {
+
         /**
          * Called when the answer to the issued query is positive.
          */
@@ -47,6 +48,12 @@ public interface IPersistenceFacade {
      * @param listing the listing to be saved
      */
     void saveListing(Listing listing);
+
+    /**
+     * Saves the account passed in as input to the underlying persistence solution.
+     * @param account the account to be saved
+     */
+    void saveAccount(Account account);
 
     /**
      * Issues a COL retrieval operation.
