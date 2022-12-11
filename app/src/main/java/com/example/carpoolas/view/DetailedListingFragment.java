@@ -2,21 +2,29 @@ package com.example.carpoolas.view;
 
 import static com.example.carpoolas.view.DashboardFragment.curListing;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.carpoolas.R;
 import com.example.carpoolas.controller.MainActivity;
+import com.example.carpoolas.databinding.ActivityMainBinding;
 import com.example.carpoolas.databinding.FragmentDetailedListingBinding;
 import com.example.carpoolas.model.Listing;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -25,6 +33,7 @@ import java.text.SimpleDateFormat;
 public class DetailedListingFragment extends Fragment implements IDetailedListingView {
 
     FragmentDetailedListingBinding binding;
+    ActivityMainBinding mainBinding;
     Listener listener;
     Listing currListing;
     String curRRole;
@@ -71,7 +80,7 @@ public class DetailedListingFragment extends Fragment implements IDetailedListin
         TextView seats = binding.seatsPlaceholder;
         TextView acc = binding.postedBy;
         //TODO fix this implementation
-        //acc.setText(((MainActivity)getActivity()).getCurAccount().getName());
+        if (currListing.getCurAccount() != null) acc.setText(currListing.getCurAccount().getName());
         dateTimeCreated.setText(strDateTimeCreated);
         destination.setText(endLocation);
         roleText.setText(curRRole + " is offering");
@@ -88,13 +97,21 @@ public class DetailedListingFragment extends Fragment implements IDetailedListin
 
             @Override
             public void onClick(View v) {
-                DetailedListingFragment.this.listener.goToChatActivity();
+                Snackbar.make(v, "Nice try",Snackbar.LENGTH_SHORT).show();
+                ConstraintLayout contactInfo = binding.contactInfo;
+                contactInfo.setVisibility(View.VISIBLE);
+                ConstraintLayout layout = view.getRootView().findViewById(R.id.mainView);
+                layout.setBackgroundColor(Color.parseColor("#FF9E9E9E"));
+                //((MainActivity)getActivity()).changeColor();
             }
         });
         this.binding.closeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                ConstraintLayout contactInfo = binding.contactInfo;
+                contactInfo.setVisibility(View.INVISIBLE);
+                ConstraintLayout layout = view.getRootView().findViewById(R.id.mainView);
+                layout.setBackgroundColor(Color.parseColor("#FFFFFFFF"));
             }
         });
     }
