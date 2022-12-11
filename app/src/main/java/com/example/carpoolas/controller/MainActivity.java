@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
             curState = "logIn";
             this.mainView.displayFragment(logInScreen, true, "login screen");
         }  else {
-            this.curListing = (Listing) savedInstanceState.getSerializable(CUR_LISTING);
+            curListing = (Listing) savedInstanceState.getSerializable(CUR_LISTING);
         }
 
 
@@ -76,20 +76,17 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putString(IS_SHOWN, curState);
-        outState.putSerializable(CUR_LISTING, this.curListing);
+        outState.putSerializable(CUR_LISTING, curListing);
     }
 
     public CreateListingFragment getListingFragListener(){
-        CreateListingFragment createListingFragment = new CreateListingFragment(this);
-        return createListingFragment;
+        return new CreateListingFragment(this);
     }
     public DashboardFragment getDashboardFragListener(){
-        DashboardFragment dashboardFragment = new DashboardFragment(this);
-        return dashboardFragment;
+        return new DashboardFragment(this);
     }
     public FilterFragment getSearchFragListener(){
-        FilterFragment filterFragment = new FilterFragment(this);
-        return filterFragment;
+        return new FilterFragment(this);
     }
 
     @Override
@@ -153,10 +150,10 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
 
     @Override
     public void onCreateListing(@NonNull Date created, String role, Date dateTime, String start, String end, int seats, @NonNull ICreateListingView view){
-        this.curListing = new Listing(created, role, dateTime, start, end, seats);
-        this.listings.addCreatedListing(curListing);
+        Listing listing = new Listing(created, role, dateTime, start, end, seats);
+        listings.addCreatedListing(listing);
 
-        this.persistenceFacade.saveListing(this.curListing);
+        this.persistenceFacade.saveListing(listing);
 
         curState = "dashboard";
         this.mainView.displayFragment(dashboardFragment,true,"dashboard");
@@ -164,17 +161,15 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
     }
 
     public CollectionOfListings getListings() {
-        return this.listings;
+        return listings;
     }
 
     @Override
     public void onFilter(@NonNull CollectionOfListings lst, Set<IFilter> filterSet, @NonNull IFilterView view) {
         //TODO:call generic filter method here, for every member of the set filter
-        Iterator<IFilter> filterIterator = filterSet.iterator();
-        while (filterIterator.hasNext()){
-            IFilter filter = filterIterator.next();
+        for (IFilter filter : filterSet) {
             filter.filterListings(lst);
-            }
+        }
 
 
         //display filtered listings
@@ -193,10 +188,11 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
         this.persistenceFacade.retrieveCollectionOfListings(new IPersistenceFacade.DataListener<CollectionOfListings>() {
             @Override
             public void onDataReceived(@NonNull CollectionOfListings listings) {
-                MainActivity.this.listings = listings;
+                MainActivity.listings = listings;
                 Fragment curFrag = MainActivity.this.mainView.getCurFragment();
                 if (curFrag instanceof IDashboardView) // update ledger display if ledger fragment being displayed
                     ((IDashboardView)curFrag).updateDashboardDisplay(listings);
+                dashboardFragment.adapter.notifyDataSetChanged();
             }
 
             @Override
