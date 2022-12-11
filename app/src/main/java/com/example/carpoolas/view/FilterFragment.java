@@ -64,14 +64,49 @@ public class FilterFragment extends Fragment implements IFilterView{
         this.binding.filterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                CollectionOfListings filteredPage = ((MainActivity)getActivity()).getListings(); //all listings at first
-                //if no listings
-                if (filteredPage.isEmpty()){
+                if (MainActivity.allListings.isEmpty()){
                     Snackbar.make(view, "No listings to filter!", Snackbar.LENGTH_SHORT).show();
+                    return;
                 }
 
+                CollectionOfListings filteredPage = ((MainActivity)getActivity()).getListings(); //all listings at first
                 boolean isValid = true;
-                //extract trip date and time
+
+                //role
+                RadioButton driverButton = binding.driverRadioButton;
+                RadioButton PassengerButton = binding.passengerRadioButton;
+
+                if (driverButton.isChecked()) {
+                    RoleFilter roleFilter = new RoleFilter();
+                    roleFilter.dRole = "Driver";
+                    filterSet.add(roleFilter);
+                }
+                if (PassengerButton.isChecked()) {
+                    RoleFilter roleFilter = new RoleFilter();
+                    roleFilter.dRole = "Passenger";
+                    filterSet.add(roleFilter);
+                }
+
+                //extract seats
+                Editable enterSeats = FilterFragment.this.binding.enterSeats.getText();
+                String stringSeats = enterSeats.toString();
+                int seats = 0;
+                if(stringSeats.isEmpty());
+
+                else {
+                    try{
+                        seats = Integer.parseInt(enterSeats.toString());
+                    } catch (NumberFormatException e) {
+                        Snackbar.make(view, "Please enter number of seats!", Snackbar.LENGTH_SHORT).show();
+                        isValid = false;
+                    }
+                    SeatFilter seatFilter = new SeatFilter();
+                    seatFilter.dSeats = seats;
+                    filterSet.add(seatFilter);
+                }
+
+
+                //extract trip date
                 Editable enterDate = FilterFragment.this.binding.enterDate.getText();
                 String dateString = enterDate.toString();
                 Date date = null;
@@ -119,55 +154,16 @@ public class FilterFragment extends Fragment implements IFilterView{
                     filterSet.add(endFilter);
                 }
 
-                //extract seats
-                Editable enterSeats = FilterFragment.this.binding.enterSeats.getText();
-                String stringSeats = enterSeats.toString();
-                int seats = 0;
-                if(stringSeats.isEmpty());
 
-                else {
-                    try{
-                        seats = Integer.parseInt(enterSeats.toString());
-                    } catch (NumberFormatException e) {
-                        Snackbar.make(view, "Please enter number of seats!", Snackbar.LENGTH_SHORT).show();
-                        isValid = false;
-                    }
-                    SeatFilter seatFilter = new SeatFilter();
-                    seatFilter.dSeats = seats;
-                    filterSet.add(seatFilter);
-                }
-
-                //TODO:record filters, create filter, set of them, send to main activity
                  if (isValid) {
                      Snackbar.make(view, "Filtered Listings!", Snackbar.LENGTH_SHORT).show();
                      LinearLayout layout = (LinearLayout) view.getRootView().findViewById(R.id.mainLayout);
                      layout.setVisibility(View.VISIBLE);
-                     //TODO: dateCreated = formatter.format(dateCreated);
-                     RadioButton driverButton = binding.driverRadioButton;
-                     RadioButton PassengerButton = binding.passengerRadioButton;
-
-                     if (driverButton.isChecked()) {
-                         RoleFilter roleFilter = new RoleFilter();
-                         roleFilter.dRole = "Driver";
-                         filterSet.add(roleFilter);
-                     }
-                     if (PassengerButton.isChecked()) {
-                         RoleFilter roleFilter = new RoleFilter();
-                         roleFilter.dRole = "Passenger";
-                         filterSet.add(roleFilter);
-                     }
 
                      FilterFragment.this.listener.onFilter(filteredPage, filterSet, FilterFragment.this);
-
-
                  }
-
                 }
-
             }
         );
-
         }
-
-
     }
