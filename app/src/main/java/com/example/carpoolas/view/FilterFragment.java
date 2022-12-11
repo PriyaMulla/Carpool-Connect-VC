@@ -25,6 +25,7 @@ import com.example.carpoolas.model.DateFilter;
 import com.example.carpoolas.model.EndFilter;
 import com.example.carpoolas.model.IFilter;
 import com.example.carpoolas.model.RoleFilter;
+import com.example.carpoolas.model.SeatFilter;
 import com.example.carpoolas.model.StartFilter;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -56,7 +57,7 @@ public class FilterFragment extends Fragment implements IFilterView{
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        @SuppressLint("SimpleDateFormat") DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy HH:mm");
+        @SuppressLint("SimpleDateFormat") DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
         Set<IFilter> filterSet = new HashSet<>();
 
         //listener for filter button clicks
@@ -72,17 +73,14 @@ public class FilterFragment extends Fragment implements IFilterView{
                 boolean isValid = true;
                 //extract trip date and time
                 Editable enterDate = FilterFragment.this.binding.enterDate.getText();
-                Editable enterTime = FilterFragment.this.binding.enterTime.getText();
                 String dateString = enterDate.toString();
-                String timeString = enterTime.toString();
-                String dateTimeString = dateString + " " + timeString;
                 Date date = null;
 
-                if (dateString.isEmpty() && timeString.isEmpty());
+                if (dateString.isEmpty());
 
                 else {
                     try {
-                        date = formatter.parse(dateTimeString);
+                        date = formatter.parse(dateString);
                     } catch (ParseException e) {
                         Snackbar.make(view, "Please enter Date and Time!", Snackbar.LENGTH_SHORT).show();
                         isValid = false;
@@ -134,7 +132,9 @@ public class FilterFragment extends Fragment implements IFilterView{
                         Snackbar.make(view, "Please enter number of seats!", Snackbar.LENGTH_SHORT).show();
                         isValid = false;
                     }
-                    seats = Integer.parseInt(enterSeats.toString());
+                    SeatFilter seatFilter = new SeatFilter();
+                    seatFilter.dSeats = seats;
+                    filterSet.add(seatFilter);
                 }
 
                 //TODO:record filters, create filter, set of them, send to main activity
@@ -159,11 +159,6 @@ public class FilterFragment extends Fragment implements IFilterView{
 
                      FilterFragment.this.listener.onFilter(filteredPage, filterSet, FilterFragment.this);
 
-                     enterDate.clear();
-                     enterSeats.clear();
-                     enterStart.clear();
-                     enterEnd.clear();
-                     enterTime.clear();
 
                  }
 

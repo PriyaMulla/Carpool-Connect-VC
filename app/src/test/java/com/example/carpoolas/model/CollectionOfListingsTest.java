@@ -12,7 +12,7 @@ class CollectionOfListingsTest {
      * Tests CollectionOfListings toString  and addListing method by adding listings to PageOL and checking result
      */
 
-    @Test
+    /*@Test
     void testToString() {
         CollectionOfListings lst = new CollectionOfListings();
         assertEquals("", lst.toString(), "non-empty string for empty page");
@@ -26,5 +26,5 @@ class CollectionOfListingsTest {
         lst.addListing(cDate, "Driver", dDate, "135 Ray Ave, Pough, CO 12605", "3 Ray Ave, Pough, NY 12409", 4);
         assertEquals("Listing: \n Created: 11/13/2022 02:52\n Role: Passenger\n Date and Time: 11/16/2022 02:30\n Start: 123 Ray Ave, Pough, NY 12605\n End: 3 Ray Ave, Pough, NY 12604\n Seats: 2\nListing: \n Created: 11/13/2022 02:52\n Role: Driver\n Date and Time: 11/16/2022 02:30\n Start: 135 Ray Ave, Pough, CO 12605\n End: 3 Ray Ave, Pough, NY 12409\n Seats: 4\n", lst.toString());
 
-    }
+    }*/
 }

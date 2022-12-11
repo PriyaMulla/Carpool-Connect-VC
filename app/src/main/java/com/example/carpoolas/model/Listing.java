@@ -7,8 +7,8 @@ import androidx.annotation.NonNull;
 
 import java.io.Serializable;
 import java.text.ParseException;
-import java.util.Date;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
@@ -32,7 +32,7 @@ public class Listing implements Serializable {
 
     public Listing(){}
 
-    public Listing(Date created, String role, Date dateTime, String start, String end,  int seats, Account curAccount){
+    public Listing(Date created, String role, Date dateTime, String start, String end, int seats, Account curAccount){
         this.dateCreated = created;
         this.role = role;
         this.dateTimeOfTrip = dateTime;

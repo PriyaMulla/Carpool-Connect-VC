@@ -65,7 +65,14 @@ public class DashboardFragment extends Fragment implements IDashboardView {
         //TextView name = nbinding.nameHolder;
         //name.setVisibility(View.VISIBLE);
         //name.setText(((MainActivity)getActivity()).getCurAccount().getName());
-        this.updateDashboardDisplay(MainActivity.listings);
+
+        if (MainActivity.createListUsed){
+            this.updateDashboardDisplay(MainActivity.allListings);
+        }
+        else {
+            this.updateDashboardDisplay(MainActivity.filteredListings);
+        }
+
 
 
         //go into detailed frag
@@ -80,7 +87,7 @@ public class DashboardFragment extends Fragment implements IDashboardView {
                 String selectedPost = (String) listView.getItemAtPosition(position);
                 Snackbar.make(view,"You selected : " + selectedPost,Snackbar.LENGTH_SHORT).show();
 
-                if (!(MainActivity.listings.isEmpty())) {
+                if (!(MainActivity.allListings.isEmpty())) {
                     curListing = listy.get(position);
                     LinearLayout layout = (LinearLayout) view.getRootView().findViewById(R.id.mainLayout);
                     layout.setVisibility(View.INVISIBLE);
@@ -113,7 +120,7 @@ public class DashboardFragment extends Fragment implements IDashboardView {
         //dash = new ArrayList<>();
 
         //Import listings into an arrayList
-        for (Listing listing : MainActivity.listings.listings) {
+        for (Listing listing : listings.listings) {
             listy.add(listing);
             curRole = listing.getRole();
             curEnd = listing.getEndLocation();

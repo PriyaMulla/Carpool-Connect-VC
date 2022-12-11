@@ -28,6 +28,7 @@ import com.example.carpoolas.view.LogInScreen;
 import com.example.carpoolas.view.MainView;
 import com.example.carpoolas.view.ICreateAccountView;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.Set;
@@ -37,12 +38,14 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
     public static final String IS_SHOWN = "isShown";
     private static final String CUR_LISTING = "curListing";
     CollectionOfAccounts accounts = new CollectionOfAccounts();
-    public static CollectionOfListings listings = new CollectionOfListings();
+    public static CollectionOfListings allListings = new CollectionOfListings();
+    public static CollectionOfListings filteredListings = new CollectionOfListings();
     IMainView mainView;
     public static String curState = "";
     Account curAccount;
     public static Listing curListing; //listing currently working on
     IPersistenceFacade persistenceFacade = new FirestoreFacade();
+    public static boolean createListUsed = true;
 
 
 
@@ -114,7 +117,7 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
         mainView.showControls();
     }
     public CollectionOfListings getListing() {
-        return listings;
+        return allListings;
     }
 
     DashboardFragment dashboardFragment = new DashboardFragment(this);
@@ -135,10 +138,10 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
         this.persistenceFacade.retrieveCollectionOfListings(new IPersistenceFacade.DataListener<CollectionOfListings>() {
             @Override
             public void onDataReceived(@NonNull CollectionOfListings listings) {
-                MainActivity.listings = listings;
+                MainActivity.allListings = listings;
                 Fragment curFrag = MainActivity.this.mainView.getCurFragment();
                 if (curFrag instanceof IDashboardView) // update ledger display if ledger fragment being displayed
-                    ((IDashboardView)curFrag).updateDashboardDisplay(MainActivity.listings);
+                    ((IDashboardView)curFrag).updateDashboardDisplay(MainActivity.allListings);
                 dashboardFragment.adapter.notifyDataSetChanged();
             }
 
@@ -147,6 +150,7 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
             }
         });
         this.persistenceFacade.saveAccount(curAccount);
+        //MainActivity.this.curAccount = curAccount;
 
         this.mainView.displayFragment(dashboardFragment,true,"dashboard");
 
@@ -155,7 +159,8 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
     @Override
     public void onCreateListing(@NonNull Date created, String role, Date dateTime, String start, String end, int seats, @NonNull ICreateListingView view){
         Listing listing = new Listing(created, role, dateTime, start, end, seats, curAccount);
-        listings.addCreatedListing(listing);
+        createListUsed = true;
+        allListings.addCreatedListing(listing);
 
         this.persistenceFacade.saveListing(listing);
 
@@ -165,17 +170,16 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
     }
 
     public CollectionOfListings getListings() {
-        return listings;
+        return allListings;
     }
 
     @Override
     public void onFilter(@NonNull CollectionOfListings lst, Set<IFilter> filterSet, @NonNull IFilterView view) {
         //TODO:call generic filter method here, for every member of the set filter
+        createListUsed = false;
         for (IFilter filter : filterSet) {
-            filter.filterListings(lst);
+            filteredListings = filter.filterListings(lst);
         }
-
-
         //display filtered listings
         this.mainView.displayFragment(dashboardFragment,true,"dashboard");
     }
@@ -192,10 +196,10 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
         this.persistenceFacade.retrieveCollectionOfListings(new IPersistenceFacade.DataListener<CollectionOfListings>() {
             @Override
             public void onDataReceived(@NonNull CollectionOfListings listings) {
-                MainActivity.listings = listings;
+                MainActivity.allListings = listings;
                 Fragment curFrag = MainActivity.this.mainView.getCurFragment();
                 if (curFrag instanceof IDashboardView) // update ledger display if ledger fragment being displayed
-                    ((IDashboardView)curFrag).updateDashboardDisplay(MainActivity.listings);
+                    ((IDashboardView)curFrag).updateDashboardDisplay(MainActivity.allListings);
                 dashboardFragment.adapter.notifyDataSetChanged();
             }
 
@@ -228,6 +232,7 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
             @Override
             public void onDataReceived(@NonNull Account account) {
                 if (account.validatePassword(password)){
+                    MainActivity.this.curAccount = account;
                     DashboardFragment dashboardFragment = new DashboardFragment(MainActivity.this);
                     MainActivity.this.mainView.displayFragment(dashboardFragment, true, "go to Dashboard");
                 } else view.onInvalidCredentials();
