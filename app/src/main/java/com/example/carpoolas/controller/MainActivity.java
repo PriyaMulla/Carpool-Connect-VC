@@ -2,10 +2,15 @@ package com.example.carpoolas.controller;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
+import com.example.carpoolas.R;
 import com.example.carpoolas.model.Account;
 import com.example.carpoolas.model.CollectionOfAccounts;
 import com.example.carpoolas.model.CollectionOfListings;
@@ -101,13 +106,24 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
             mainView.hideControls();
             new MainActivity();
         }
-        if (curFrag instanceof IDashboardView) mainView.showControls();
+        if (curFrag instanceof IDashboardView) {
+            mainView.showControls();
+            ConstraintLayout contactInfo = DetailedListingFragment.binding.contactInfo;
+            contactInfo.setVisibility(View.INVISIBLE);
+            ConstraintLayout layout = mainView.getRootView().findViewById(R.id.mainView);
+            layout.setBackgroundColor(Color.parseColor("#FFFFFFFF"));
+            Button contact = DetailedListingFragment.binding.contact;
+            contact.setEnabled(true);
+        }
         if (curFrag instanceof ICreateListingView) mainView.hideControls();
         if (curFrag instanceof IFilterView) mainView.hideControls();
         if (curFrag instanceof ICreateAccountView) {
             LogInScreen logInScreen = new LogInScreen(this);
             this.mainView.displayFragment(logInScreen, true, "'login screen");
             mainView.hideControls();
+        }
+        if (curFrag instanceof IDetailedListingView){
+
         }
 
     }
