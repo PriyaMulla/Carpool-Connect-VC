@@ -35,10 +35,11 @@ public class DashboardFragment extends Fragment implements IDashboardView {
     Listener listener;
     static String curRole;
     static String curEnd;
-    public Listing curListing;
+    public static Listing curListing;
     String brief;
     ArrayList<Listing> listy = new ArrayList<>();
     ArrayList<String> dash = new ArrayList<>();
+    public ArrayAdapter<String> adapter;
 
 
     public DashboardFragment(Listener listener) {
@@ -57,14 +58,14 @@ public class DashboardFragment extends Fragment implements IDashboardView {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
 
-        this.updateDashboardDisplay(this.listener.getListings());
+        this.updateDashboardDisplay(MainActivity.listings);
 
         /*if(this.listener.getListings().isEmpty()){
             dash.add("No listings available :'(");
         }*/
 
         //go into detailed frag
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1,dash);
+        adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1,dash);
 
         ListView listView = binding.listview;
         listView.setAdapter(adapter);
@@ -104,7 +105,7 @@ public class DashboardFragment extends Fragment implements IDashboardView {
      */
     @Override
     public void updateDashboardDisplay(CollectionOfListings listings) {
-
+        dash = new ArrayList<>();
 
         //Import listings into an arrayList
         for (Listing listing : MainActivity.listings.listings) {

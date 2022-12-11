@@ -1,5 +1,7 @@
 package com.example.carpoolas.view;
 
+import static com.example.carpoolas.view.DashboardFragment.curListing;
+
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -34,7 +36,7 @@ public class DetailedListingFragment extends Fragment implements IDetailedListin
 //TODO Create a method in MainActivity that gets the current post for here
     public DetailedListingFragment(Listener listener) {
         this.listener = listener;
-        currListing = MainActivity.curListing;
+        currListing = curListing;
         DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy HH:mm");
         strDateTimeCreated = formatter.format(currListing.getDateCreated());
         strDateTime = formatter.format(currListing.getDateTimeOfTrip());
