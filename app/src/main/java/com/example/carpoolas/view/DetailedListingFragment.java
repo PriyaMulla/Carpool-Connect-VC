@@ -16,6 +16,7 @@ import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -32,7 +33,7 @@ import java.text.SimpleDateFormat;
 
 public class DetailedListingFragment extends Fragment implements IDetailedListingView {
 
-    FragmentDetailedListingBinding binding;
+    public static FragmentDetailedListingBinding binding;
     ActivityMainBinding mainBinding;
     Listener listener;
     Listing currListing;
@@ -93,7 +94,7 @@ public class DetailedListingFragment extends Fragment implements IDetailedListin
         }
         seats.setText(seatNum);
 
-        this.binding.message.setOnClickListener(new View.OnClickListener() {
+        this.binding.contact.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -102,6 +103,8 @@ public class DetailedListingFragment extends Fragment implements IDetailedListin
                 contactInfo.setVisibility(View.VISIBLE);
                 ConstraintLayout layout = view.getRootView().findViewById(R.id.mainView);
                 layout.setBackgroundColor(Color.parseColor("#FF9E9E9E"));
+                Button contact = binding.contact;
+                contact.setEnabled(false);
                 //((MainActivity)getActivity()).changeColor();
             }
         });
@@ -112,6 +115,8 @@ public class DetailedListingFragment extends Fragment implements IDetailedListin
                 contactInfo.setVisibility(View.INVISIBLE);
                 ConstraintLayout layout = view.getRootView().findViewById(R.id.mainView);
                 layout.setBackgroundColor(Color.parseColor("#FFFFFFFF"));
+                Button contact = binding.contact;
+                contact.setEnabled(true);
             }
         });
     }
