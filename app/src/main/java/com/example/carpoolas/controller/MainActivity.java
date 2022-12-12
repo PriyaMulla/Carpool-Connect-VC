@@ -177,7 +177,6 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
         allListings.addCreatedListing(listing);
 
         this.persistenceFacade.saveListing(listing);
-
         curState = "dashboard";
         this.mainView.displayFragment(dashboardFragment,true,"dashboard");
 
@@ -203,24 +202,11 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
         this.mainView.displayFragment(new CreateAccountFragment(this),true,"create an account");
     }
     @Override
-    public void goToDashboard(@NonNull ILogInScreen view) {
+    public void goToDashboard() {
         curState = "logIn";
 
         //load listings
-        this.persistenceFacade.retrieveCollectionOfListings(new IPersistenceFacade.DataListener<CollectionOfListings>() {
-            @Override
-            public void onDataReceived(@NonNull CollectionOfListings listings) {
-                MainActivity.allListings = listings;
-                Fragment curFrag = MainActivity.this.mainView.getCurFragment();
-                if (curFrag instanceof IDashboardView) // update ledger display if ledger fragment being displayed
-                    ((IDashboardView)curFrag).updateDashboardDisplay(MainActivity.allListings);
-                dashboardFragment.adapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onNoDataFound() {
-            }
-        });
+        this.loadListings();
 
         this.mainView.displayFragment(dashboardFragment,true,"go to dashboard");
 
@@ -251,6 +237,22 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
             @Override
             public void onNoDataFound() {
                 view.onInvalidCredentials();
+            }
+        });
+    }
+    public void loadListings(){
+        this.persistenceFacade.retrieveCollectionOfListings(new IPersistenceFacade.DataListener<CollectionOfListings>() {
+            @Override
+            public void onDataReceived(@NonNull CollectionOfListings listings) {
+                MainActivity.allListings = listings;
+                Fragment curFrag = MainActivity.this.mainView.getCurFragment();
+                if (curFrag instanceof IDashboardView) // update ledger display if ledger fragment being displayed
+                    ((IDashboardView)curFrag).updateDashboardDisplay(MainActivity.allListings);
+                dashboardFragment.adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onNoDataFound() {
             }
         });
     }

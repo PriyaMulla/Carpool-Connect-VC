@@ -41,6 +41,7 @@ public class FilterFragment extends Fragment implements IFilterView{
 
     private FragmentFilterBinding binding;
     private Listener listener;
+    public static boolean isEmpty = true;
 
 
     public FilterFragment(Listener listener) {
@@ -80,20 +81,23 @@ public class FilterFragment extends Fragment implements IFilterView{
                     RoleFilter roleFilter = new RoleFilter();
                     roleFilter.dRole = "Driver";
                     filterSet.add(roleFilter);
+                    isEmpty = false;
                 }
                 if (PassengerButton.isChecked()) {
                     RoleFilter roleFilter = new RoleFilter();
                     roleFilter.dRole = "Passenger";
                     filterSet.add(roleFilter);
+                    isEmpty = false;
                 }
 
                 //extract seats
                 Editable enterSeats = FilterFragment.this.binding.enterSeats.getText();
                 String stringSeats = enterSeats.toString();
                 int seats = 0;
-                if(stringSeats.isEmpty());
+                if(!(stringSeats.isEmpty()))
 
-                else {
+                 {
+                     isEmpty = false;
                     try{
                         seats = Integer.parseInt(enterSeats.toString());
                     } catch (NumberFormatException e) {
@@ -111,9 +115,10 @@ public class FilterFragment extends Fragment implements IFilterView{
                 String dateString = enterDate.toString();
                 Date date = null;
 
-                if (dateString.isEmpty());
+                if (!(dateString.isEmpty()))
 
-                else {
+                 {
+                     isEmpty = false;
                     try {
                         date = formatter.parse(dateString);
                     } catch (ParseException e) {
@@ -128,30 +133,31 @@ public class FilterFragment extends Fragment implements IFilterView{
                 //extract start location
                 Editable enterStart = FilterFragment.this.binding.enterStartLocation.getText();
                 String start = enterStart.toString();
-                if(start.isEmpty());
-
-                else if (!isValidStart(start)) {
-                    Snackbar.make(view, "Please enter Start Location!", Snackbar.LENGTH_SHORT).show();
-                    isValid = false;
-                }
-                else{
-                    StartFilter startFilter = new StartFilter();
-                    startFilter.dStart = start;
-                    filterSet.add(startFilter);
+                if(!(start.isEmpty())) {
+                    isEmpty = false;
+                    if (!isValidStart(start)) {
+                        Snackbar.make(view, "Please enter Start Location!", Snackbar.LENGTH_SHORT).show();
+                        isValid = false;
+                    } else {
+                        StartFilter startFilter = new StartFilter();
+                        startFilter.dStart = start;
+                        filterSet.add(startFilter);
+                    }
                 }
 
                 //extract end location
                 Editable enterEnd = FilterFragment.this.binding.enterEndLocation.getText();
                 String end = enterEnd.toString();
-                if(end.isEmpty());
-                else if (!isValidEnd(end)) {
-                    Snackbar.make(view, "Please enter End Location!", Snackbar.LENGTH_SHORT).show();
-                    isValid = false;
-                }
-                else{
-                    EndFilter endFilter = new EndFilter();
-                    endFilter.dEnd = end;
-                    filterSet.add(endFilter);
+                if(!(end.isEmpty())) {
+                    isEmpty = false;
+                    if (!isValidEnd(end)) {
+                        Snackbar.make(view, "Please enter End Location!", Snackbar.LENGTH_SHORT).show();
+                        isValid = false;
+                    } else {
+                        EndFilter endFilter = new EndFilter();
+                        endFilter.dEnd = end;
+                        filterSet.add(endFilter);
+                    }
                 }
 
 

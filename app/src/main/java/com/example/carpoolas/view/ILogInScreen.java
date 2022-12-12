@@ -14,7 +14,7 @@ public interface ILogInScreen {
          * called when an account needs to be created
          */
         void goToCreateAccount(@NonNull ILogInScreen view);
-        void goToDashboard(@NonNull ILogInScreen view);
+        void goToDashboard();
 
         void onSigninAttempt(String username, String password, ILogInScreen view);
         //void onCreateAccount(@NonNull String username, String password, String name, String email, @NonNull ICreateAccountView view);

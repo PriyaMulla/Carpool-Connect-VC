@@ -67,7 +67,7 @@ public class DashboardFragment extends Fragment implements IDashboardView {
         //name.setVisibility(View.VISIBLE);
         //name.setText(((MainActivity)getActivity()).getCurAccount().getName());
 
-        if (MainActivity.createListUsed) {
+        if (MainActivity.filteredListings.isEmpty()) {
             this.updateDashboardDisplay(MainActivity.allListings);
         } else {
             this.updateDashboardDisplay(MainActivity.filteredListings);
@@ -97,7 +97,7 @@ public class DashboardFragment extends Fragment implements IDashboardView {
         this.binding.showAllTrips.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                updateDashboardDisplay(MainActivity.allListings);
+                ((MainActivity)getActivity()).goToDashboard();
             }
         });
     }

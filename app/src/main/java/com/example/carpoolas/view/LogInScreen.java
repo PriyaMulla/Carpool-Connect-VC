@@ -63,7 +63,7 @@ public class LogInScreen extends Fragment implements ILogInScreen{
                             "Redirecting...",Snackbar.LENGTH_SHORT).show();
                     LinearLayout layout = (LinearLayout) view.getRootView().findViewById(R.id.mainLayout);
                     layout.setVisibility(View.VISIBLE);
-                    LogInScreen.this.listener.goToDashboard(LogInScreen.this);
+                    LogInScreen.this.listener.goToDashboard();
                 }else{
                     Snackbar.make(view, "Wrong Credentials",Snackbar.LENGTH_SHORT).show();
                 usernameText.clear();
