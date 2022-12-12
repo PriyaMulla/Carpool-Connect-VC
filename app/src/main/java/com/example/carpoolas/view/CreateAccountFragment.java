@@ -23,7 +23,10 @@ import com.example.carpoolas.R;
 import com.example.carpoolas.databinding.FragmentCreateAccountBinding;
 import com.google.android.material.snackbar.Snackbar;
 
-//implements ICreateView interface using Android Frag
+/**
+ * implements ICreateAccountView interface using Android Frag
+ */
+
 public class CreateAccountFragment extends Fragment implements ICreateAccountView {
 
     private static final String IS_CREATED = "isCreated";
@@ -31,11 +34,23 @@ public class CreateAccountFragment extends Fragment implements ICreateAccountVie
     Listener listener;
     private boolean isCreated = false;
 
+    /**
+     * Constructor method.
+     * @param listener observer to be notified of events of interest
+     */
     public CreateAccountFragment(Listener listener) {
         this.listener = listener;
     }
 
 
+    /**
+     * OnCreateView() overrides method of the same name from superclass. It's purpose is to
+     * inflate the xml layout associated with the fragment.
+     * @param inflater object to use to inflate the xml layout (create actual graphical widgets out of the xml declarations)
+     * @param container where the graphical widgets will be placed
+     * @param savedInstanceState any saved state information to be restored (null if none exists)
+     * @return the root of the layout that has just been inflated
+     */
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                             @Nullable Bundle savedInstanceState) {
@@ -44,6 +59,14 @@ public class CreateAccountFragment extends Fragment implements ICreateAccountVie
         return this.binding.getRoot();
     }
 
+    /**
+     * OnViewCreated() overrides method of the same name from superclass. It is called by the
+     * android platform after the layout has been inflated, and before the view transitions to the
+     * created state.
+     *
+     * @param view the layout's root view
+     * @param savedInstanceState any saved state information to be restored (null if none exists)
+     */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -107,6 +130,7 @@ public class CreateAccountFragment extends Fragment implements ICreateAccountVie
                 }
                 binding.enterEmailAddress.setTextColor(Color.BLACK);
 
+                //ensure that everything is valid
                 if(isValid) {
                     CreateAccountFragment.this.listener.onCreateAccount(username, password, name, email, CreateAccountFragment.this);
                     LinearLayout layout = (LinearLayout) view.getRootView().findViewById(R.id.mainLayout);
@@ -117,25 +141,33 @@ public class CreateAccountFragment extends Fragment implements ICreateAccountVie
         );
 
         }
+
+    /**
+     * Overridden to save dynamic state before fragment destruction.
+     * @param outState the bundle to write state to.
+     */
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putBoolean(IS_CREATED, this.isCreated);
     }
 
+    /**
+     * once creation is confirmed notify
+     */
     @Override
     public void onCreateSuccess() {
         this.isCreated = true;
         Snackbar.make(this.binding.getRoot(), "Account created!",Snackbar.LENGTH_SHORT).show();
 
-
     }
 
-
+    /**
+     * if account username already exists notify
+     */
     @Override
     public void onAccountAlreadyExists() {
         Snackbar.make(this.binding.getRoot(), "Username taken",Snackbar.LENGTH_SHORT).show();
     }
-
 
 }

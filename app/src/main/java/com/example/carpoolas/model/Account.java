@@ -1,26 +1,29 @@
 package com.example.carpoolas.model;
 
-import android.annotation.SuppressLint;
-
 import androidx.annotation.NonNull;
-
 import java.io.Serializable;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 
 //represents user in application
 public class Account implements Serializable {
 
-    private String username; // the user's unique name
+
 
     //fields
     private String name = "";
     private String email = "";
     private String password = "";
+    private String username; // the user's unique name
 
     public Account(){}
 
 
+    /**
+     * Creates an account with info
+     * @param username accounts username
+     * @param password accounts password
+     * @param name accounts name
+     * @param email accounts email
+     */
     public Account(String username, String password, String name, String email){
         this.username = username;
         this.password = password;
@@ -28,6 +31,11 @@ public class Account implements Serializable {
         this.email = email;
     }
 
+    /**
+     * ensures validations for fields
+     * @param input fields
+     * @return true if valid
+     */
     //validations
     public static boolean isValidName(String input){
         char ch;
@@ -68,9 +76,13 @@ public class Account implements Serializable {
     public static boolean isValidEmail (String input){
         return ((input.contains("@vassar.edu")) && (input.length() > 11));
     }
+    //end validations
 
 
-
+    /**
+     * retrieves accounts fields
+     * @return field
+     */
     public String getName() {
         return name;
     }
@@ -88,6 +100,10 @@ public class Account implements Serializable {
     }
 
 
+    /**
+     * textual representation of user
+     * @return text of user
+     */
     @NonNull
     @Override
     public String toString() {

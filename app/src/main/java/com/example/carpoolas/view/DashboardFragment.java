@@ -17,24 +17,20 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.TextView;
-
 import com.example.carpoolas.R;
 import com.example.carpoolas.controller.MainActivity;
-import com.example.carpoolas.databinding.ActivityMainBinding;
 import com.example.carpoolas.databinding.FragmentDashboardBinding;
 import com.example.carpoolas.model.CollectionOfListings;
 import com.example.carpoolas.model.Listing;
 import com.google.android.material.snackbar.Snackbar;
-
 import java.util.ArrayList;
-import java.util.Iterator;
 
-
+/**
+ * Implements IDashboardView interface using an Android fragment.
+ */
 public class DashboardFragment extends Fragment implements IDashboardView {
 
     FragmentDashboardBinding binding;
-    ActivityMainBinding nbinding;
     Listener listener;
     static String curRole;
     static String curEnd;
@@ -45,10 +41,22 @@ public class DashboardFragment extends Fragment implements IDashboardView {
     public ArrayAdapter<String> adapter;
 
 
+    /**
+     * Constructor method.
+     * @param listener observer to be notified of events of interest
+     */
     public DashboardFragment(Listener listener) {
         this.listener = listener;
     }
 
+    /**
+     * OnCreateView() overrides method of the same name from superclass. It's purpose is to
+     * inflate the xml layout associated with the fragment.
+     * @param inflater object to use to inflate the xml layout (create actual graphical widgets out of the xml declarations)
+     * @param container where the graphical widgets will be placed
+     * @param savedInstanceState any saved state information to be restored (null if none exists)
+     * @return the root of the layout that has just been inflated
+     */
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
@@ -57,16 +65,22 @@ public class DashboardFragment extends Fragment implements IDashboardView {
         return this.binding.getRoot();
 
     }
+
+    /**
+     * OnViewCreated() overrides method of the same name from superclass. It is called by the
+     * android platform after the layout has been inflated, and before the view transitions to the
+     * created state.
+     *
+     * @param view the layout's root view
+     * @param savedInstanceState any saved state information to be restored (null if none exists)
+     */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         dash = new ArrayList<>();
         listy = new ArrayList<>();
-        //TODO Fully implement curAccount and think about it more
-        //TextView name = nbinding.nameHolder;
-        //name.setVisibility(View.VISIBLE);
-        //name.setText(((MainActivity)getActivity()).getCurAccount().getName());
 
+        //changes dashboard depending on action that just occurred
         if (MainActivity.filteredListings.isEmpty()) {
             this.updateDashboardDisplay(MainActivity.allListings);
         } else {
@@ -103,12 +117,20 @@ public class DashboardFragment extends Fragment implements IDashboardView {
     }
 
 
+    /**
+     * Overridden to save dynamic state before fragment destruction.
+     * @param outState the bundle to write state to.
+     */
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putString(IS_SHOWN, curState);
     }
 
+    /**
+     * Overridden to load dynamic state upon fragment recreation.
+     * @param savedInstanceState the bundle to read state from.
+     */
     @Override
     public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
         super.onViewStateRestored(savedInstanceState);
@@ -121,7 +143,6 @@ public class DashboardFragment extends Fragment implements IDashboardView {
      */
     @Override
     public void updateDashboardDisplay(CollectionOfListings listings) {
-        //dash = new ArrayList<>();
 
         //Import listings into an arrayList
         for (Listing listing : listings.listings) {

@@ -6,7 +6,6 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 import java.util.LinkedList;
-        import java.util.List;
 
 /**
  * Represents a Page, which is composed of listings.
@@ -30,13 +29,18 @@ public class CollectionOfListings implements Serializable {
     }
 
     /**
-     * associates listing with the Page of Listings.
+     * adds a new listing to collection of Listings
+     * @param lst listing to be added
      */
     public void addCreatedListing(Listing lst) {
         this.listings.add(lst);
     }
 
 
+    /**
+     * textual rep of collection of listings
+     * @return text rep
+     */
     @NonNull
     @Override
     public String toString() {
@@ -50,6 +54,10 @@ public class CollectionOfListings implements Serializable {
         return sb.toString();
     }
 
+    /**
+     * checks if collection of listings is empty
+     * @return true if empty
+     */
     public boolean isEmpty() {
         if (this.listings.isEmpty()){
             return true;
