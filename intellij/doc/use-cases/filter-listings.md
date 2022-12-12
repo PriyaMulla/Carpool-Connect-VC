@@ -22,7 +22,7 @@
 * The page of Listings is updated
 
 ### Main success scenario
-1. System accesses filter fragment
+1. System sends user to filter page
 2. System asks if the listings should be from Drivers or Passengers
 3. User chooses their role
 4. Systems asks to input number of seats

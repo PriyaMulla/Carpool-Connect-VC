@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
     public static CollectionOfListings filteredListings = new CollectionOfListings(); //filtered listings
     IMainView mainView;
     public static String curState = "";
-    Account curAccount;
+    static Account curAccount;
     public static Listing curListing; //listing currently working on
     IPersistenceFacade persistenceFacade = new FirestoreFacade();
     public static boolean createListUsed = true;
@@ -207,7 +207,6 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
 
     /**
      * React to user's logging in and wanting to go to dashboard
-     * @param view where event originated
      */
     @Override
     public void goToDashboard() {
@@ -247,7 +246,7 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
             @Override
             public void onDataReceived(@NonNull Account account) {
                 if (account.getPassword().equals(password)){
-                    //MainActivity.this.curAccount = account;
+                    MainActivity.this.curAccount = account;
                     DashboardFragment dashboardFragment = new DashboardFragment(MainActivity.this);
                     MainActivity.this.mainView.displayFragment(dashboardFragment, true, "go to Dashboard");
                 } else view.onInvalidCredentials();

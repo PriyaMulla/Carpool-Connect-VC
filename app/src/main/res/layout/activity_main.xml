@@ -38,7 +38,7 @@
             android:orientation="horizontal">
 
             <Space
-                android:layout_width="40dp"
+                android:layout_width="140dp"
                 android:layout_height="wrap_content" />
 
             <TextView

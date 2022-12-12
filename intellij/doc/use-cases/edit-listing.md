@@ -35,7 +35,7 @@
 4a. User clicks delete:
 1. System outputs "Are you sure you want to delete this listing? All information will be deleted"
 2. User clicks accept
-3. System returns user to dashboard fragment
+3. System returns user to Dashboard
 
 5a. User inputs a seats that does not meet the requirements:
 5. System outputs the error message “Enter a valid number of seats”

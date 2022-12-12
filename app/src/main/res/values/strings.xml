@@ -78,6 +78,6 @@
     <string name="contact_details">Contact Details:</string>
     <string name="user_s_email">User\'s email: </string>
     <string name="email_holder">email holder</string>
-    <string name="show_all_trips">Show all trips</string>
+    <string name="show_all_trips">Refresh all trips</string>
 
 </resources>
