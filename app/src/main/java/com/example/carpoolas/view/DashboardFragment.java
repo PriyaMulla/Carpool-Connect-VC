@@ -40,7 +40,7 @@ public class DashboardFragment extends Fragment implements IDashboardView {
     static String curEnd;
     public static Listing curListing;
     String brief;
-    ArrayList<Listing> listy = new ArrayList<>();
+    ArrayList<Listing> listy;
     ArrayList<String> dash;
     public ArrayAdapter<String> adapter;
 
@@ -58,44 +58,48 @@ public class DashboardFragment extends Fragment implements IDashboardView {
 
     }
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState){
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         dash = new ArrayList<>();
+        listy = new ArrayList<>();
         //TODO Fully implement curAccount and think about it more
         //TextView name = nbinding.nameHolder;
         //name.setVisibility(View.VISIBLE);
         //name.setText(((MainActivity)getActivity()).getCurAccount().getName());
 
-        if (MainActivity.createListUsed){
+        if (MainActivity.createListUsed) {
             this.updateDashboardDisplay(MainActivity.allListings);
-        }
-        else {
+        } else {
             this.updateDashboardDisplay(MainActivity.filteredListings);
         }
 
 
-
         //go into detailed frag
-        adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1,dash);
+        adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, dash);
 
         ListView listView = binding.listview;
         listView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
         listView.setOnItemClickListener(new android.widget.AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view,int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String selectedPost = (String) listView.getItemAtPosition(position);
-                Snackbar.make(view,"You selected : " + selectedPost,Snackbar.LENGTH_SHORT).show();
+                Snackbar.make(view, "You selected : " + selectedPost, Snackbar.LENGTH_SHORT).show();
 
                 if (!(MainActivity.allListings.isEmpty())) {
-                    curListing = listy.get(position);
+                    curListing = listy.get(position++);
                     LinearLayout layout = (LinearLayout) view.getRootView().findViewById(R.id.mainLayout);
                     layout.setVisibility(View.INVISIBLE);
                     DashboardFragment.this.listener.goToDetailedPost(DashboardFragment.this);
                 }
             }
         });
-
+        this.binding.showAllTrips.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updateDashboardDisplay(MainActivity.allListings);
+            }
+        });
     }
 
 

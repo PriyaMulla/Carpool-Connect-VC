@@ -108,12 +108,10 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
         }
         if (curFrag instanceof IDashboardView) {
             mainView.showControls();
-            ConstraintLayout contactInfo = DetailedListingFragment.binding.contactInfo;
-            contactInfo.setVisibility(View.INVISIBLE);
+
             ConstraintLayout layout = mainView.getRootView().findViewById(R.id.mainView);
             layout.setBackgroundColor(Color.parseColor("#FFFFFFFF"));
-            Button contact = DetailedListingFragment.binding.contact;
-            contact.setEnabled(true);
+
         }
         if (curFrag instanceof ICreateListingView) mainView.hideControls();
         if (curFrag instanceof IFilterView) mainView.hideControls();
@@ -223,10 +221,7 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
         this.mainView.displayFragment(detailedListingFragment, true,"go to detailed");
     }
 
-    @Override
-    public void goToChatActivity() {
 
-    }
 
     public Account getCurAccount() {return curAccount;
     }
