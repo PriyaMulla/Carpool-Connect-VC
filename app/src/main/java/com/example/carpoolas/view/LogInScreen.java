@@ -54,10 +54,10 @@ public class LogInScreen extends Fragment implements ILogInScreen{
 
                 Editable passwordTeext = LogInScreen.this.binding.passwordText.getText();
                 String password = passwordTeext.toString();
-                //LogInScreen.this.listener.onSigninAttempt(username, password, LogInScreen.this);
+                LogInScreen.this.listener.onSigninAttempt(username, password, LogInScreen.this);
 
                 /////////////////
-                if(username.equals("admin") &&
+                /*if(username.equals("admin") &&
                         password.equals("admin")) {
                     Snackbar.make(view,
                             "Redirecting...",Snackbar.LENGTH_SHORT).show();
@@ -68,7 +68,7 @@ public class LogInScreen extends Fragment implements ILogInScreen{
                     Snackbar.make(view, "Wrong Credentials",Snackbar.LENGTH_SHORT).show();
                 usernameText.clear();
                 passwordTeext.clear();
-                }
+                }*/
                 ///////////////////
             }
         });
@@ -80,6 +80,13 @@ public class LogInScreen extends Fragment implements ILogInScreen{
             }
         });
     }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putBoolean(IS_REGISTERED, this.isRegistered);
+    }
+
     @Override
     public void onInvalidCredentials() {
         displayMessage(R.string.invalid_credentials_msg);

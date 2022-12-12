@@ -17,7 +17,12 @@ public interface ICreateAccountView {
          * called when an account is created
          */
         void onCreateAccount(@NonNull String username, String password, String name, String email, @NonNull ICreateAccountView view);
+
+
+
     }
+    void onCreateSuccess();
+    void onAccountAlreadyExists();
 
 
 

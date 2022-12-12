@@ -19,17 +19,15 @@ public class DateFilter implements IFilter{
         CollectionOfListings newPage = new CollectionOfListings();
 
 
-        Iterator<Listing> listingsIterator = lst.listings.iterator();
-        while (listingsIterator.hasNext()){
-            Listing listing = listingsIterator.next();
+        for (Listing listing : lst.listings) {
             Calendar cal = Calendar.getInstance();
             cal.setTime(listing.dateTimeOfTrip);
             int day = cal.get(Calendar.DATE);
             int month = cal.get(Calendar.MONTH);
             int year = cal.get(Calendar.YEAR);
-            cal.set(year,month, day,0, 0, 0);
+            cal.set(year, month, day, 0, 0, 0);
             Date cDate = (cal).getTime();
-            if (this.dDate.equals(cDate)){
+            if (this.dDate.equals(cDate)) {
                 newPage.addCreatedListing(listing);
             }
         }
