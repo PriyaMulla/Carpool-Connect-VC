@@ -9,6 +9,5 @@ public interface IDetailedListingView {
     interface Listener{
 
 
-        void goToChatActivity();
     }
 }
