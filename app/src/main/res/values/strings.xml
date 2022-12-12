@@ -79,5 +79,7 @@
     <string name="user_s_email">User\'s email: </string>
     <string name="email_holder">email holder</string>
     <string name="show_all_trips">Refresh all trips</string>
+    <string name="list_name_holder">Name holder</string>
+    <string name="posted_by">Posted by:</string>
 
 </resources>
