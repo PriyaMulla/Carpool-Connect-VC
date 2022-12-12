@@ -24,9 +24,16 @@ public class FilterInstTest {
      */
     @Test
     public void testCreateListing(){
-        //create listings
-        CreateListingInstTest createListingInstTest = new CreateListingInstTest();
-        createListingInstTest.testCreateListing();
+        //log in
+        LogInInstTest logInInstTest = new LogInInstTest();
+        logInInstTest.testLogIn();
+
+        //click refresh page
+        ViewInteraction refreshButtonVI = Espresso.onView(ViewMatchers.withId(R.id.showAllTrips));
+        refreshButtonVI.perform(ViewActions.click());
+
+        //check screen
+        SystemClock.sleep(3000);
 
         //click filter listing option
         ViewInteraction filterListingButtonVI = Espresso.onView(ViewMatchers.withId(R.id.searchListingsButton));
@@ -49,12 +56,6 @@ public class FilterInstTest {
 
         Espresso.closeSoftKeyboard();
 
-        //time
-        ViewInteraction timeTextVI = Espresso.onView(ViewMatchers.withId(R.id.enterTime));
-        timeTextVI.perform(ViewActions.typeText("10:30"));
-
-        Espresso.closeSoftKeyboard();
-
         ViewInteraction startTextVI = Espresso.onView(ViewMatchers.withId(R.id.enterStartLocation));
         startTextVI.perform(ViewActions.typeText("124 Ray Ave, Pough, NY 12604"));
 
@@ -66,11 +67,15 @@ public class FilterInstTest {
         Espresso.closeSoftKeyboard();
 
         //filter listings
-        ViewInteraction createButtonVI = Espresso.onView(ViewMatchers.withId(R.id.filterButton));
-        createButtonVI.perform(ViewActions.click());
+        ViewInteraction filterButtonVI = Espresso.onView(ViewMatchers.withId(R.id.filterButton));
+        filterButtonVI.perform(ViewActions.click());
 
         //check screen
         SystemClock.sleep(3000);
+
+
+        //click refresh page
+        refreshButtonVI.perform(ViewActions.click());
 
     }
 }

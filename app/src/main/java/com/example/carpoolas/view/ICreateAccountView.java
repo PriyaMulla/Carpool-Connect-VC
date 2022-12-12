@@ -1,10 +1,6 @@
 package com.example.carpoolas.view;
 
-import android.view.View;
-
 import androidx.annotation.NonNull;
-
-import com.example.carpoolas.model.Account;
 
 public interface ICreateAccountView {
 

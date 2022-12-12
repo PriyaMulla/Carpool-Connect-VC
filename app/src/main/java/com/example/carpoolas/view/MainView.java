@@ -9,11 +9,9 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.example.carpoolas.R;
 import com.example.carpoolas.controller.MainActivity;
 import com.example.carpoolas.databinding.ActivityMainBinding;
 
@@ -57,6 +55,7 @@ public class MainView implements IMainView{
             }
         });
     }
+
 //showControls method
     public void showControls(){
         LinearLayout layout = binding.mainLayout;

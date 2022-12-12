@@ -23,13 +23,13 @@ public class LogInInstTest {
     public void testLogIn(){
         //input username
         ViewInteraction usernameVI = Espresso.onView(ViewMatchers.withId(R.id.usernameText));
-        usernameVI.perform(ViewActions.typeText("admin"));
+        usernameVI.perform(ViewActions.typeText("priyankamu"));
 
         Espresso.closeSoftKeyboard();
 
         //input password
         ViewInteraction passwordVI = Espresso.onView(ViewMatchers.withId(R.id.passwordText));
-        passwordVI.perform(ViewActions.typeText("admin"));
+        passwordVI.perform(ViewActions.typeText("helloHi!"));
 
         Espresso.closeSoftKeyboard();
 

@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
     private static final String CUR_LISTING = "curListing";
     public static CollectionOfListings allListings = new CollectionOfListings(); //all listings
     public static CollectionOfListings filteredListings = new CollectionOfListings(); //filtered listings
+    public static CollectionOfAccounts allAccounts = new CollectionOfAccounts(); //accounts
     IMainView mainView;
     public static String curState = "";
     static Account curAccount;
@@ -284,6 +285,7 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
     @Override //addAccount be on collection of Accounts
     public void onCreateAccount(@NonNull String username, String password, String name, String email, @NonNull ICreateAccountView view) {
         Account newAccount = new Account(username,password,name,email);
+        allAccounts.addCreatedAccount(newAccount);
         this.persistenceFacade.createAccountIfNotExists(newAccount, new IPersistenceFacade.BinaryResultListener() {
             @Override
             public void onYesResult() {

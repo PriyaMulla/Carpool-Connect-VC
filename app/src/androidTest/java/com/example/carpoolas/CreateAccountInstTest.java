@@ -41,7 +41,7 @@ public class CreateAccountInstTest {
 
         //username
         ViewInteraction usernameTextVI = Espresso.onView(ViewMatchers.withId(R.id.enterUsername));
-        usernameTextVI.perform(ViewActions.typeText("priyankamu"));
+        usernameTextVI.perform(ViewActions.typeText("priyankamulla"));
 
         Espresso.closeSoftKeyboard();
 

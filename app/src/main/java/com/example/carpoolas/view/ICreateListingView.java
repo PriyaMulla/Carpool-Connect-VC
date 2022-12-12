@@ -1,12 +1,8 @@
 package com.example.carpoolas.view;
 
-import android.view.View;
-
 import androidx.annotation.NonNull;
 
 import java.util.Date;
-import com.example.carpoolas.model.Listing;
-
 public interface ICreateListingView {
     /**
      * Interface that classes interested in being notified of events happening

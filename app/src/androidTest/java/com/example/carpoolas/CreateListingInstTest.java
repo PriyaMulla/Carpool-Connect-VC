@@ -30,9 +30,16 @@ public class CreateListingInstTest {
 
     @Test
     public void testCreateListing(){
-        //create account
+        //log in
         LogInInstTest logInInstTest = new LogInInstTest();
         logInInstTest.testLogIn();
+
+        //click refresh page
+        ViewInteraction refreshButtonVI = Espresso.onView(ViewMatchers.withId(R.id.showAllTrips));
+        refreshButtonVI.perform(ViewActions.click());
+
+        //check screen
+        SystemClock.sleep(3000);
 
         //click create listing option
         ViewInteraction createListingButtonVI = Espresso.onView(ViewMatchers.withId(R.id.createListingButton));
@@ -77,7 +84,7 @@ public class CreateListingInstTest {
 
         //check that it added
         DataInteraction pageListing = Espresso.onData(Matchers.anything()).inAdapterView(ViewMatchers.withId(R.id.listview)).atPosition(0);
-        pageListing.check(ViewAssertions.matches(ViewMatchers.withSubstring("Role: Passenger")));
+        pageListing.check(ViewAssertions.matches(ViewMatchers.withSubstring("3 Ray Ave, Pough, NY 12604")));
 
         //add another listing
         //click create listing option
@@ -116,7 +123,7 @@ public class CreateListingInstTest {
 
         //check that it added
         pageListing = Espresso.onData(Matchers.anything()).inAdapterView(ViewMatchers.withId(R.id.listview)).atPosition(1);
-        pageListing.check(ViewAssertions.matches(ViewMatchers.withSubstring("Role: Driver")));
+        pageListing.check(ViewAssertions.matches(ViewMatchers.withSubstring("15 Hello Ave, Drop, CO 53597")));
 
         //check screen
         SystemClock.sleep(3000);

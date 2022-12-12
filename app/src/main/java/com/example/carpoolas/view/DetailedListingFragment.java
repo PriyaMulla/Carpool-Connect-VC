@@ -81,6 +81,7 @@ public class DetailedListingFragment extends Fragment implements IDetailedListin
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        //placehodlers
         @SuppressLint("SimpleDateFormat") DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy HH:mm");
         strDateTimeCreated = formatter.format(currListing.getDateCreated());
         strDateTime = formatter.format(currListing.getDateTimeOfTrip());
@@ -92,10 +93,12 @@ public class DetailedListingFragment extends Fragment implements IDetailedListin
         TextView seatPhrase = binding.seatPhrase;
         TextView seats = binding.seatsPlaceholder;
         TextView acc = binding.postedBy;
+
+        //setting text
         acc.setText(currListing.getCurAccount().getName());
         dateTimeCreated.setText(strDateTimeCreated);
         destination.setText(endLocation);
-        roleText.setText(curRRole + " is offering");
+        roleText.setText(curRRole);
         startLocation.setText(startLoc);
         dateTime4Trip.setText(strDateTime);
         if (curRRole.equals("Driver")) {
@@ -107,9 +110,12 @@ public class DetailedListingFragment extends Fragment implements IDetailedListin
 
         binding.contact.setOnClickListener(new View.OnClickListener() {
 
+            /**
+             * on click show contact info
+             * @param v view
+             */
             @Override
             public void onClick(View v) {
-                Snackbar.make(v, "Nice try",Snackbar.LENGTH_SHORT).show();
                 ConstraintLayout contactInfo = binding.contactInfo;
                 contactInfo.setVisibility(View.VISIBLE);
                 ConstraintLayout layout = view.getRootView().findViewById(R.id.mainView);
