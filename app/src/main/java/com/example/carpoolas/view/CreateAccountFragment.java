@@ -26,8 +26,10 @@ import com.google.android.material.snackbar.Snackbar;
 //implements ICreateView interface using Android Frag
 public class CreateAccountFragment extends Fragment implements ICreateAccountView {
 
+    private static final String IS_CREATED = "isCreated";
     FragmentCreateAccountBinding binding;
     Listener listener;
+    private boolean isCreated = false;
 
     public CreateAccountFragment(Listener listener) {
         this.listener = listener;
@@ -45,6 +47,9 @@ public class CreateAccountFragment extends Fragment implements ICreateAccountVie
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        if (savedInstanceState != null && savedInstanceState.getBoolean(IS_CREATED))
+            activateCreatedConfig();
 
         //set up a listener for "create" button clicks
         this.binding.createButton.setOnClickListener(new View.OnClickListener(){
@@ -102,19 +107,39 @@ public class CreateAccountFragment extends Fragment implements ICreateAccountVie
                     isValid = isValid && isValidEmail(name);
                 }
                 binding.enterEmailAddress.setTextColor(Color.BLACK);
+
                 if(isValid) {
 
-                    Snackbar.make(view, "Account created!",Snackbar.LENGTH_SHORT).show();
                     LinearLayout layout = (LinearLayout) view.getRootView().findViewById(R.id.mainLayout);
                     layout.setVisibility(View.VISIBLE);
                     CreateAccountFragment.this.listener.onCreateAccount(username, password, name, email, CreateAccountFragment.this);
                 }
-
             }
             }
-
-
         );
+
+        }
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putBoolean(IS_CREATED, this.isCreated);
+    }
+
+    @Override
+    public void onCreateSuccess() {
+        activateCreatedConfig();
+        Snackbar.make(this.binding.getRoot(), "Account created!",Snackbar.LENGTH_SHORT).show();
+    }
+
+    // prevent multiple registration attempts
+    private void activateCreatedConfig(){
+        this.isCreated = true;
+        this.binding.createButton.setEnabled(false);
+    }
+
+    @Override
+    public void onAccountAlreadyExists() {
+        Snackbar.make(this.binding.getRoot(), "Username taken",Snackbar.LENGTH_SHORT).show();
     }
 
 

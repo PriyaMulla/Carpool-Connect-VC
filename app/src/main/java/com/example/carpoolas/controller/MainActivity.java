@@ -138,18 +138,8 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
 
     DashboardFragment dashboardFragment = new DashboardFragment(this);
 
-    /**
-     * React to the user's intention of adding a new account onto the collection of accounts.
-     * @param name name of user
-     * @param username username of user
-     * @param password password of user
-     * @param email email of user
-     * @param view the view where the event originated
-     */
-    @Override //addAccount be on collection of Accounts
-    public void onCreateAccount(@NonNull String username, String password, String name, String email, @NonNull ICreateAccountView view) {
-        curAccount = new Account(username,password,name,email);
-        this.accounts.addCreatedAccount(curAccount);
+
+        /*this.accounts.addCreatedAccount(curAccount);
         curState = "dashboard";
         this.persistenceFacade.retrieveCollectionOfListings(new IPersistenceFacade.DataListener<CollectionOfListings>() {
             @Override
@@ -165,12 +155,12 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
             public void onNoDataFound() {
             }
         });
-        this.persistenceFacade.saveAccount(curAccount);
+        this.persistenceFacade.createAccountIfNotExists(curAccount);
         //MainActivity.this.curAccount = curAccount;
 
         this.mainView.displayFragment(dashboardFragment,true,"dashboard");
 
-    }
+    }*/
 
     @Override
     public void onCreateListing(@NonNull Date created, String role, Date dateTime, String start, String end, int seats, @NonNull ICreateListingView view){
@@ -239,6 +229,30 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
     }
 
     public Account getCurAccount() {return curAccount;
+    }
+
+    /**
+     * React to the user's intention of adding a new account onto the collection of accounts.
+     * @param name name of user
+     * @param username username of user
+     * @param password password of user
+     * @param email email of user
+     * @param view the view where the event originated
+     */
+    @Override //addAccount be on collection of Accounts
+    public void onCreateAccount(@NonNull String username, String password, String name, String email, @NonNull ICreateAccountView view) {
+        Account newAccount = new Account(username,password,name,email);
+        this.persistenceFacade.createAccountIfNotExists(newAccount, new IPersistenceFacade.BinaryResultListener() {
+            @Override
+            public void onYesResult() {
+                view.onCreateSuccess();
+            }
+
+            @Override
+            public void onNoResult() {
+                view.onAccountAlreadyExists();
+            }
+        });
     }
 
     @Override

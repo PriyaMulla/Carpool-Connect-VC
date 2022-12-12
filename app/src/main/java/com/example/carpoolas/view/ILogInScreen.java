@@ -17,6 +17,5 @@ public interface ILogInScreen {
         void goToDashboard(@NonNull ILogInScreen view);
 
         void onSigninAttempt(String username, String password, ILogInScreen view);
-        //void onCreateAccount(@NonNull String username, String password, String name, String email, @NonNull ICreateAccountView view);
     }
 }

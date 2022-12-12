@@ -107,16 +107,13 @@ public class FirestoreFacade implements IPersistenceFacade{
     public void retrieveAccount(@NonNull String username, @NonNull DataListener<Account> listener) {
 
         db.collection(ACCOUNTS_COLLECTION).document(username).get().
-                addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                                         @Override
-                                         public void onSuccess(DocumentSnapshot dsnap) {
-                                             if (dsnap.exists()){
-                                                 Account acc = dsnap.toObject(Account.class);
-                                                 listener.onDataReceived(acc);
-                                             } else // no user found
-                                                 listener.onNoDataFound();
-                                         }
-                                     }
+                addOnSuccessListener(dsnap -> {
+                    if (dsnap.exists()){
+                        Account acc = dsnap.toObject(Account.class);
+                        listener.onDataReceived(acc);
+                    } else // no user found
+                        listener.onNoDataFound();
+                }
                 );
 
     }
