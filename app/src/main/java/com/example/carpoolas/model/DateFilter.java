@@ -1,25 +1,23 @@
 package com.example.carpoolas.model;
-
-import android.annotation.SuppressLint;
-
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Iterator;
 
 public class DateFilter implements IFilter{
     public Date dDate;
 
-    //object for date formatting
-    @SuppressLint("SimpleDateFormat")
-    static SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy HH:mm");
 
+    /**
+     * filters listings based on date
+     * @param lst listings to be filtered
+     * @return newPage of listings
+     */
     @Override
     public CollectionOfListings filterListings(CollectionOfListings lst) {
         CollectionOfListings newPage = new CollectionOfListings();
 
 
         for (Listing listing : lst.listings) {
+            //extract just the date
             Calendar cal = Calendar.getInstance();
             cal.setTime(listing.dateTimeOfTrip);
             int day = cal.get(Calendar.DATE);

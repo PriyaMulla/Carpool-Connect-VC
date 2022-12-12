@@ -36,7 +36,9 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-
+/**
+ * Implements IFilterView interface using an Android fragment.
+ */
 public class FilterFragment extends Fragment implements IFilterView{
 
     private FragmentFilterBinding binding;
@@ -49,12 +51,28 @@ public class FilterFragment extends Fragment implements IFilterView{
     }
 
 
+    /**
+     * OnCreateView() overrides method of the same name from superclass. It's purpose is to
+     * inflate the xml layout associated with the fragment.
+     * @param inflater object to use to inflate the xml layout (create actual graphical widgets out of the xml declarations)
+     * @param container where the graphical widgets will be placed
+     * @param savedInstanceState any saved state information to be restored (null if none exists)
+     * @return the root of the layout that has just been inflated
+     */
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         this.binding = FragmentFilterBinding.inflate(inflater);
         return this.binding.getRoot();
     }
 
+    /**
+     * OnViewCreated() overrides method of the same name from superclass. It is called by the
+     * android platform after the layout has been inflated, and before the view transitions to the
+     * created state.
+     *
+     * @param view the layout's root view
+     * @param savedInstanceState any saved state information to be restored (null if none exists)
+     */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -161,6 +179,7 @@ public class FilterFragment extends Fragment implements IFilterView{
                 }
 
 
+                //if everything is valid go through
                  if (isValid) {
                      Snackbar.make(view, "Filtered Listings!", Snackbar.LENGTH_SHORT).show();
                      LinearLayout layout = (LinearLayout) view.getRootView().findViewById(R.id.mainLayout);

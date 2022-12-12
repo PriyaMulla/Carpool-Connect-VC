@@ -1,10 +1,13 @@
 package com.example.carpoolas.model;
 
-import java.util.Iterator;
-
 public class StartFilter implements IFilter{
     public String dStart;
 
+    /**
+     * filter listings depending on start location
+     * @param lst listings to be filtered
+     * @return newPage of listings
+     */
     @Override
     public CollectionOfListings filterListings(CollectionOfListings lst) {
         CollectionOfListings newPage = new CollectionOfListings();

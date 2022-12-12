@@ -63,7 +63,6 @@ public interface IPersistenceFacade {
 
     /* collectingOfListings -related methods end */
 
-    //TODO:
 
     /* authentication-related methods start */
 

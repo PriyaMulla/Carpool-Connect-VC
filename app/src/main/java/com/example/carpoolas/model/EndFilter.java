@@ -1,10 +1,13 @@
 package com.example.carpoolas.model;
 
-import java.util.Iterator;
-
 public class EndFilter implements IFilter{
     public String dEnd;
 
+    /**
+     * filter listings depending on end location
+     * @param lst listings to be filtered
+     * @return newPage of listings
+     */
     @Override
     public CollectionOfListings filterListings(CollectionOfListings lst) {
         CollectionOfListings newPage = new CollectionOfListings();

@@ -1,10 +1,13 @@
 package com.example.carpoolas.model;
 
-import java.util.Iterator;
-
 public class SeatFilter implements IFilter{
     public int dSeats;
 
+    /**
+     * filter listings depending on amount of seats
+     * @param lst listings to be filtered
+     * @return newPage of listings
+     */
     @Override
     public CollectionOfListings filterListings(CollectionOfListings lst) {
         CollectionOfListings newPage = new CollectionOfListings();

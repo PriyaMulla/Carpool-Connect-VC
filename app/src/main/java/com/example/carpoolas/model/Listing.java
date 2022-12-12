@@ -1,18 +1,17 @@
 package com.example.carpoolas.model;
 
 import android.annotation.SuppressLint;
-import android.os.Bundle;
-
 import androidx.annotation.NonNull;
-
 import java.io.Serializable;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
 
+/**
+ * represents a listing that is part of collection of listings
+ */
 public class Listing implements Serializable {
     //fields
     Date dateCreated;
@@ -22,6 +21,7 @@ public class Listing implements Serializable {
     String endLocation;
     int seats;
 
+    //attach account to listing
     public Account getCurAccount() {
         return curAccount;
     }
@@ -32,6 +32,16 @@ public class Listing implements Serializable {
 
     public Listing(){}
 
+    /**
+     * creates a listing
+     * @param created date create
+     * @param role what role user is
+     * @param dateTime date of trip
+     * @param start start location
+     * @param end end location
+     * @param seats amount of seat
+     * @param curAccount account that created the listing
+     */
     public Listing(Date created, String role, Date dateTime, String start, String end, int seats, Account curAccount){
         this.dateCreated = created;
         this.role = role;
@@ -42,6 +52,7 @@ public class Listing implements Serializable {
         this.curAccount = curAccount;
     }
 
+    //getters
     public Date getDateCreated() {
         return dateCreated;
     }
@@ -59,12 +70,22 @@ public class Listing implements Serializable {
         return seats;
     }
 
+    /**
+     * ensures locations are in correct format
+     * @param start location
+     * @return true if in correct format
+     */
     public static boolean isValidStart(String start){
         return Pattern.compile("^(\\d{1,}) [a-zA-Z0-9\\s]+(\\,)? [a-zA-Z]+(\\,)? [A-Z]{2} [0-9]{5,6}$")
                 .matcher(start)
                 .find();
     }
 
+    /**
+     * ensures locations are in correct format
+     * @param end location
+     * @return true if in correct format
+     */
     public static boolean isValidEnd(String end){
         return Pattern.compile("^(\\d{1,}) [a-zA-Z0-9\\s]+(\\,)? [a-zA-Z]+(\\,)? [A-Z]{2} [0-9]{5,6}$")
                 .matcher(end)
@@ -76,6 +97,10 @@ public class Listing implements Serializable {
     @SuppressLint("SimpleDateFormat")
     static SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy HH:mm");
 
+    /**
+     * textual representation of listing
+     * @return text of listing
+     */
     @NonNull
     @Override
     public String toString() {
@@ -120,10 +145,10 @@ public class Listing implements Serializable {
     }
 
     /**
-     * Creates and returns a SalesLineItem from a previously created String to Object Map.
+     * Creates and returns a Listing from a previously created String to Object Map.
      *
-     * @param map the Map to convert to a SalesLineItem
-     * @return the SalesLineItem representation of the input map
+     * @param map the Map to convert to a listing
+     * @return the listing representation of the input map
      */
     @NonNull
     public static Listing fromMap(@NonNull Map<String, Object> map){
