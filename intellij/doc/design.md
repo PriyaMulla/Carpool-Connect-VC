@@ -213,16 +213,15 @@ class Account{
 -name : string
 -username : string
 -email : string
--authKey : authKey
+-password : String
 --
 public void Account(string username,string password,string email,string name)
 public static boolean isValidName(String input)
 public static boolean isValidUsername(String input)
 public static boolean isValidPassword(String input)
-public boolean validatePassword(String password)
 public static boolean isValidEmail(String input)
 public String getName()
-public AuthKey getAuthKey()
+public String getPassword(0
 public String getUsername()
 public String getEmail()
 public String toString()
@@ -234,7 +233,7 @@ class Listing{
 +Date dateTimeOfTrip
 +string startLocation
 +string endLocation
--int seats
++int seats
 --
 public Account getCurAccount()
 public void Listing(Date dateCreated,Date dateTime, String start,String end,int seats, Account curAccount)
@@ -270,23 +269,60 @@ public void onSigninAttempt(String username, String password, ILogInScreen view)
 protected void onCreate(Bundle savedInstanceState)
 }
 class CollectionOfListings{
-
++ Collection<Listing> listings;
+--
+public String toString()
+public boolean isEmpty()
+public void addCreatedListing(Listing lst)
 }
 class MainView{
- 
+ --
 public static void main(String[] args)
+public void showControls()
+public void hideControls()
+public Fragment getCurFragment()
+}
+interface IFilter{
+--
+CollectionOfListings filterListings(CollectionOfListings lst)
+}
+class RoleFilter{
+--
+CollectionOfListings filterListings(CollectionOfListings lst)
+}
+class SeatFilter{
+--
+CollectionOfListings filterListings(CollectionOfListings lst)
+}
+class StartFilter{
+--
+CollectionOfListings filterListings(CollectionOfListings lst)
+}
+class DateFilter{
+--
+CollectionOfListings filterListings(CollectionOfListings lst)
+}
+class EndFilter{
+--
+CollectionOfListings filterListings(CollectionOfListings lst)
 }
 together {
 class Account
-class PageOfListings
+class CollectionOfListings
 }
+
 'Association
 MainView --[hidden] MainActivity
 MainActivity -[hidden] CollectionOfListings
 MainActivity --[hidden] Account
 CollectionOfListings --> "\n(1...*)\nListing\n {List}\n" Listing : \t\t\t
 Account --> "\n(1...*)\nListing\n {List}\n" Listing : \t
-
+RoleFilter --> IFilter
+SeatFilter --> IFilter
+IFilter <-- StartFilter
+IFilter <-- DateFilter
+EndFilter --> IFilter
+IFilter --> "filters\n\n" CollectionOfListings
 Account -[hidden] CollectionOfListings
 @enduml
 ```
