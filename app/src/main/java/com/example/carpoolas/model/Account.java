@@ -8,11 +8,10 @@ import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
+//represents user in application
 public class Account implements Serializable {
-    //TODO: account's listings
 
     private String username; // the user's unique name
-    private AuthKey authKey; // the authentication key associated with the user
 
     //fields
     private String name = "";
@@ -21,10 +20,10 @@ public class Account implements Serializable {
 
     public Account(){}
 
-    //constructor
+
     public Account(String username, String password, String name, String email){
         this.username = username;
-        this.authKey = new AuthKey(password);
+        this.password = password;
         this.name = name;
         this.email = email;
     }
@@ -76,7 +75,9 @@ public class Account implements Serializable {
         return name;
     }
 
-    public AuthKey getAuthKey() {return this.authKey;}
+    public String getPassword() {
+        return password;
+    }
 
     public String getUsername() {
         return username;
@@ -86,15 +87,6 @@ public class Account implements Serializable {
         return email;
     }
 
-    /**
-     * Tests whether ths provided password matches the one provided when the user
-     * was created.
-     * @param password the plaintext password to test
-     * @return true if the password matches, false otherwise.
-     */
-    public boolean validatePassword(String password){
-        return this.authKey.validatePassword(password);
-    }
 
     @NonNull
     @Override

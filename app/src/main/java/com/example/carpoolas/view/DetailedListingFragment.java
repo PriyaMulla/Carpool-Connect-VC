@@ -50,7 +50,6 @@ public class DetailedListingFragment extends Fragment implements IDetailedListin
         DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy HH:mm");
         strDateTimeCreated = formatter.format(currListing.getDateCreated());
         strDateTime = formatter.format(currListing.getDateTimeOfTrip());
-        //this.currListing = currListing;
         curRRole = currListing.getRole();
         endLocation = currListing.getEndLocation();
         startLoc = currListing.getStartLocation();
@@ -81,7 +80,8 @@ public class DetailedListingFragment extends Fragment implements IDetailedListin
         TextView seats = binding.seatsPlaceholder;
         TextView acc = binding.postedBy;
         //TODO fix this implementation
-        if (currListing.getCurAccount() != null) acc.setText(currListing.getCurAccount().getName());
+        //if (currListing.getCurAccount() != null)
+        acc.setText(currListing.getCurAccount().getName());
         dateTimeCreated.setText(strDateTimeCreated);
         destination.setText(endLocation);
         roleText.setText(curRRole + " is offering");

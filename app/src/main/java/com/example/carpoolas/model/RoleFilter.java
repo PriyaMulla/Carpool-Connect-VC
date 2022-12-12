@@ -9,9 +9,7 @@ public class RoleFilter implements IFilter{
     public CollectionOfListings filterListings(CollectionOfListings lst) {
         CollectionOfListings newPage = new CollectionOfListings();
 
-        Iterator<Listing> listingsIterator = lst.listings.iterator();
-        while (listingsIterator.hasNext()) {
-            Listing listing = listingsIterator.next();
+        for (Listing listing : lst.listings) {
             if (this.dRole.equals(listing.role)) {
                 newPage.addCreatedListing(listing);
             }

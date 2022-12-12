@@ -42,21 +42,21 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
 
     public static final String IS_SHOWN = "isShown";
     private static final String CUR_LISTING = "curListing";
-    CollectionOfAccounts accounts = new CollectionOfAccounts();
-    public static CollectionOfListings allListings = new CollectionOfListings();
-    public static CollectionOfListings filteredListings = new CollectionOfListings();
+    public static CollectionOfListings allListings = new CollectionOfListings(); //all listings
+    public static CollectionOfListings filteredListings = new CollectionOfListings(); //filtered listings
     IMainView mainView;
     public static String curState = "";
     Account curAccount;
     public static Listing curListing; //listing currently working on
     IPersistenceFacade persistenceFacade = new FirestoreFacade();
     public static boolean createListUsed = true;
+    DashboardFragment dashboardFragment = new DashboardFragment(this);
 
 
 
     /**
      * Called whenever the activity is (re)created.
-     * @param savedInstanceState saved data from prior instantiation (ignore for now)
+     * @param savedInstanceState saved data from prior instantiation
      */
 
     @Override
@@ -64,9 +64,8 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
         this.getSupportFragmentManager().setFragmentFactory(new CarpoolASFragFactory(this));
         super.onCreate(savedInstanceState);
 
-
         this.mainView = new MainView(this); // create the main screen view
-
+        setContentView(this.mainView.getRootView()); //display fragment
 
         if (savedInstanceState == null){
             //to begin with, make the screen display the create account fragment
@@ -77,10 +76,12 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
             curListing = (Listing) savedInstanceState.getSerializable(CUR_LISTING);
         }
 
-
-        setContentView(this.mainView.getRootView()); //display fragment
     }
 
+    /**
+     * Overridden to save dynamic state before activity destruction.
+     * @param outState the bundle to write state to.
+     */
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -88,6 +89,10 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
         outState.putSerializable(CUR_LISTING, curListing);
     }
 
+    /**
+     * get methods
+     * @return fragments
+     */
     public CreateListingFragment getListingFragListener(){
         return new CreateListingFragment(this);
     }
@@ -97,7 +102,14 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
     public FilterFragment getSearchFragListener(){
         return new FilterFragment(this);
     }
+    public CollectionOfListings getListings() {
+        return allListings;
+    }
 
+
+    /**
+     * when back button is pressed, previous screen is shown
+     */
     @Override
     public void onBackPressed() {
         super.onBackPressed();
@@ -120,63 +132,54 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
             this.mainView.displayFragment(logInScreen, true, "'login screen");
             mainView.hideControls();
         }
-        if (curFrag instanceof IDetailedListingView){
-
-        }
-
+        if (curFrag instanceof IDetailedListingView)mainView.hideControls();
     }
 
-
+    /**
+     * shows main buttons
+     * @param curState current display
+     */
     public void areControlsShown(String curState){
         mainView.showControls();
     }
-    public CollectionOfListings getListing() {
-        return allListings;
-    }
-
-    DashboardFragment dashboardFragment = new DashboardFragment(this);
 
 
-        /*this.accounts.addCreatedAccount(curAccount);
-        curState = "dashboard";
-        this.persistenceFacade.retrieveCollectionOfListings(new IPersistenceFacade.DataListener<CollectionOfListings>() {
-            @Override
-            public void onDataReceived(@NonNull CollectionOfListings listings) {
-                MainActivity.allListings = listings;
-                Fragment curFrag = MainActivity.this.mainView.getCurFragment();
-                if (curFrag instanceof IDashboardView) // update ledger display if ledger fragment being displayed
-                    ((IDashboardView)curFrag).updateDashboardDisplay(MainActivity.allListings);
-                dashboardFragment.adapter.notifyDataSetChanged();
-            }
+    /* ICreateListingView.Listener interface implementation start */
 
-            @Override
-            public void onNoDataFound() {
-            }
-        });
-        this.persistenceFacade.createAccountIfNotExists(curAccount);
-        //MainActivity.this.curAccount = curAccount;
-
-        this.mainView.displayFragment(dashboardFragment,true,"dashboard");
-
-    }*/
-
+    /**
+     * React to user's intention of creating a new listing and adding to CollectionOfListings
+     * @param created when listing created
+     * @param role what the role of the user is
+     * @param dateTime when user wants to go
+     * @param start where user wants to start
+     * @param end where user wants to go
+     * @param seats how many seats user has or needs
+     * @param view where event originated
+     */
     @Override
     public void onCreateListing(@NonNull Date created, String role, Date dateTime, String start, String end, int seats, @NonNull ICreateListingView view){
         Listing listing = new Listing(created, role, dateTime, start, end, seats, curAccount);
         createListUsed = true;
         allListings.addCreatedListing(listing);
 
+        //add to firestore
         this.persistenceFacade.saveListing(listing);
 
         curState = "dashboard";
         this.mainView.displayFragment(dashboardFragment,true,"dashboard");
 
     }
+    /* ICreateListingView.Listener interface implementation end */
 
-    public CollectionOfListings getListings() {
-        return allListings;
-    }
 
+    /* IFilterView.Listener interface implementation start */
+
+    /**
+     * React to user's intention of filtering all listings
+     * @param lst listings that are being filtered
+     * @param filterSet what filters are being applied
+     * @param view where event originated
+     */
     @Override
     public void onFilter(@NonNull CollectionOfListings lst, Set<IFilter> filterSet, @NonNull IFilterView view) {
         //TODO:call generic filter method here, for every member of the set filter
@@ -187,11 +190,25 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
         //display filtered listings
         this.mainView.displayFragment(dashboardFragment,true,"dashboard");
     }
+    /* IFilterView.Listener interface implementation end */
+
+
+    /* ILogInScreen.Listener interface implementation start */
+
+    /**
+     * React to user's intention of wanting to create an account
+     * @param view where event originated
+     */
     @Override
     public void goToCreateAccount(@NonNull ILogInScreen view) {
         curState = "logIn";
         this.mainView.displayFragment(new CreateAccountFragment(this),true,"create an account");
     }
+
+    /**
+     * React to user's logging in and wanting to go to dashboard
+     * @param view where event originated
+     */
     @Override
     public void goToDashboard(@NonNull ILogInScreen view) {
         curState = "logIn";
@@ -200,9 +217,10 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
         this.persistenceFacade.retrieveCollectionOfListings(new IPersistenceFacade.DataListener<CollectionOfListings>() {
             @Override
             public void onDataReceived(@NonNull CollectionOfListings listings) {
+                //display all listings
                 MainActivity.allListings = listings;
                 Fragment curFrag = MainActivity.this.mainView.getCurFragment();
-                if (curFrag instanceof IDashboardView) // update ledger display if ledger fragment being displayed
+                if (curFrag instanceof IDashboardView) // update dash display if dash fragment being displayed
                     ((IDashboardView)curFrag).updateDashboardDisplay(MainActivity.allListings);
                 dashboardFragment.adapter.notifyDataSetChanged();
             }
@@ -213,51 +231,23 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
         });
 
         this.mainView.displayFragment(dashboardFragment,true,"go to dashboard");
-
-    }
-
-    public void goToDetailedPost(@NonNull IDashboardView view) {
-        DetailedListingFragment detailedListingFragment = new DetailedListingFragment(this);
-        this.mainView.displayFragment(detailedListingFragment, true,"go to detailed");
-    }
-
-
-
-    public Account getCurAccount() {return curAccount;
     }
 
     /**
-     * React to the user's intention of adding a new account onto the collection of accounts.
-     * @param name name of user
-     * @param username username of user
-     * @param password password of user
-     * @param email email of user
-     * @param view the view where the event originated
+     * React to user's attempt to sign in
+     * @param username user's username
+     * @param password user's password
+     * @param view where event originated
      */
-    @Override //addAccount be on collection of Accounts
-    public void onCreateAccount(@NonNull String username, String password, String name, String email, @NonNull ICreateAccountView view) {
-        Account newAccount = new Account(username,password,name,email);
-        this.persistenceFacade.createAccountIfNotExists(newAccount, new IPersistenceFacade.BinaryResultListener() {
-            @Override
-            public void onYesResult() {
-                view.onCreateSuccess();
-            }
-
-            @Override
-            public void onNoResult() {
-                view.onAccountAlreadyExists();
-            }
-        });
-    }
-
     @Override
     public void onSigninAttempt(String username, String password, ILogInScreen view) {
 
+        //retrieve accounts
         persistenceFacade.retrieveAccount(username, new IPersistenceFacade.DataListener<Account>() {
             @Override
             public void onDataReceived(@NonNull Account account) {
-                if (account.validatePassword(password)){
-                    MainActivity.this.curAccount = account;
+                if (account.getPassword().equals(password)){
+                    //MainActivity.this.curAccount = account;
                     DashboardFragment dashboardFragment = new DashboardFragment(MainActivity.this);
                     MainActivity.this.mainView.displayFragment(dashboardFragment, true, "go to Dashboard");
                 } else view.onInvalidCredentials();
@@ -268,4 +258,63 @@ public class MainActivity extends AppCompatActivity implements ICreateAccountVie
             }
         });
     }
+    /* ILogInScreen.Listener interface implementation end */
+
+    /* IDashboardView.Listener interface implementation start */
+
+    /**
+     * React to user's intention of seeing more info about a listing
+     * @param view where event originated
+     */
+    public void goToDetailedPost(@NonNull IDashboardView view) {
+        DetailedListingFragment detailedListingFragment = new DetailedListingFragment(this);
+        this.mainView.displayFragment(detailedListingFragment, true,"go to detailed");
+    }
+    /* IDashboardView.Listener interface implementation end */
+
+
+    /* ICreateAccountView.Listener interface implementation start */
+    /**
+     * React to the user's intention of adding a new account onto the collection of accounts.
+     * @param name name of account
+     * @param username username of account
+     * @param password password of account
+     * @param email email of account
+     * @param view the view where the event originated
+     */
+    @Override //addAccount be on collection of Accounts
+    public void onCreateAccount(@NonNull String username, String password, String name, String email, @NonNull ICreateAccountView view) {
+        Account newAccount = new Account(username,password,name,email);
+        this.persistenceFacade.createAccountIfNotExists(newAccount, new IPersistenceFacade.BinaryResultListener() {
+            @Override
+            public void onYesResult() {
+                view.onCreateSuccess();
+                //load listings
+                MainActivity.this.persistenceFacade.retrieveCollectionOfListings(new IPersistenceFacade.DataListener<CollectionOfListings>() {
+                    @Override
+                    public void onDataReceived(@NonNull CollectionOfListings listings) {
+                        //display all listings
+                        MainActivity.allListings = listings;
+                        Fragment curFrag = MainActivity.this.mainView.getCurFragment();
+                        if (curFrag instanceof IDashboardView) // update dash display if dash fragment being displayed
+                            ((IDashboardView)curFrag).updateDashboardDisplay(MainActivity.allListings);
+                        dashboardFragment.adapter.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void onNoDataFound() {
+                    }
+                });
+                MainActivity.this.mainView.displayFragment(dashboardFragment,true,"go to dashboard");
+            }
+
+            @Override
+            public void onNoResult() {
+                view.onAccountAlreadyExists();
+            }
+        });
+        /* ICreateAccountView.Listener interface implementation end */
+    }
+
+
 }

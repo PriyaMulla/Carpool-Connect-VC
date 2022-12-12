@@ -80,6 +80,13 @@ public class LogInScreen extends Fragment implements ILogInScreen{
             }
         });
     }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putBoolean(IS_REGISTERED, this.isRegistered);
+    }
+
     @Override
     public void onInvalidCredentials() {
         displayMessage(R.string.invalid_credentials_msg);

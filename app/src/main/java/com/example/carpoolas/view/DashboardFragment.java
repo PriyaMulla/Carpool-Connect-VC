@@ -97,6 +97,7 @@ public class DashboardFragment extends Fragment implements IDashboardView {
         this.binding.showAllTrips.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MainActivity.createListUsed = true;
                 updateDashboardDisplay(MainActivity.allListings);
             }
         });

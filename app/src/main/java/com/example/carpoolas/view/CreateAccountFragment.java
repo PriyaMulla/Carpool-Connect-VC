@@ -48,8 +48,6 @@ public class CreateAccountFragment extends Fragment implements ICreateAccountVie
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        if (savedInstanceState != null && savedInstanceState.getBoolean(IS_CREATED))
-            activateCreatedConfig();
 
         //set up a listener for "create" button clicks
         this.binding.createButton.setOnClickListener(new View.OnClickListener(){
@@ -69,17 +67,18 @@ public class CreateAccountFragment extends Fragment implements ICreateAccountVie
                     enterName = CreateAccountFragment.this.binding.enterName.getText();
                     name = enterName.toString();
                     if (!isValidName(name)){
-                        Snackbar.make(view, "Please provide your name!",Snackbar.LENGTH_SHORT).show();
+                        Snackbar.make(view, "Please provide your first and last name!",Snackbar.LENGTH_SHORT).show();
                         binding.enterName.setHintTextColor(Color.RED);
                         binding.enterName.setTextColor(Color.RED);
                         isValid = isValidName(name);
                     }
                 binding.enterName.setTextColor(Color.BLACK);
+
                 //extract user's username
                 enterUsername = CreateAccountFragment.this.binding.enterUsername.getText();
                 username = enterUsername.toString();
                 if (!isValidUsername(username)){
-                    Snackbar.make(view, "Please provide a valid username!", Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(view, "Please provide a valid username (longer than 5)!", Snackbar.LENGTH_SHORT).show();
                     binding.enterUsername.setHintTextColor(Color.RED);
                     binding.enterUsername.setTextColor(Color.RED);
                     isValid = isValid && isValidUsername(name);
@@ -90,7 +89,7 @@ public class CreateAccountFragment extends Fragment implements ICreateAccountVie
                 enterPassword = CreateAccountFragment.this.binding.enterPassword.getText();
                 password = enterPassword.toString();
                 if (!isValidPassword(password)){
-                    Snackbar.make(view, "Please provide your password!",Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(view, "Please provide your password (One capital, one special, longer than 5)!",Snackbar.LENGTH_SHORT).show();
                     binding.enterPassword.setHintTextColor(Color.RED);
                     binding.enterPassword.setTextColor(Color.RED);
                     isValid = isValid && isValidPassword(password);
@@ -101,7 +100,7 @@ public class CreateAccountFragment extends Fragment implements ICreateAccountVie
                 enterEmail = CreateAccountFragment.this.binding.enterEmailAddress.getText();
                 email = enterEmail.toString();
                 if (!isValidEmail(email)){
-                    Snackbar.make(view, "Please provide your email!",Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(view, "Please provide your vassar email!",Snackbar.LENGTH_SHORT).show();
                     binding.enterEmailAddress.setHintTextColor(Color.RED);
                     binding.enterEmailAddress.setTextColor(Color.RED);
                     isValid = isValid && isValidEmail(name);
@@ -109,10 +108,9 @@ public class CreateAccountFragment extends Fragment implements ICreateAccountVie
                 binding.enterEmailAddress.setTextColor(Color.BLACK);
 
                 if(isValid) {
-
+                    CreateAccountFragment.this.listener.onCreateAccount(username, password, name, email, CreateAccountFragment.this);
                     LinearLayout layout = (LinearLayout) view.getRootView().findViewById(R.id.mainLayout);
                     layout.setVisibility(View.VISIBLE);
-                    CreateAccountFragment.this.listener.onCreateAccount(username, password, name, email, CreateAccountFragment.this);
                 }
             }
             }
@@ -127,15 +125,12 @@ public class CreateAccountFragment extends Fragment implements ICreateAccountVie
 
     @Override
     public void onCreateSuccess() {
-        activateCreatedConfig();
+        this.isCreated = true;
         Snackbar.make(this.binding.getRoot(), "Account created!",Snackbar.LENGTH_SHORT).show();
+
+
     }
 
-    // prevent multiple registration attempts
-    private void activateCreatedConfig(){
-        this.isCreated = true;
-        this.binding.createButton.setEnabled(false);
-    }
 
     @Override
     public void onAccountAlreadyExists() {
